@@ -1,0 +1,115 @@
+# Entity: character
+
+main: kit: entity: character: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alliance_id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "ancestry_id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "birthday"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "bloodline_id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "corporation_id"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "gender"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "race_id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "security_status"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "character"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "character_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                example: "tranquility"
+                kind: "query"
+                name: "datasource"
+                orig: "datasource"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/characters/{character_id}/"
+          parts: [
+            "characters"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              character_id: "id"
+            }
+          }
+          select: {
+            exist: [
+              "datasource"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

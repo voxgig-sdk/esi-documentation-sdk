@@ -1,0 +1,28 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: asset: {
+    path: "/characters/{character_id}/assets/": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: character: {
+    path: "/characters/{character_id}/": {
+      rename: param: "character_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: structure: {
+    path: "/universe/structures/{structure_id}/": {
+      rename: param: "structure_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}

@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "character": {
+      "CHARACTER00": {
+        "alliance_id": "ALLIANCE01",
+        "ancestry_id": "ANCESTRY01",
+        "birthday": "s66",
+        "bloodline_id": "BLOODLINE01",
+        "corporation_id": "CORPORATION01",
+        "description": "s69",
+        "gender": "s6a",
+        "name": "s6b",
+        "race_id": "RACE01",
+        "security_status": 109
+      },
+      "CHARACTER01": {
+        "alliance_id": "ALLIANCE01",
+        "ancestry_id": "ANCESTRY01",
+        "birthday": "sca",
+        "bloodline_id": "BLOODLINE01",
+        "corporation_id": "CORPORATION01",
+        "description": "scd",
+        "gender": "sce",
+        "name": "scf",
+        "race_id": "RACE01",
+        "security_status": 209
+      },
+      "CHARACTER02": {
+        "alliance_id": "ALLIANCE01",
+        "ancestry_id": "ANCESTRY01",
+        "birthday": "s12e",
+        "bloodline_id": "BLOODLINE01",
+        "corporation_id": "CORPORATION01",
+        "description": "s131",
+        "gender": "s132",
+        "name": "s133",
+        "race_id": "RACE01",
+        "security_status": 309
+      }
+    }
+  },
+  "new": {
+    "character": {
+      "character_ref01": {
+        "alliance_id": "ALLIANCE01",
+        "ancestry_id": "ANCESTRY01",
+        "birthday": "s192",
+        "bloodline_id": "BLOODLINE01",
+        "corporation_id": "CORPORATION01",
+        "description": "s195",
+        "gender": "s196",
+        "name": "s197",
+        "race_id": "RACE01",
+        "security_status": 409
+      }
+    }
+  }
+}

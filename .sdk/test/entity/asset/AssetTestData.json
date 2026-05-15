@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "asset": {
+      "ASSET00": {
+        "is_blueprint_copy": true,
+        "is_singleton": false,
+        "item_id": "ITEM01",
+        "location_flag": "s53",
+        "location_id": "LOCATION01",
+        "location_type": "s55",
+        "quantity": "s56",
+        "type_id": "TYPE01",
+        "character_id": "CHARACTER01"
+      },
+      "ASSET01": {
+        "is_blueprint_copy": true,
+        "is_singleton": false,
+        "item_id": "ITEM01",
+        "location_flag": "sa3",
+        "location_id": "LOCATION01",
+        "location_type": "sa5",
+        "quantity": "sa6",
+        "type_id": "TYPE01",
+        "character_id": "CHARACTER01"
+      },
+      "ASSET02": {
+        "is_blueprint_copy": true,
+        "is_singleton": false,
+        "item_id": "ITEM01",
+        "location_flag": "sf3",
+        "location_id": "LOCATION01",
+        "location_type": "sf5",
+        "quantity": "sf6",
+        "type_id": "TYPE01",
+        "character_id": "CHARACTER01"
+      }
+    }
+  },
+  "new": {
+    "asset": {
+      "asset_ref01": {
+        "is_blueprint_copy": true,
+        "is_singleton": false,
+        "item_id": "ITEM01",
+        "location_flag": "s143",
+        "location_id": "LOCATION01",
+        "location_type": "s145",
+        "quantity": "s146",
+        "type_id": "TYPE01"
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+# Entity: structure
+
+main: kit: entity: structure: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "owner_id"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "position"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "solar_system_id"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "type_id"
+      req: true
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "structure"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "structure_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                example: "tranquility"
+                kind: "query"
+                name: "datasource"
+                orig: "datasource"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/universe/structures/{structure_id}/"
+          parts: [
+            "universe"
+            "structures"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              structure_id: "id"
+            }
+          }
+          select: {
+            exist: [
+              "datasource"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

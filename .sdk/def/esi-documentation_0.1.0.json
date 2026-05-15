@@ -1,0 +1,504 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ESI Documentation",
+    "description": "Official EVE Online API documentation. ESI is the name of EVE Online's publicly available API, allowing you to query the game itself to get info about your character, corporation and more.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "ESI Support",
+      "url": "https://docs.esi.evetech.net/"
+    },
+    "license": {
+      "name": "Developer License",
+      "url": "https://developers.eveonline.com/resource/license-agreement"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://esi.evetech.net/latest",
+      "description": "ESI Production Server (Latest Version)"
+    },
+    {
+      "url": "https://esi.evetech.net/dev",
+      "description": "ESI Development Server"
+    },
+    {
+      "url": "https://esi.evetech.net/legacy",
+      "description": "ESI Legacy Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Character",
+      "description": "Character-related endpoints"
+    },
+    {
+      "name": "Corporation",
+      "description": "Corporation-related endpoints"
+    },
+    {
+      "name": "Universe",
+      "description": "Universe and game data endpoints"
+    },
+    {
+      "name": "Assets",
+      "description": "Asset and inventory endpoints"
+    },
+    {
+      "name": "Market",
+      "description": "Market data endpoints"
+    },
+    {
+      "name": "Structure",
+      "description": "Structure-related endpoints"
+    }
+  ],
+  "paths": {
+    "/characters/{character_id}/": {
+      "get": {
+        "tags": [
+          "Character"
+        ],
+        "summary": "Get character information",
+        "description": "Public information about a character",
+        "operationId": "getCharacter",
+        "parameters": [
+          {
+            "name": "character_id",
+            "in": "path",
+            "required": true,
+            "description": "An EVE character ID",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "datasource",
+            "in": "query",
+            "description": "The server name you would like data from",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "tranquility",
+                "singularity"
+              ],
+              "default": "tranquility"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Public data about a character",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Character"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Character not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/characters/{character_id}/assets/": {
+      "get": {
+        "tags": [
+          "Assets"
+        ],
+        "summary": "Get character assets",
+        "description": "Return a list of the characters assets",
+        "operationId": "getCharacterAssets",
+        "security": [
+          {
+            "evesso": [
+              "esi-assets.read_assets.v1"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "character_id",
+            "in": "path",
+            "required": true,
+            "description": "An EVE character ID",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "datasource",
+            "in": "query",
+            "description": "The server name you would like data from",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "tranquility",
+                "singularity"
+              ],
+              "default": "tranquility"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Which page of results to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of assets",
+            "headers": {
+              "X-Pages": {
+                "description": "Maximum page number",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Asset"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/universe/structures/{structure_id}/": {
+      "get": {
+        "tags": [
+          "Structure"
+        ],
+        "summary": "Get structure information",
+        "description": "Returns information on requested structure if you are on the ACL. Otherwise, returns Forbidden for all inputs.",
+        "operationId": "getStructure",
+        "security": [
+          {
+            "evesso": [
+              "esi-universe.read_structures.v1"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "structure_id",
+            "in": "path",
+            "required": true,
+            "description": "An EVE structure ID",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "datasource",
+            "in": "query",
+            "description": "The server name you would like data from",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "tranquility",
+                "singularity"
+              ],
+              "default": "tranquility"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data about a structure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Structure"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Not authorized to access this structure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Structure not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Character": {
+        "type": "object",
+        "required": [
+          "name",
+          "corporation_id"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The character's name"
+          },
+          "description": {
+            "type": "string",
+            "description": "The character's bio"
+          },
+          "corporation_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The character's corporation ID"
+          },
+          "alliance_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The character's alliance ID"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation date of the character"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "male",
+              "female"
+            ],
+            "description": "The character's gender"
+          },
+          "race_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The character's race ID"
+          },
+          "bloodline_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The character's bloodline ID"
+          },
+          "ancestry_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The character's ancestry ID"
+          },
+          "security_status": {
+            "type": "number",
+            "format": "float",
+            "description": "The character's security status"
+          }
+        }
+      },
+      "Asset": {
+        "type": "object",
+        "required": [
+          "item_id",
+          "type_id",
+          "location_id",
+          "location_type",
+          "quantity",
+          "is_singleton"
+        ],
+        "properties": {
+          "item_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "item_id integer"
+          },
+          "type_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "type_id integer"
+          },
+          "location_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "location_id integer"
+          },
+          "location_type": {
+            "type": "string",
+            "enum": [
+              "station",
+              "solar_system",
+              "item",
+              "other"
+            ],
+            "description": "Describes the location type"
+          },
+          "location_flag": {
+            "type": "string",
+            "description": "Describes the specific location within the location_type"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "description": "quantity integer"
+          },
+          "is_singleton": {
+            "type": "boolean",
+            "description": "is_singleton boolean"
+          },
+          "is_blueprint_copy": {
+            "type": "boolean",
+            "description": "is_blueprint_copy boolean"
+          }
+        }
+      },
+      "Structure": {
+        "type": "object",
+        "required": [
+          "name",
+          "owner_id",
+          "solar_system_id",
+          "type_id"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The structure name"
+          },
+          "owner_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The ID of the corporation that owns the structure"
+          },
+          "solar_system_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The solar system the structure is in"
+          },
+          "type_id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The type of structure"
+          },
+          "position": {
+            "type": "object",
+            "description": "Coordinates of the structure in the solar system",
+            "properties": {
+              "x": {
+                "type": "number",
+                "format": "double"
+              },
+              "y": {
+                "type": "number",
+                "format": "double"
+              },
+              "z": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "evesso": {
+        "type": "oauth2",
+        "description": "EVE Online SSO OAuth 2.0",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://login.eveonline.com/v2/oauth/authorize",
+            "tokenUrl": "https://login.eveonline.com/v2/oauth/token",
+            "scopes": {
+              "esi-assets.read_assets.v1": "Read character assets",
+              "esi-universe.read_structures.v1": "Read structure information",
+              "esi-markets.read_character_orders.v1": "Read character market orders",
+              "esi-markets.structure_markets.v1": "Read structure markets",
+              "esi-characters.read_notifications.v1": "Read character notifications",
+              "esi-corporations.read_structures.v1": "Read corporation structures"
+            }
+          }
+        }
+      }
+    }
+  }
+}

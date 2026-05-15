@@ -1,0 +1,26 @@
+# BasicAssetFlow
+
+main: kit: flow: BasicAssetFlow:
+{
+  entity: "asset",
+  kind: "basic",
+  name: "BasicAssetFlow",
+  step: [
+    {
+      match: {
+        character_id: "character01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "asset_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAssetFlow"
+}

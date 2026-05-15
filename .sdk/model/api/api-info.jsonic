@@ -1,0 +1,36 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "ESI Support"
+        url: "https://docs.esi.evetech.net/"
+      }
+      description: "Official EVE Online API documentation. ESI is the name of EVE Online's publicly available API, allowing you to query the game itself to get info about your character, corporation and more."
+      license: {
+        name: "Developer License"
+        url: "https://developers.eveonline.com/resource/license-agreement"
+      }
+      servers: [
+        {
+          description: "ESI Production Server (Latest Version)"
+          url: "https://esi.evetech.net/latest"
+        }
+        {
+          description: "ESI Development Server"
+          url: "https://esi.evetech.net/dev"
+        }
+        {
+          description: "ESI Legacy Server"
+          url: "https://esi.evetech.net/legacy"
+        }
+      ]
+      title: "ESI Documentation"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

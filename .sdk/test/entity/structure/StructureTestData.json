@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "structure": {
+      "STRUCTURE00": {
+        "name": "s32",
+        "owner_id": "OWNER01",
+        "position": {},
+        "solar_system_id": "SOLAR_SYSTEM01",
+        "type_id": "TYPE01"
+      },
+      "STRUCTURE01": {
+        "name": "s64",
+        "owner_id": "OWNER01",
+        "position": {},
+        "solar_system_id": "SOLAR_SYSTEM01",
+        "type_id": "TYPE01"
+      },
+      "STRUCTURE02": {
+        "name": "s96",
+        "owner_id": "OWNER01",
+        "position": {},
+        "solar_system_id": "SOLAR_SYSTEM01",
+        "type_id": "TYPE01"
+      }
+    }
+  },
+  "new": {
+    "structure": {
+      "structure_ref01": {
+        "name": "sc8",
+        "owner_id": "OWNER01",
+        "position": {},
+        "solar_system_id": "SOLAR_SYSTEM01",
+        "type_id": "TYPE01"
+      }
+    }
+  }
+}

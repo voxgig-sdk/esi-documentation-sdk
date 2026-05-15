@@ -1,0 +1,118 @@
+# Entity: asset
+
+main: kit: entity: asset: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "is_blueprint_copy"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_singleton"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "item_id"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "location_flag"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "location_id"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "location_type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "quantity"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "type_id"
+      req: true
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "asset"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "character_id"
+                orig: "character_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                example: "tranquility"
+                kind: "query"
+                name: "datasource"
+                orig: "datasource"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/characters/{character_id}/assets/"
+          parts: [
+            "characters"
+            "{character_id}"
+            "assets"
+          ]
+          select: {
+            exist: [
+              "character_id"
+              "datasource"
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "character"
+      ]
+    ]
+  }
+
+
+
+}
