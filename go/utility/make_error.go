@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/esi-documentation-sdk/core"
+import "github.com/voxgig-sdk/esi-documentation-sdk/go/core"
 
 func makeErrorUtil(ctx *core.Context, err error) (any, error) {
 	if ctx == nil {

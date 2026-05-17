@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/esi-documentation-sdk/core"
+	"github.com/voxgig-sdk/esi-documentation-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/esi-documentation-sdk/go/utility/struct"
 )
 
 type AssetEntity struct {

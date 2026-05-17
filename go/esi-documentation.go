@@ -1,10 +1,10 @@
 package voxgigesidocumentationsdk
 
 import (
-	"github.com/voxgig-sdk/esi-documentation-sdk/core"
-	"github.com/voxgig-sdk/esi-documentation-sdk/entity"
-	"github.com/voxgig-sdk/esi-documentation-sdk/feature"
-	_ "github.com/voxgig-sdk/esi-documentation-sdk/utility"
+	"github.com/voxgig-sdk/esi-documentation-sdk/go/core"
+	"github.com/voxgig-sdk/esi-documentation-sdk/go/entity"
+	"github.com/voxgig-sdk/esi-documentation-sdk/go/feature"
+	_ "github.com/voxgig-sdk/esi-documentation-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

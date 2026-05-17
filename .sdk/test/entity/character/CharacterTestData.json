@@ -11,7 +11,8 @@
         "gender": "s6a",
         "name": "s6b",
         "race_id": "RACE01",
-        "security_status": 109
+        "security_status": 109,
+        "id": "CHARACTER00"
       },
       "CHARACTER01": {
         "alliance_id": "ALLIANCE01",
@@ -23,7 +24,8 @@
         "gender": "sce",
         "name": "scf",
         "race_id": "RACE01",
-        "security_status": 209
+        "security_status": 209,
+        "id": "CHARACTER01"
       },
       "CHARACTER02": {
         "alliance_id": "ALLIANCE01",
@@ -35,7 +37,8 @@
         "gender": "s132",
         "name": "s133",
         "race_id": "RACE01",
-        "security_status": 309
+        "security_status": 309,
+        "id": "CHARACTER02"
       }
     }
   },

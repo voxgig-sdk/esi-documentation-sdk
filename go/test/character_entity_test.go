@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/esi-documentation-sdk"
-	"github.com/voxgig-sdk/esi-documentation-sdk/core"
+	sdk "github.com/voxgig-sdk/esi-documentation-sdk/go"
+	"github.com/voxgig-sdk/esi-documentation-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/esi-documentation-sdk/go/utility/struct"
 )
 
 func TestCharacterEntity(t *testing.T) {

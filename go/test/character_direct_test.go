@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/esi-documentation-sdk"
-	"github.com/voxgig-sdk/esi-documentation-sdk/core"
+	sdk "github.com/voxgig-sdk/esi-documentation-sdk/go"
+	"github.com/voxgig-sdk/esi-documentation-sdk/go/core"
 )
 
 func TestCharacterDirect(t *testing.T) {

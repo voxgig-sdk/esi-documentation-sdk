@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/esi-documentation-sdk/core"
+import "github.com/voxgig-sdk/esi-documentation-sdk/go/core"
 
 func makeRequestUtil(ctx *core.Context) (*core.Response, error) {
 	if ctx.Out["request"] != nil {

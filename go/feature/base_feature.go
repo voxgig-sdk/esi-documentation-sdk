@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/esi-documentation-sdk/core"
+	"github.com/voxgig-sdk/esi-documentation-sdk/go/core"
 )
 
 type BaseFeature struct {
