@@ -118,14 +118,12 @@ func assetDirectSetup(mockres any) *assetDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ESIDOCUMENTATION_TEST_ASSET_ENTID": map[string]any{},
 		"ESIDOCUMENTATION_TEST_LIVE":    "FALSE",
-		"ESIDOCUMENTATION_APIKEY":       "NONE",
 	})
 
 	live := env["ESIDOCUMENTATION_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["ESIDOCUMENTATION_APIKEY"],
 		}
 		client := sdk.NewEsiDocumentationSDK(mergedOpts)
 

@@ -71,14 +71,12 @@ def structure_direct_setup(mockres)
   env = Runner.env_override({
     "ESIDOCUMENTATION_TEST_STRUCTURE_ENTID" => {},
     "ESIDOCUMENTATION_TEST_LIVE" => "FALSE",
-    "ESIDOCUMENTATION_APIKEY" => "NONE",
   })
 
   live = env["ESIDOCUMENTATION_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["ESIDOCUMENTATION_APIKEY"],
     }
     client = EsiDocumentationSDK.new(merged_opts)
     return {

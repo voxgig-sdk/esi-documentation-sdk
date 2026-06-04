@@ -73,14 +73,12 @@ def _asset_direct_setup(mockres):
     env = runner.env_override({
         "ESIDOCUMENTATION_TEST_ASSET_ENTID": {},
         "ESIDOCUMENTATION_TEST_LIVE": "FALSE",
-        "ESIDOCUMENTATION_APIKEY": "NONE",
     })
 
     live = env.get("ESIDOCUMENTATION_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("ESIDOCUMENTATION_APIKEY"),
         }
         client = EsiDocumentationSDK(merged_opts)
         return {

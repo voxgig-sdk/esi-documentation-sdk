@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'ESI_DOCUMENTATION_TEST_CHARACTER_ENTID': idmap,
     'ESI_DOCUMENTATION_TEST_LIVE': 'FALSE',
     'ESI_DOCUMENTATION_TEST_EXPLAIN': 'FALSE',
-    'ESI_DOCUMENTATION_APIKEY': 'NONE',
   })
 
   idmap = env['ESI_DOCUMENTATION_TEST_CHARACTER_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new EsiDocumentationSDK(merge([
       {
-        apikey: env.ESI_DOCUMENTATION_APIKEY,
       },
       extra
     ]))

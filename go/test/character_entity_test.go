@@ -117,7 +117,6 @@ func characterBasicSetup(extra map[string]any) *entityTestSetup {
 		"ESIDOCUMENTATION_TEST_CHARACTER_ENTID": idmap,
 		"ESIDOCUMENTATION_TEST_LIVE":      "FALSE",
 		"ESIDOCUMENTATION_TEST_EXPLAIN":   "FALSE",
-		"ESIDOCUMENTATION_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["ESIDOCUMENTATION_TEST_CHARACTER_ENTID"])
@@ -128,7 +127,6 @@ func characterBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["ESIDOCUMENTATION_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["ESIDOCUMENTATION_APIKEY"],
 			},
 			extra,
 		})

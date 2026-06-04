@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://esi.evetech.net/latest",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
