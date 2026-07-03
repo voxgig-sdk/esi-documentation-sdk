@@ -10,7 +10,7 @@ The PHP SDK for the EsiDocumentation API — an entity-oriented client using PHP
 
 ## Install
 ```bash
-composer require voxgig/esi-documentation-sdk
+composer require voxgig-sdk/esi-documentation
 ```
 
 

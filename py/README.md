@@ -10,7 +10,7 @@ The Python SDK for the EsiDocumentation API — an entity-oriented client follow
 
 ## Install
 ```bash
-pip install esi-documentation-sdk
+pip install voxgig-sdk-esi-documentation
 ```
 
 Or install from source:

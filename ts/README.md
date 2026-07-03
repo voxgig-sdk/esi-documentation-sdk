@@ -10,7 +10,7 @@ The TypeScript SDK for the EsiDocumentation API — a type-safe, entity-oriented
 
 ## Install
 ```bash
-npm install esi-documentation
+npm install @voxgig-sdk/esi-documentation
 ```
 ## Tutorial: your first API call
 

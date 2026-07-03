@@ -10,7 +10,7 @@ The Lua SDK for the EsiDocumentation API — an entity-oriented client using Lua
 
 ## Install
 ```bash
-luarocks install esi-documentation-sdk
+luarocks install voxgig-sdk-esi-documentation
 ```
 
 If the module is not yet published, add the source directory to

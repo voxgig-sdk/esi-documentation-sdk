@@ -10,13 +10,13 @@ The Ruby SDK for the EsiDocumentation API — an entity-oriented client using id
 
 ## Install
 ```bash
-gem install esi-documentation-sdk
+gem install voxgig-sdk-esi-documentation
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "esi-documentation-sdk"
+gem "voxgig-sdk-esi-documentation"
 ```
 
 Then run:
