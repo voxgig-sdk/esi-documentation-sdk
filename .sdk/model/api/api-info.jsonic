@@ -29,29 +29,7 @@ main: {
       ]
       title: "ESI Documentation"
       version: "1.0.0"
-      tagline: "Query EVE Online's universe, market, character, and structure data via CCP's official ESI REST API"
-      homepage: "https://esi.evetech.net/"
-      docs_url: "https://docs.esi.evetech.net/"
-      license_short: "EVE Online Developer License (CCP Games)"
-      license_md: `- Governed by the **EVE Online Developer License Agreement** issued by CCP Games.
-- Most write/private endpoints require OAuth 2.0 via EVE SSO; public endpoints are open.
-- Game assets, names and data remain the intellectual property of CCP hf.
-- Consult the CCP developer portal for current terms before redistributing data.`
-      about_md: `The **EVE Swagger Interface (ESI)** is the official public REST API for [EVE Online](https://www.eveonline.com/), the long-running space MMO operated by [CCP Games](https://www.ccpgames.com/). It exposes data about the in-game universe, markets, corporations, characters and player-owned structures through a versioned JSON API hosted at \`https://esi.evetech.net/latest\`.
-
-What you can pull from the API:
-
-- Universe reference data such as regions (\`/universe/regions/\`) and structures (\`/universe/structures/\`).
-- Market data including current prices (\`/markets/prices/\`) and per-structure markets.
-- Character, corporation and asset information for authenticated users.
-
-Authentication uses **OAuth 2.0 via EVE SSO**, with separate flows documented for web and desktop/mobile applications, JWT validation and refresh-token rotation. Public reference endpoints can be called without a token; private and character-scoped endpoints require the appropriate OAuth scopes. CORS is enabled, and the docs site at [docs.esi.evetech.net](https://docs.esi.evetech.net/) tracks changelog updates and migration notes from older SSO/API versions.`
-      entity_desc: {
-        asset: "Items owned by a character or corporation, including their `location_id` references resolved against the universe and structures endpoints."
-        character: "Player characters in EVE Online, queried for public profile data and (with OAuth scopes) private details such as assets, skills and wallet."
-        structure: "Player-owned in-game structures (e.g. citadels), exposed via `/universe/structures/` for resolution and lookup of their markets."
-      }
-      auth: false
     }
   }
 }
+

@@ -1,9 +1,565 @@
 {
-  "name": "esi-documentation",
-  "origin": "voxgig-sdk",
   "def": "esi-documentation_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "asset": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "is_blueprint_copy",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "is_singleton",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "item_id",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "location_flag",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "location_id",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "location_type",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "quantity",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "type_id",
+              "req": true,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "name": "asset",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "character_id",
+                        "orig": "character_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "tranquility",
+                        "kind": "query",
+                        "name": "datasource",
+                        "orig": "datasource",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 1,
+                        "kind": "query",
+                        "name": "page",
+                        "orig": "page",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/characters/{character_id}/assets/",
+                  "parts": [
+                    "characters",
+                    "{character_id}",
+                    "assets"
+                  ],
+                  "select": {
+                    "exist": [
+                      "character_id",
+                      "datasource",
+                      "page"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "character"
+              ]
+            ]
+          }
+        },
+        "character": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "alliance_id",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "ancestry_id",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "birthday",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "bloodline_id",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "corporation_id",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "description",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "gender",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "race_id",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "security_status",
+              "req": false,
+              "type": "`$NUMBER`"
+            }
+          ],
+          "name": "character",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "character_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "tranquility",
+                        "kind": "query",
+                        "name": "datasource",
+                        "orig": "datasource",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/characters/{character_id}/",
+                  "parts": [
+                    "characters",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "character_id": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "datasource",
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "structure": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "owner_id",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "position",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "solar_system_id",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "type_id",
+              "req": true,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "name": "structure",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "structure_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "tranquility",
+                        "kind": "query",
+                        "name": "datasource",
+                        "orig": "datasource",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/universe/structures/{structure_id}/",
+                  "parts": [
+                    "universe",
+                    "structures",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "structure_id": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "datasource",
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicAssetFlow": {
+          "active": true,
+          "entity": "asset",
+          "key$": "BasicAssetFlow",
+          "kind": "basic",
+          "name": "BasicAssetFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {
+                "character_id": "character01"
+              },
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "asset_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicCharacterFlow": {
+          "active": true,
+          "entity": "character",
+          "key$": "BasicCharacterFlow",
+          "kind": "basic",
+          "name": "BasicCharacterFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "character_ref01",
+                "srcdatavar": "character_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "character01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-character_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicStructureFlow": {
+          "active": true,
+          "entity": "structure",
+          "key$": "BasicStructureFlow",
+          "kind": "basic",
+          "name": "BasicStructureFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "structure_ref01",
+                "srcdatavar": "structure_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "structure01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-structure_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
       "info": {
         "contact": {
           "name": "ESI Support",
@@ -29,583 +585,35 @@
           }
         ],
         "title": "ESI Documentation",
-        "version": "1.0.0",
-        "tagline": "Query EVE Online's universe, market, character, and structure data via CCP's official ESI REST API",
-        "homepage": "https://esi.evetech.net/",
-        "docs_url": "https://docs.esi.evetech.net/",
-        "license_short": "EVE Online Developer License (CCP Games)",
-        "license_md": "- Governed by the **EVE Online Developer License Agreement** issued by CCP Games.\n- Most write/private endpoints require OAuth 2.0 via EVE SSO; public endpoints are open.\n- Game assets, names and data remain the intellectual property of CCP hf.\n- Consult the CCP developer portal for current terms before redistributing data.",
-        "about_md": "The **EVE Swagger Interface (ESI)** is the official public REST API for [EVE Online](https://www.eveonline.com/), the long-running space MMO operated by [CCP Games](https://www.ccpgames.com/). It exposes data about the in-game universe, markets, corporations, characters and player-owned structures through a versioned JSON API hosted at `https://esi.evetech.net/latest`.\n\nWhat you can pull from the API:\n\n- Universe reference data such as regions (`/universe/regions/`) and structures (`/universe/structures/`).\n- Market data including current prices (`/markets/prices/`) and per-structure markets.\n- Character, corporation and asset information for authenticated users.\n\nAuthentication uses **OAuth 2.0 via EVE SSO**, with separate flows documented for web and desktop/mobile applications, JWT validation and refresh-token rotation. Public reference endpoints can be called without a token; private and character-scoped endpoints require the appropriate OAuth scopes. CORS is enabled, and the docs site at [docs.esi.evetech.net](https://docs.esi.evetech.net/) tracks changelog updates and migration notes from older SSO/API versions.",
-        "entity_desc": {
-          "asset": "Items owned by a character or corporation, including their `location_id` references resolved against the universe and structures endpoints.",
-          "character": "Player characters in EVE Online, queried for public profile data and (with OAuth scopes) private details such as assets, skills and wallet.",
-          "structure": "Player-owned in-game structures (e.g. citadels), exposed via `/universe/structures/` for resolution and lookup of their markets."
-        },
-        "auth": false
+        "version": "1.0.0"
       },
-      "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
-        },
-        "docs_order": [
-          "ts",
-          "py",
-          "php",
-          "go",
-          "rb",
-          "lua"
-        ]
-      },
-      "entity": {
-        "asset": {
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "name": "is_blueprint_copy",
-              "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
-            },
-            {
-              "name": "is_singleton",
-              "req": true,
-              "type": "`$BOOLEAN`",
-              "active": true
-            },
-            {
-              "name": "item_id",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "location_flag",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "location_id",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "location_type",
-              "req": true,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "quantity",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "type_id",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            }
-          ],
-          "name": "asset",
-          "op": {
-            "list": {
-              "name": "list",
-              "points": [
-                {
-                  "args": {
-                    "params": [
-                      {
-                        "kind": "param",
-                        "name": "character_id",
-                        "orig": "character_id",
-                        "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
-                      }
-                    ],
-                    "query": [
-                      {
-                        "example": "tranquility",
-                        "kind": "query",
-                        "name": "datasource",
-                        "orig": "datasource",
-                        "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
-                      },
-                      {
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/characters/{character_id}/assets/",
-                  "parts": [
-                    "characters",
-                    "{character_id}",
-                    "assets"
-                  ],
-                  "select": {
-                    "exist": [
-                      "character_id",
-                      "datasource",
-                      "page"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "relations": {
-            "ancestors": [
-              [
-                "character"
-              ]
-            ]
-          },
-          "active": true
-        },
-        "character": {
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "name": "alliance_id",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "ancestry_id",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "birthday",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "bloodline_id",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "corporation_id",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "description",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "gender",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "name",
-              "req": true,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "race_id",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "security_status",
-              "req": false,
-              "type": "`$NUMBER`",
-              "active": true
-            }
-          ],
-          "name": "character",
-          "op": {
-            "load": {
-              "name": "load",
-              "points": [
-                {
-                  "args": {
-                    "params": [
-                      {
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "character_id",
-                        "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
-                      }
-                    ],
-                    "query": [
-                      {
-                        "example": "tranquility",
-                        "kind": "query",
-                        "name": "datasource",
-                        "orig": "datasource",
-                        "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/characters/{character_id}/",
-                  "parts": [
-                    "characters",
-                    "{id}"
-                  ],
-                  "rename": {
-                    "param": {
-                      "character_id": "id"
-                    }
-                  },
-                  "select": {
-                    "exist": [
-                      "datasource",
-                      "id"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "active": true,
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "structure": {
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "name": "name",
-              "req": true,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "owner_id",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "position",
-              "req": false,
-              "type": "`$OBJECT`",
-              "active": true
-            },
-            {
-              "name": "solar_system_id",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "type_id",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            }
-          ],
-          "name": "structure",
-          "op": {
-            "load": {
-              "name": "load",
-              "points": [
-                {
-                  "args": {
-                    "params": [
-                      {
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "structure_id",
-                        "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
-                      }
-                    ],
-                    "query": [
-                      {
-                        "example": "tranquility",
-                        "kind": "query",
-                        "name": "datasource",
-                        "orig": "datasource",
-                        "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/universe/structures/{structure_id}/",
-                  "parts": [
-                    "universe",
-                    "structures",
-                    "{id}"
-                  ],
-                  "rename": {
-                    "param": {
-                      "structure_id": "id"
-                    }
-                  },
-                  "select": {
-                    "exist": [
-                      "datasource",
-                      "id"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "active": true,
-          "relations": {
-            "ancestors": []
-          }
-        }
-      },
-      "feature": {
-        "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
-          "active": true,
-          "config": {
-            "options": {
-              "active": false
-            }
-          },
-          "hook": {
-            "PostConstruct": {
-              "active": true,
-              "await": false
-            },
-            "PostConstructEntity": {
-              "active": true,
-              "await": false
-            },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
-              "await": false
-            },
-            "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
-              "active": true,
-              "await": false
-            },
-            "PreRequest": {
-              "active": true,
-              "await": false
-            },
-            "PreResponse": {
-              "active": true,
-              "await": false
-            },
-            "PreResult": {
-              "active": true,
-              "await": false
-            },
-            "PreTarget": {
-              "active": false,
-              "await": false
-            },
-            "PostOperation": {
-              "active": false,
-              "await": false
-            }
-          },
-          "target": {
-            "ts": {
-              "deps": {}
-            },
-            "go": {
-              "deps": {}
-            },
-            "lua": {
-              "deps": {}
-            },
-            "php": {
-              "deps": {}
-            },
-            "py": {
-              "deps": {}
-            },
-            "rb": {
-              "deps": {}
-            },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
-              "deps": {}
-            }
-          }
-        }
-      },
-      "flow": {
-        "BasicAssetFlow": {
-          "entity": "asset",
-          "kind": "basic",
-          "name": "BasicAssetFlow",
-          "step": [
-            {
-              "match": {
-                "character_id": "character01"
-              },
-              "op": "list",
-              "valid": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "asset_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicAssetFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicCharacterFlow": {
-          "entity": "character",
-          "kind": "basic",
-          "name": "BasicCharacterFlow",
-          "step": [
-            {
-              "input": {
-                "ref": "character_ref01",
-                "srcdatavar": "character_ref01_data",
-                "suffix": "_dt0"
-              },
-              "match": {
-                "id": "character01"
-              },
-              "op": "load",
-              "valid": [
-                {
-                  "apply": "TextFieldMark",
-                  "def": {
-                    "mark": "Mark01-character_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicCharacterFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicStructureFlow": {
-          "entity": "structure",
-          "kind": "basic",
-          "name": "BasicStructureFlow",
-          "step": [
-            {
-              "input": {
-                "ref": "structure_ref01",
-                "srcdatavar": "structure_ref01_data",
-                "suffix": "_dt0"
-              },
-              "match": {
-                "id": "structure01"
-              },
-              "op": "load",
-              "valid": [
-                {
-                  "apply": "TextFieldMark",
-                  "def": {
-                    "mark": "Mark01-structure_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicStructureFlow",
-          "active": true,
-          "param": {}
-        }
-      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "esi-documentation"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "esi-documentation"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -620,19 +628,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "esi-documentation"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -647,138 +655,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "esi-documentation"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "esi-documentation"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "esi-documentation"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "esi-documentation"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "esi-documentation"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "esi-documentation"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "esi-documentation"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "esi-documentation"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "esi-documentation"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "esi-documentation",
+  "origin": "voxgig-sdk"
 }

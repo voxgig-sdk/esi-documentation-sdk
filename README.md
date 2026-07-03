@@ -1,20 +1,8 @@
 # EsiDocumentation SDK
 
-Query EVE Online's universe, market, character, and structure data via CCP's official ESI REST API
+ESI Documentation client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About ESI Documentation
-
-The **EVE Swagger Interface (ESI)** is the official public REST API for [EVE Online](https://www.eveonline.com/), the long-running space MMO operated by [CCP Games](https://www.ccpgames.com/). It exposes data about the in-game universe, markets, corporations, characters and player-owned structures through a versioned JSON API hosted at `https://esi.evetech.net/latest`.
-
-What you can pull from the API:
-
-- Universe reference data such as regions (`/universe/regions/`) and structures (`/universe/structures/`).
-- Market data including current prices (`/markets/prices/`) and per-structure markets.
-- Character, corporation and asset information for authenticated users.
-
-Authentication uses **OAuth 2.0 via EVE SSO**, with separate flows documented for web and desktop/mobile applications, JWT validation and refresh-token rotation. Public reference endpoints can be called without a token; private and character-scoped endpoints require the appropriate OAuth scopes. CORS is enabled, and the docs site at [docs.esi.evetech.net](https://docs.esi.evetech.net/) tracks changelog updates and migration notes from older SSO/API versions.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install esi-documentation-sdk
 luarocks install esi-documentation-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { EsiDocumentationSDK } from 'esi-documentation'
 
-const client = new EsiDocumentationSDK({})
+const client = new EsiDocumentationSDK({
+  apikey: process.env.ESI-DOCUMENTATION_APIKEY,
+})
 
 // List all assets
 const assets = await client.Asset().list()
+console.log(assets.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Asset** | Items owned by a character or corporation, including their `location_id` references resolved against the universe and structures endpoints. | `/characters/{character_id}/assets/` |
-| **Character** | Player characters in EVE Online, queried for public profile data and (with OAuth scopes) private details such as assets, skills and wallet. | `/characters/{character_id}/` |
-| **Structure** | Player-owned in-game structures (e.g. citadels), exposed via `/universe/structures/` for resolution and lookup of their markets. | `/universe/structures/{structure_id}/` |
+| **Asset** |  | `/characters/{character_id}/assets/` |
+| **Character** |  | `/characters/{character_id}/` |
+| **Structure** |  | `/universe/structures/{structure_id}/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,12 +102,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from esidocumentation_sdk import EsiDocumentationSDK
 
-client = EsiDocumentationSDK({})
+client = EsiDocumentationSDK({
+    "apikey": os.environ.get("ESI-DOCUMENTATION_APIKEY"),
+})
 
 # List all assets
-assets, err = client.Asset(None).list(None, None)
+assets, err = client.Asset().list()
+print(assets)
 ```
 
 ### PHP
@@ -126,10 +120,13 @@ assets, err = client.Asset(None).list(None, None)
 <?php
 require_once 'esidocumentation_sdk.php';
 
-$client = new EsiDocumentationSDK([]);
+$client = new EsiDocumentationSDK([
+    "apikey" => getenv("ESI-DOCUMENTATION_APIKEY"),
+]);
 
 // List all assets
-[$assets, $err] = $client->Asset(null)->list(null, null);
+[$assets, $err] = $client->Asset()->list();
+print_r($assets);
 ```
 
 ### Golang
@@ -137,10 +134,13 @@ $client = new EsiDocumentationSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/esi-documentation-sdk/go"
 
-client := sdk.NewEsiDocumentationSDK(map[string]any{})
+client := sdk.NewEsiDocumentationSDK(map[string]any{
+    "apikey": os.Getenv("ESI-DOCUMENTATION_APIKEY"),
+})
 
 // List all assets
 assets, err := client.Asset(nil).List(nil, nil)
+fmt.Println(assets)
 ```
 
 ### Ruby
@@ -148,10 +148,13 @@ assets, err := client.Asset(nil).List(nil, nil)
 ```ruby
 require_relative "EsiDocumentation_sdk"
 
-client = EsiDocumentationSDK.new({})
+client = EsiDocumentationSDK.new({
+  "apikey" => ENV["ESI-DOCUMENTATION_APIKEY"],
+})
 
 # List all assets
-assets, err = client.Asset(nil).list(nil, nil)
+assets, err = client.Asset().list
+puts assets
 ```
 
 ### Lua
@@ -159,10 +162,13 @@ assets, err = client.Asset(nil).list(nil, nil)
 ```lua
 local sdk = require("esi-documentation_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("ESI-DOCUMENTATION_APIKEY"),
+})
 
 -- List all assets
-local assets, err = client:Asset(nil):list(nil, nil)
+local assets, err = client:Asset():list()
+print(assets)
 ```
 
 ## Unit testing in offline mode
@@ -181,25 +187,21 @@ const result = await client.Asset().load({ id: 'test01' })
 ### Python
 
 ```python
-client = EsiDocumentationSDK.test(None, None)
-result, err = client.Asset(None).load(
-    {"id": "test01"}, None
-)
+client = EsiDocumentationSDK.test()
+result, err = client.Asset().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = EsiDocumentationSDK::test(null, null);
-[$result, $err] = $client->Asset(null)->load(
-    ["id" => "test01"], null
-);
+$client = EsiDocumentationSDK::test();
+[$result, $err] = $client->Asset()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Asset(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -208,19 +210,15 @@ result, err := client.Asset(nil).Load(
 ### Ruby
 
 ```ruby
-client = EsiDocumentationSDK.test(nil, nil)
-result, err = client.Asset(nil).load(
-  { "id" => "test01" }, nil
-)
+client = EsiDocumentationSDK.test
+result, err = client.Asset().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Asset(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Asset():load({ id = "test01" })
 ```
 
 ## How it works
@@ -324,16 +322,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the ESI Documentation
-
-- Upstream: [https://esi.evetech.net/](https://esi.evetech.net/)
-- API docs: [https://docs.esi.evetech.net/](https://docs.esi.evetech.net/)
-
-- Governed by the **EVE Online Developer License Agreement** issued by CCP Games.
-- Most write/private endpoints require OAuth 2.0 via EVE SSO; public endpoints are open.
-- Game assets, names and data remain the intellectual property of CCP hf.
-- Consult the CCP developer portal for current terms before redistributing data.
 
 ---
 

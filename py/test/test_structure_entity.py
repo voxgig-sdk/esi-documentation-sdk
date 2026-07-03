@@ -91,6 +91,7 @@ def _structure_basic_setup(extra):
         "ESIDOCUMENTATION_TEST_STRUCTURE_ENTID": idmap,
         "ESIDOCUMENTATION_TEST_LIVE": "FALSE",
         "ESIDOCUMENTATION_TEST_EXPLAIN": "FALSE",
+        "ESIDOCUMENTATION_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _structure_basic_setup(extra):
     if env.get("ESIDOCUMENTATION_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("ESIDOCUMENTATION_APIKEY"),
             },
             extra or {},
         ])

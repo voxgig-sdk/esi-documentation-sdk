@@ -82,12 +82,14 @@ function asset_direct_setup($mockres)
     $env = Runner::env_override([
         "ESIDOCUMENTATION_TEST_ASSET_ENTID" => [],
         "ESIDOCUMENTATION_TEST_LIVE" => "FALSE",
+        "ESIDOCUMENTATION_APIKEY" => "NONE",
     ]);
 
     $live = $env["ESIDOCUMENTATION_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["ESIDOCUMENTATION_APIKEY"],
         ];
         $client = new EsiDocumentationSDK($merged_opts);
         return [

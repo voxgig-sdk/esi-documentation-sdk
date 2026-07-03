@@ -94,6 +94,7 @@ function asset_basic_setup(extra)
     ["ESIDOCUMENTATION_TEST_ASSET_ENTID"] = idmap,
     ["ESIDOCUMENTATION_TEST_LIVE"] = "FALSE",
     ["ESIDOCUMENTATION_TEST_EXPLAIN"] = "FALSE",
+    ["ESIDOCUMENTATION_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -105,6 +106,7 @@ function asset_basic_setup(extra)
   if env["ESIDOCUMENTATION_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["ESIDOCUMENTATION_APIKEY"],
       },
       extra or {},
     })

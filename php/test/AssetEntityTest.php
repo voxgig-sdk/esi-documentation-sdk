@@ -88,6 +88,7 @@ function asset_basic_setup($extra)
         "ESIDOCUMENTATION_TEST_ASSET_ENTID" => $idmap,
         "ESIDOCUMENTATION_TEST_LIVE" => "FALSE",
         "ESIDOCUMENTATION_TEST_EXPLAIN" => "FALSE",
+        "ESIDOCUMENTATION_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -99,6 +100,7 @@ function asset_basic_setup($extra)
     if ($env["ESIDOCUMENTATION_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["ESIDOCUMENTATION_APIKEY"],
             ],
             $extra ?? [],
         ]);

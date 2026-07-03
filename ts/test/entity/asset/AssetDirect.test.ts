@@ -86,12 +86,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'ESIDOCUMENTATION_TEST_ASSET_ENTID': {},
     'ESIDOCUMENTATION_TEST_LIVE': 'FALSE',
+    'ESIDOCUMENTATION_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.ESIDOCUMENTATION_TEST_LIVE
 
   if (live) {
     const client = new EsiDocumentationSDK({
+      apikey: env.ESIDOCUMENTATION_APIKEY,
     })
 
     let idmap: any = env['ESIDOCUMENTATION_TEST_ASSET_ENTID']
