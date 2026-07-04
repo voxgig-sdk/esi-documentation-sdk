@@ -233,10 +233,10 @@ class EsiDocumentationSDK
 
     private $_asset = null;
 
-    // Idiomatic facade: $client->asset()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Asset() (PHP method
-    // names are case-insensitive).
-    public function asset($data = null)
+    // Canonical facade: $client->Asset()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->asset()
+    // resolves here too.
+    public function Asset($data = null)
     {
         require_once __DIR__ . '/entity/asset_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class EsiDocumentationSDK
 
     private $_character = null;
 
-    // Idiomatic facade: $client->character()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Character() (PHP method
-    // names are case-insensitive).
-    public function character($data = null)
+    // Canonical facade: $client->Character()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->character()
+    // resolves here too.
+    public function Character($data = null)
     {
         require_once __DIR__ . '/entity/character_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class EsiDocumentationSDK
 
     private $_structure = null;
 
-    // Idiomatic facade: $client->structure()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Structure() (PHP method
-    // names are case-insensitive).
-    public function structure($data = null)
+    // Canonical facade: $client->Structure()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->structure()
+    // resolves here too.
+    public function Structure($data = null)
     {
         require_once __DIR__ . '/entity/structure_entity.php';
         if ($data === null) {

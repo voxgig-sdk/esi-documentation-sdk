@@ -33,17 +33,17 @@ local client = sdk.new({
 })
 ```
 
-### 2. List assets
+### 2. List asset records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:asset():list()
+local assets, err = client:Asset():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(assets) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -90,8 +90,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:asset():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Asset():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -171,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Asset` | `(data) -> AssetEntity` | Create a Asset entity instance. |
+| `Asset` | `(data) -> AssetEntity` | Create an Asset entity instance. |
 | `Character` | `(data) -> CharacterEntity` | Create a Character entity instance. |
 | `Structure` | `(data) -> StructureEntity` | Create a Structure entity instance. |
 
@@ -195,17 +195,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local asset, err = client:Asset():load({ id = "example_id" })
+    if err then error(err) end
+    -- asset is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -266,7 +271,7 @@ API path: `/universe/structures/{structure_id}/`
 
 ### Asset
 
-Create an instance: `const asset = client.asset`
+Create an instance: `local asset = client:Asset(nil)`
 
 #### Operations
 
@@ -289,14 +294,14 @@ Create an instance: `const asset = client.asset`
 
 #### Example: List
 
-```ts
-const assets = await client.asset.list()
+```lua
+local assets, err = client:Asset():list()
 ```
 
 
 ### Character
 
-Create an instance: `const character = client.character`
+Create an instance: `local character = client:Character(nil)`
 
 #### Operations
 
@@ -321,14 +326,14 @@ Create an instance: `const character = client.character`
 
 #### Example: Load
 
-```ts
-const character = await client.character.load({ id: 'character_id' })
+```lua
+local character, err = client:Character():load({ id = "character_id" })
 ```
 
 
 ### Structure
 
-Create an instance: `const structure = client.structure`
+Create an instance: `local structure = client:Structure(nil)`
 
 #### Operations
 
@@ -348,8 +353,8 @@ Create an instance: `const structure = client.structure`
 
 #### Example: Load
 
-```ts
-const structure = await client.structure.load({ id: 'structure_id' })
+```lua
+local structure, err = client:Structure():load({ id = "structure_id" })
 ```
 
 
@@ -424,7 +429,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local asset = client:asset()
+local asset = client:Asset()
 asset:load({ id = "example_id" })
 
 -- asset:data_get() now returns the loaded asset data

@@ -34,14 +34,16 @@ client = EsiDocumentationSDK({
 })
 ```
 
-### 2. List assets
+### 2. List asset records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.asset.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    assets = client.Asset().list({})
+    for asset in assets:
+        print(asset)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -89,8 +91,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = EsiDocumentationSDK.test()
 
-result = client.asset.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+asset = client.Asset().load({"id": "test01"})
+# asset contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -168,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Asset` | `(data) -> AssetEntity` | Create a Asset entity instance. |
+| `Asset` | `(data) -> AssetEntity` | Create an Asset entity instance. |
 | `Character` | `(data) -> CharacterEntity` | Create a Character entity instance. |
 | `Structure` | `(data) -> StructureEntity` | Create a Structure entity instance. |
 
@@ -267,7 +270,7 @@ API path: `/universe/structures/{structure_id}/`
 
 ### Asset
 
-Create an instance: `const asset = client.asset`
+Create an instance: `asset = client.Asset()`
 
 #### Operations
 
@@ -290,14 +293,14 @@ Create an instance: `const asset = client.asset`
 
 #### Example: List
 
-```ts
-const assets = await client.asset.list()
+```python
+assets = client.Asset().list({})
 ```
 
 
 ### Character
 
-Create an instance: `const character = client.character`
+Create an instance: `character = client.Character()`
 
 #### Operations
 
@@ -322,14 +325,14 @@ Create an instance: `const character = client.character`
 
 #### Example: Load
 
-```ts
-const character = await client.character.load({ id: 'character_id' })
+```python
+character = client.Character().load({"id": "character_id"})
 ```
 
 
 ### Structure
 
-Create an instance: `const structure = client.structure`
+Create an instance: `structure = client.Structure()`
 
 #### Operations
 
@@ -349,8 +352,8 @@ Create an instance: `const structure = client.structure`
 
 #### Example: Load
 
-```ts
-const structure = await client.structure.load({ id: 'structure_id' })
+```python
+structure = client.Structure().load({"id": "structure_id"})
 ```
 
 
@@ -424,7 +427,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-asset = client.asset
+asset = client.Asset()
 asset.load({"id": "example_id"})
 
 # asset.data_get() now returns the loaded asset data

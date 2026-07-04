@@ -28,9 +28,11 @@ const client = new EsiDocumentationSDK({
   apikey: process.env.ESI_DOCUMENTATION_APIKEY,
 })
 
-// List all assets
-const assets = await client.asset.list()
-console.log(assets.data)
+// List all assets (returns Asset[])
+const assets = await client.Asset().list()
+for (const asset of assets) {
+  console.log(asset)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -90,9 +92,10 @@ client = EsiDocumentationSDK({
     "apikey": os.environ.get("ESI_DOCUMENTATION_APIKEY"),
 })
 
-# List all assets
-assets = client.asset.list()
-print(assets)
+# List all assets (returns a list, raises on error)
+assets = client.Asset().list({})
+for asset in assets:
+    print(asset)
 ```
 
 ### PHP
@@ -105,8 +108,8 @@ $client = new EsiDocumentationSDK([
     "apikey" => getenv("ESI_DOCUMENTATION_APIKEY"),
 ]);
 
-// List all assets (throws on error)
-$assets = $client->asset()->list();
+// List all assets (returns an array; throws on error)
+$assets = $client->Asset()->list();
 print_r($assets);
 ```
 
@@ -133,8 +136,8 @@ client = EsiDocumentationSDK.new({
   "apikey" => ENV["ESI_DOCUMENTATION_APIKEY"],
 })
 
-# List all assets
-assets = client.asset.list
+# List all assets (returns an Array; raises on error)
+assets = client.Asset.list
 puts assets
 ```
 
@@ -148,7 +151,7 @@ local client = sdk.new({
 })
 
 -- List all assets
-local assets, err = client:asset():list()
+local assets, err = client:Asset():list()
 print(assets)
 ```
 
@@ -161,22 +164,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = EsiDocumentationSDK.test()
-const result = await client.asset.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const asset = await client.Asset().load({ id: 'test01' })
+// asset is a bare Asset populated with mock data
+console.log(asset)
 ```
 
 ### Python
 
 ```python
 client = EsiDocumentationSDK.test()
-result = client.asset.load({"id": "test01"})
+asset = client.Asset().load({"id": "test01"})
+print(asset)
 ```
 
 ### PHP
 
 ```php
-$client = EsiDocumentationSDK::test();
-$result = $client->asset()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = EsiDocumentationSDK::test([
+    "entity" => ["asset" => ["test01" => ["id" => "test01"]]],
+]);
+$asset = $client->Asset()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -191,15 +199,18 @@ result, err := client.Asset(nil).Load(
 ### Ruby
 
 ```ruby
-client = EsiDocumentationSDK.test
-result = client.asset.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = EsiDocumentationSDK.test({
+  "entity" => { "asset" => { "test01" => { "id" => "test01" } } },
+})
+asset = client.Asset.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:asset():load({ id = "test01" })
+local result, err = client:Asset():load({ id = "test01" })
 ```
 
 ## How it works
@@ -247,6 +258,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

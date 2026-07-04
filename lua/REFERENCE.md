@@ -92,7 +92,7 @@ same parameters as `direct()`.
 ## AssetEntity
 
 ```lua
-local asset = client:asset(nil)
+local asset = client:Asset(nil)
 ```
 
 ### Fields
@@ -115,7 +115,7 @@ local asset = client:asset(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:asset():list()
+local results, err = client:Asset():list()
 ```
 
 ### Common Methods
@@ -151,7 +151,7 @@ Return the entity name.
 ## CharacterEntity
 
 ```lua
-local character = client:character(nil)
+local character = client:Character(nil)
 ```
 
 ### Fields
@@ -176,7 +176,7 @@ local character = client:character(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:character():load({ id = "character_id" })
+local result, err = client:Character():load({ id = "character_id" })
 ```
 
 ### Common Methods
@@ -212,7 +212,7 @@ Return the entity name.
 ## StructureEntity
 
 ```lua
-local structure = client:structure(nil)
+local structure = client:Structure(nil)
 ```
 
 ### Fields
@@ -232,7 +232,7 @@ local structure = client:structure(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:structure():load({ id = "structure_id" })
+local result, err = client:Structure():load({ id = "structure_id" })
 ```
 
 ### Common Methods

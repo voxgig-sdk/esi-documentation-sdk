@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:asset():list() / client:asset():load({ id = ... })
-function EsiDocumentationSDK:asset(data)
+-- Idiomatic facade: client:Asset():list() / client:Asset():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EsiDocumentationSDK:Asset(data)
   local EntityMod = require("entity.asset_entity")
   if data == nil then
     if self._asset == nil then
@@ -256,15 +257,10 @@ function EsiDocumentationSDK:asset(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:asset() instead.
-function EsiDocumentationSDK:Asset(data)
-  local EntityMod = require("entity.asset_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:character():list() / client:character():load({ id = ... })
-function EsiDocumentationSDK:character(data)
+-- Idiomatic facade: client:Character():list() / client:Character():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EsiDocumentationSDK:Character(data)
   local EntityMod = require("entity.character_entity")
   if data == nil then
     if self._character == nil then
@@ -275,15 +271,10 @@ function EsiDocumentationSDK:character(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:character() instead.
-function EsiDocumentationSDK:Character(data)
-  local EntityMod = require("entity.character_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:structure():list() / client:structure():load({ id = ... })
-function EsiDocumentationSDK:structure(data)
+-- Idiomatic facade: client:Structure():list() / client:Structure():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EsiDocumentationSDK:Structure(data)
   local EntityMod = require("entity.structure_entity")
   if data == nil then
     if self._structure == nil then
@@ -291,12 +282,6 @@ function EsiDocumentationSDK:structure(data)
     end
     return self._structure
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:structure() instead.
-function EsiDocumentationSDK:Structure(data)
-  local EntityMod = require("entity.structure_entity")
   return EntityMod.new(self, data)
 end
 

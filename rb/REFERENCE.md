@@ -95,7 +95,7 @@ same parameters as `direct()`. Raises on error.
 ## AssetEntity
 
 ```ruby
-asset = client.asset
+asset = client.Asset
 ```
 
 ### Fields
@@ -118,7 +118,7 @@ asset = client.asset
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.asset.list(nil)
+results = client.Asset.list(nil)
 ```
 
 ### Common Methods
@@ -154,7 +154,7 @@ Return the entity name.
 ## CharacterEntity
 
 ```ruby
-character = client.character
+character = client.Character
 ```
 
 ### Fields
@@ -179,7 +179,7 @@ character = client.character
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.character.load({ "id" => "character_id" })
+result = client.Character.load({ "id" => "character_id" })
 ```
 
 ### Common Methods
@@ -215,7 +215,7 @@ Return the entity name.
 ## StructureEntity
 
 ```ruby
-structure = client.structure
+structure = client.Structure
 ```
 
 ### Fields
@@ -235,7 +235,7 @@ structure = client.structure
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.structure.load({ "id" => "structure_id" })
+result = client.Structure.load({ "id" => "structure_id" })
 ```
 
 ### Common Methods

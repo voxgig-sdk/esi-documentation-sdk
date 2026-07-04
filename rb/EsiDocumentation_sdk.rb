@@ -208,39 +208,21 @@ class EsiDocumentationSDK
   end
 
 
-  # Idiomatic facade: client.asset.list / client.asset.load({ "id" => ... })
-  def asset
-    require_relative 'entity/asset_entity'
-    @asset ||= AssetEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.asset instead.
+  # Canonical facade: client.Asset.list / client.Asset.load({ "id" => ... })
   def Asset(data = nil)
     require_relative 'entity/asset_entity'
     AssetEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.character.list / client.character.load({ "id" => ... })
-  def character
-    require_relative 'entity/character_entity'
-    @character ||= CharacterEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.character instead.
+  # Canonical facade: client.Character.list / client.Character.load({ "id" => ... })
   def Character(data = nil)
     require_relative 'entity/character_entity'
     CharacterEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.structure.list / client.structure.load({ "id" => ... })
-  def structure
-    require_relative 'entity/structure_entity'
-    @structure ||= StructureEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.structure instead.
+  # Canonical facade: client.Structure.list / client.Structure.load({ "id" => ... })
   def Structure(data = nil)
     require_relative 'entity/structure_entity'
     StructureEntity.new(self, data)

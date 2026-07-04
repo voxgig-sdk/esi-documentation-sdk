@@ -30,16 +30,14 @@ client = EsiDocumentationSDK.new({
 })
 ```
 
-### 2. List assets
+### 2. List asset records
 
 ```ruby
 begin
-  result = client.asset.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Asset records — iterate directly.
+  assets = client.Asset.list
+  assets.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -87,13 +85,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = EsiDocumentationSDK.test
+client = EsiDocumentationSDK.test({
+  "entity" => { "asset" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.asset.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+asset = client.Asset.load({ "id" => "test01" })
+puts asset
 ```
 
 ### Use a custom fetch function
@@ -171,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Asset` | `(data) -> AssetEntity` | Create a Asset entity instance. |
+| `Asset` | `(data) -> AssetEntity` | Create an Asset entity instance. |
 | `Character` | `(data) -> CharacterEntity` | Create a Character entity instance. |
 | `Structure` | `(data) -> StructureEntity` | Create a Structure entity instance. |
 
@@ -269,7 +271,7 @@ API path: `/universe/structures/{structure_id}/`
 
 ### Asset
 
-Create an instance: `const asset = client.asset`
+Create an instance: `asset = client.Asset`
 
 #### Operations
 
@@ -292,14 +294,15 @@ Create an instance: `const asset = client.asset`
 
 #### Example: List
 
-```ts
-const assets = await client.asset.list()
+```ruby
+# list returns an Array of Asset records (raises on error).
+assets = client.Asset.list
 ```
 
 
 ### Character
 
-Create an instance: `const character = client.character`
+Create an instance: `character = client.Character`
 
 #### Operations
 
@@ -324,14 +327,15 @@ Create an instance: `const character = client.character`
 
 #### Example: Load
 
-```ts
-const character = await client.character.load({ id: 'character_id' })
+```ruby
+# load returns the bare Character record (raises on error).
+character = client.Character.load({ "id" => "character_id" })
 ```
 
 
 ### Structure
 
-Create an instance: `const structure = client.structure`
+Create an instance: `structure = client.Structure`
 
 #### Operations
 
@@ -351,8 +355,9 @@ Create an instance: `const structure = client.structure`
 
 #### Example: Load
 
-```ts
-const structure = await client.structure.load({ id: 'structure_id' })
+```ruby
+# load returns the bare Structure record (raises on error).
+structure = client.Structure.load({ "id" => "structure_id" })
 ```
 
 
@@ -427,7 +432,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-asset = client.asset
+asset = client.Asset
 asset.load({ "id" => "example_id" })
 
 # asset.data_get now returns the loaded asset data

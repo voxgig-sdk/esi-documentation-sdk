@@ -220,57 +220,27 @@ class EsiDocumentationSDK:
         }
 
 
-    @property
-    def asset(self):
-        """Idiomatic facade: client.asset.list() / client.asset.load({"id": ...})."""
-        from entity.asset_entity import AssetEntity
-        cached = getattr(self, "_asset", None)
-        if cached is None:
-            cached = AssetEntity(self, None)
-            self._asset = cached
-        return cached
-
-    def Asset(self, data=None):
-        # Deprecated: use client.asset instead.
+    def Asset(self, data=None) -> "AssetEntity":
+        """Entity factory: client.Asset().list({}) / client.Asset().load({"id": ...})."""
         from entity.asset_entity import AssetEntity
         return AssetEntity(self, data)
 
 
-    @property
-    def character(self):
-        """Idiomatic facade: client.character.list() / client.character.load({"id": ...})."""
-        from entity.character_entity import CharacterEntity
-        cached = getattr(self, "_character", None)
-        if cached is None:
-            cached = CharacterEntity(self, None)
-            self._character = cached
-        return cached
-
-    def Character(self, data=None):
-        # Deprecated: use client.character instead.
+    def Character(self, data=None) -> "CharacterEntity":
+        """Entity factory: client.Character().list({}) / client.Character().load({"id": ...})."""
         from entity.character_entity import CharacterEntity
         return CharacterEntity(self, data)
 
 
-    @property
-    def structure(self):
-        """Idiomatic facade: client.structure.list() / client.structure.load({"id": ...})."""
-        from entity.structure_entity import StructureEntity
-        cached = getattr(self, "_structure", None)
-        if cached is None:
-            cached = StructureEntity(self, None)
-            self._structure = cached
-        return cached
-
-    def Structure(self, data=None):
-        # Deprecated: use client.structure instead.
+    def Structure(self, data=None) -> "StructureEntity":
+        """Entity factory: client.Structure().list({}) / client.Structure().load({"id": ...})."""
         from entity.structure_entity import StructureEntity
         return StructureEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "EsiDocumentationSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class EsiDocumentationSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.asset_entity import AssetEntity
+    from entity.character_entity import CharacterEntity
+    from entity.structure_entity import StructureEntity

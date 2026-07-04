@@ -89,7 +89,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AssetEntity
 
 ```python
-asset = client.asset
+asset = client.Asset()
 ```
 
 ### Fields
@@ -112,7 +112,9 @@ asset = client.asset
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.asset.list({})
+results = client.Asset().list({})
+for asset in results:
+    print(asset)
 ```
 
 ### Common Methods
@@ -147,7 +149,7 @@ Return the entity name.
 ## CharacterEntity
 
 ```python
-character = client.character
+character = client.Character()
 ```
 
 ### Fields
@@ -172,7 +174,7 @@ character = client.character
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.character.load({"id": "character_id"})
+result = client.Character().load({"id": "character_id"})
 ```
 
 ### Common Methods
@@ -207,7 +209,7 @@ Return the entity name.
 ## StructureEntity
 
 ```python
-structure = client.structure
+structure = client.Structure()
 ```
 
 ### Fields
@@ -227,7 +229,7 @@ structure = client.structure
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.structure.load({"id": "structure_id"})
+result = client.Structure().load({"id": "structure_id"})
 ```
 
 ### Common Methods

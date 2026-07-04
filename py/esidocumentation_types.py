@@ -4,59 +4,66 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Asset:
+class AssetRequired(TypedDict):
     is_singleton: bool
     item_id: int
     location_id: int
     location_type: str
     quantity: int
     type_id: int
-    is_blueprint_copy: Optional[bool] = None
-    location_flag: Optional[str] = None
 
 
-@dataclass
-class AssetListMatch:
+class Asset(AssetRequired, total=False):
+    is_blueprint_copy: bool
+    location_flag: str
+
+
+class AssetListMatch(TypedDict):
     character_id: int
 
 
-@dataclass
-class Character:
+class CharacterRequired(TypedDict):
     corporation_id: int
     name: str
-    alliance_id: Optional[int] = None
-    ancestry_id: Optional[int] = None
-    birthday: Optional[str] = None
-    bloodline_id: Optional[int] = None
-    description: Optional[str] = None
-    gender: Optional[str] = None
-    race_id: Optional[int] = None
-    security_status: Optional[float] = None
 
 
-@dataclass
-class CharacterLoadMatch:
+class Character(CharacterRequired, total=False):
+    alliance_id: int
+    ancestry_id: int
+    birthday: str
+    bloodline_id: int
+    description: str
+    gender: str
+    race_id: int
+    security_status: float
+
+
+class CharacterLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class Structure:
+class StructureRequired(TypedDict):
     name: str
     owner_id: int
     solar_system_id: int
     type_id: int
-    position: Optional[dict] = None
 
 
-@dataclass
-class StructureLoadMatch:
+class Structure(StructureRequired, total=False):
+    position: dict
+
+
+class StructureLoadMatch(TypedDict):
     id: int
-

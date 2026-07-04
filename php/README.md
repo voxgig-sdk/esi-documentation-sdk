@@ -31,18 +31,16 @@ $client = new EsiDocumentationSDK([
 ]);
 ```
 
-### 2. List assets
+### 2. List asset records
 
 ```php
 try {
-    $result = $client->asset()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Asset records — iterate directly.
+    $assets = $client->Asset()->list();
+    foreach ($assets as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -88,13 +86,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = EsiDocumentationSDK::test();
+$client = EsiDocumentationSDK::test([
+    "entity" => ["asset" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->asset()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$asset = $client->Asset()->load(["id" => "test01"]);
+print_r($asset);
 ```
 
 ### Use a custom fetch function
@@ -175,7 +177,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Asset` | `($data): AssetEntity` | Create a Asset entity instance. |
+| `Asset` | `($data): AssetEntity` | Create an Asset entity instance. |
 | `Character` | `($data): CharacterEntity` | Create a Character entity instance. |
 | `Structure` | `($data): StructureEntity` | Create a Structure entity instance. |
 
@@ -274,7 +276,7 @@ API path: `/universe/structures/{structure_id}/`
 
 ### Asset
 
-Create an instance: `const asset = client.asset`
+Create an instance: `$asset = $client->Asset();`
 
 #### Operations
 
@@ -297,14 +299,15 @@ Create an instance: `const asset = client.asset`
 
 #### Example: List
 
-```ts
-const assets = await client.asset.list()
+```php
+// list() returns an array of Asset records (throws on error).
+$assets = $client->Asset()->list();
 ```
 
 
 ### Character
 
-Create an instance: `const character = client.character`
+Create an instance: `$character = $client->Character();`
 
 #### Operations
 
@@ -329,14 +332,15 @@ Create an instance: `const character = client.character`
 
 #### Example: Load
 
-```ts
-const character = await client.character.load({ id: 'character_id' })
+```php
+// load() returns the bare Character record (throws on error).
+$character = $client->Character()->load(["id" => "character_id"]);
 ```
 
 
 ### Structure
 
-Create an instance: `const structure = client.structure`
+Create an instance: `$structure = $client->Structure();`
 
 #### Operations
 
@@ -356,8 +360,9 @@ Create an instance: `const structure = client.structure`
 
 #### Example: Load
 
-```ts
-const structure = await client.structure.load({ id: 'structure_id' })
+```php
+// load() returns the bare Structure record (throws on error).
+$structure = $client->Structure()->load(["id" => "structure_id"]);
 ```
 
 
@@ -432,7 +437,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$asset = $client->asset();
+$asset = $client->Asset();
 $asset->load(["id" => "example_id"]);
 
 // $asset->dataGet() now returns the loaded asset data
