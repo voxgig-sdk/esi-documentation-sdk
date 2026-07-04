@@ -109,6 +109,7 @@ class EsiDocumentationConfig
                         'orig' => 'character_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -254,6 +255,7 @@ class EsiDocumentationConfig
                         'orig' => 'character_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -354,6 +356,7 @@ class EsiDocumentationConfig
                         'orig' => 'structure_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [

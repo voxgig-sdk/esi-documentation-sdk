@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Asset,
+  AssetListMatch,
+} from '../EsiDocumentationTypes'
 
 // TODO: needs Entity superclass
-class AssetEntity extends EsiDocumentationEntityBase {
+class AssetEntity extends EsiDocumentationEntityBase<Asset> {
 
   constructor(client: EsiDocumentationSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class AssetEntity extends EsiDocumentationEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: AssetListMatch, ctrl?: Control): Promise<Asset[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class AssetEntity extends EsiDocumentationEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Asset[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

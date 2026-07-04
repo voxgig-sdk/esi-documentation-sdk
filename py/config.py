@@ -104,6 +104,7 @@ def make_config():
                       "orig": "character_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -249,6 +250,7 @@ def make_config():
                       "orig": "character_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -349,6 +351,7 @@ def make_config():
                       "orig": "structure_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                   "query": [

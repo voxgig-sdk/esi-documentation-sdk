@@ -52,8 +52,7 @@ class TestAssetEntity:
             "character_id": setup["idmap"]["character01"],
         }
 
-        asset_ref01_list_result, err = asset_ref01_ent.list(asset_ref01_match, None)
-        assert err is None
+        asset_ref01_list_result = asset_ref01_ent.list(asset_ref01_match, None)
         assert isinstance(asset_ref01_list_result, list)
 
 

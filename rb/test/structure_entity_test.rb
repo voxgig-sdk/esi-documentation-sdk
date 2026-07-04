@@ -42,8 +42,7 @@ class StructureEntityTest < Minitest::Test
     # LOAD
     structure_ref01_ent = client.Structure(nil)
     structure_ref01_match_dt0 = {}
-    structure_ref01_data_dt0_loaded, err = structure_ref01_ent.load(structure_ref01_match_dt0, nil)
-    assert_nil err
+    structure_ref01_data_dt0_loaded = structure_ref01_ent.load(structure_ref01_match_dt0, nil)
     assert !structure_ref01_data_dt0_loaded.nil?
 
   end

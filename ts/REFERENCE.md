@@ -134,7 +134,7 @@ Alias for `EsiDocumentationSDK.test()`.
 ## AssetEntity
 
 ```ts
-const asset = client.Asset()
+const asset = client.asset
 ```
 
 ### Fields
@@ -157,7 +157,7 @@ const asset = client.Asset()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Asset().list()
+const results = await client.asset.list()
 ```
 
 ### Common Methods
@@ -191,7 +191,7 @@ Return a copy of the entity options.
 ## CharacterEntity
 
 ```ts
-const character = client.Character()
+const character = client.character
 ```
 
 ### Fields
@@ -216,7 +216,7 @@ const character = client.Character()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Character().load({ id: 'character_id' })
+const result = await client.character.load({ id: 'character_id' })
 ```
 
 ### Common Methods
@@ -250,7 +250,7 @@ Return a copy of the entity options.
 ## StructureEntity
 
 ```ts
-const structure = client.Structure()
+const structure = client.structure
 ```
 
 ### Fields
@@ -270,7 +270,7 @@ const structure = client.Structure()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Structure().load({ id: 'structure_id' })
+const result = await client.structure.load({ id: 'structure_id' })
 ```
 
 ### Common Methods

@@ -42,8 +42,7 @@ class CharacterEntityTest < Minitest::Test
     # LOAD
     character_ref01_ent = client.Character(nil)
     character_ref01_match_dt0 = {}
-    character_ref01_data_dt0_loaded, err = character_ref01_ent.load(character_ref01_match_dt0, nil)
-    assert_nil err
+    character_ref01_data_dt0_loaded = character_ref01_ent.load(character_ref01_match_dt0, nil)
     assert !character_ref01_data_dt0_loaded.nil?
 
   end

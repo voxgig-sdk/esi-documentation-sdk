@@ -45,8 +45,7 @@ class AssetEntityTest < Minitest::Test
       "character_id" => setup[:idmap]["character01"],
     }
 
-    asset_ref01_list_result, err = asset_ref01_ent.list(asset_ref01_match, nil)
-    assert_nil err
+    asset_ref01_list_result = asset_ref01_ent.list(asset_ref01_match, nil)
     assert asset_ref01_list_result.is_a?(Array)
 
   end

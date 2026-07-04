@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:asset():list() / client:asset():load({ id = ... })
+function EsiDocumentationSDK:asset(data)
+  local EntityMod = require("entity.asset_entity")
+  if data == nil then
+    if self._asset == nil then
+      self._asset = EntityMod.new(self, nil)
+    end
+    return self._asset
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:asset() instead.
 function EsiDocumentationSDK:Asset(data)
   local EntityMod = require("entity.asset_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:character():list() / client:character():load({ id = ... })
+function EsiDocumentationSDK:character(data)
+  local EntityMod = require("entity.character_entity")
+  if data == nil then
+    if self._character == nil then
+      self._character = EntityMod.new(self, nil)
+    end
+    return self._character
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:character() instead.
 function EsiDocumentationSDK:Character(data)
   local EntityMod = require("entity.character_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:structure():list() / client:structure():load({ id = ... })
+function EsiDocumentationSDK:structure(data)
+  local EntityMod = require("entity.structure_entity")
+  if data == nil then
+    if self._structure == nil then
+      self._structure = EntityMod.new(self, nil)
+    end
+    return self._structure
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:structure() instead.
 function EsiDocumentationSDK:Structure(data)
   local EntityMod = require("entity.structure_entity")
   return EntityMod.new(self, data)

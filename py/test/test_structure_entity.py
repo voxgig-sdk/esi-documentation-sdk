@@ -49,8 +49,7 @@ class TestStructureEntity:
         # LOAD
         structure_ref01_ent = client.Structure(None)
         structure_ref01_match_dt0 = {}
-        structure_ref01_data_dt0_loaded, err = structure_ref01_ent.load(structure_ref01_match_dt0, None)
-        assert err is None
+        structure_ref01_data_dt0_loaded = structure_ref01_ent.load(structure_ref01_match_dt0, None)
         assert structure_ref01_data_dt0_loaded is not None
 
 

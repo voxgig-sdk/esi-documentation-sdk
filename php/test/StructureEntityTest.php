@@ -49,8 +49,7 @@ class StructureEntityTest extends TestCase
         // LOAD
         $structure_ref01_ent = $client->Structure(null);
         $structure_ref01_match_dt0 = [];
-        [$structure_ref01_data_dt0_loaded, $err] = $structure_ref01_ent->load($structure_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $structure_ref01_data_dt0_loaded = $structure_ref01_ent->load($structure_ref01_match_dt0, null);
         $this->assertNotNull($structure_ref01_data_dt0_loaded);
 
     }

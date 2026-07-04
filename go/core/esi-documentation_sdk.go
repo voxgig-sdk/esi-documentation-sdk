@@ -245,16 +245,25 @@ func (sdk *EsiDocumentationSDK) Direct(fetchargs map[string]any) (map[string]any
 }
 
 
+// Asset returns a Asset entity bound to this client.
+// Idiomatic usage: client.Asset(nil).List(nil, nil) or
+// client.Asset(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EsiDocumentationSDK) Asset(data map[string]any) EsiDocumentationEntity {
 	return NewAssetEntityFunc(sdk, data)
 }
 
 
+// Character returns a Character entity bound to this client.
+// Idiomatic usage: client.Character(nil).List(nil, nil) or
+// client.Character(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EsiDocumentationSDK) Character(data map[string]any) EsiDocumentationEntity {
 	return NewCharacterEntityFunc(sdk, data)
 }
 
 
+// Structure returns a Structure entity bound to this client.
+// Idiomatic usage: client.Structure(nil).List(nil, nil) or
+// client.Structure(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EsiDocumentationSDK) Structure(data map[string]any) EsiDocumentationEntity {
 	return NewStructureEntityFunc(sdk, data)
 }

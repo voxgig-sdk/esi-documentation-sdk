@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch StructureLoadMatch
+---@param ctrl? table
+---@return Structure
+---@return string? err
 function StructureEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -49,8 +49,7 @@ class CharacterEntityTest extends TestCase
         // LOAD
         $character_ref01_ent = $client->Character(null);
         $character_ref01_match_dt0 = [];
-        [$character_ref01_data_dt0_loaded, $err] = $character_ref01_ent->load($character_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $character_ref01_data_dt0_loaded = $character_ref01_ent->load($character_ref01_match_dt0, null);
         $this->assertNotNull($character_ref01_data_dt0_loaded);
 
     }

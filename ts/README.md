@@ -9,9 +9,12 @@ The TypeScript SDK for the EsiDocumentation API — a type-safe, entity-oriented
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/esi-documentation
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/esi-documentation-sdk/releases](https://github.com/voxgig-sdk/esi-documentation-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { EsiDocumentationSDK } from 'esi-documentation'
+import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation'
 
 const client = new EsiDocumentationSDK({
-  apikey: process.env.ESI-DOCUMENTATION_APIKEY,
+  apikey: process.env.ESI_DOCUMENTATION_APIKEY,
 })
 ```
 
 ### 2. List assets
 
 ```ts
-const result = await client.Asset().list()
+const result = await client.asset.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = EsiDocumentationSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.asset.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -98,7 +101,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.asset
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,8 +138,8 @@ const client = new EsiDocumentationSDK({
 Create a `.env.local` file at the project root:
 
 ```
-ESI-DOCUMENTATION_TEST_LIVE=TRUE
-ESI-DOCUMENTATION_APIKEY=<your-key>
+ESI_DOCUMENTATION_TEST_LIVE=TRUE
+ESI_DOCUMENTATION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -310,7 +313,7 @@ API path: `/universe/structures/{structure_id}/`
 
 ### Asset
 
-Create an instance: `const asset = client.Asset()`
+Create an instance: `const asset = client.asset`
 
 #### Operations
 
@@ -334,13 +337,13 @@ Create an instance: `const asset = client.Asset()`
 #### Example: List
 
 ```ts
-const assets = await client.Asset().list()
+const assets = await client.asset.list()
 ```
 
 
 ### Character
 
-Create an instance: `const character = client.Character()`
+Create an instance: `const character = client.character`
 
 #### Operations
 
@@ -366,13 +369,13 @@ Create an instance: `const character = client.Character()`
 #### Example: Load
 
 ```ts
-const character = await client.Character().load({ id: 'character_id' })
+const character = await client.character.load({ id: 'character_id' })
 ```
 
 
 ### Structure
 
-Create an instance: `const structure = client.Structure()`
+Create an instance: `const structure = client.structure`
 
 #### Operations
 
@@ -393,7 +396,7 @@ Create an instance: `const structure = client.Structure()`
 #### Example: Load
 
 ```ts
-const structure = await client.Structure().load({ id: 'structure_id' })
+const structure = await client.structure.load({ id: 'structure_id' })
 ```
 
 
@@ -454,7 +457,7 @@ esi-documentation/
 Import the SDK from the package root:
 
 ```ts
-import { EsiDocumentationSDK } from 'esi-documentation'
+import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation'
 ```
 
 ### Entity state
@@ -464,11 +467,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const asset = client.asset
+await asset.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// asset.data() now returns the loaded asset data
+// asset.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

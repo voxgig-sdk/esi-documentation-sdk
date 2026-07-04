@@ -103,6 +103,7 @@ func MakeConfig() map[string]any {
 											"orig": "character_id",
 											"reqd": true,
 											"type": "`$INTEGER`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -248,6 +249,7 @@ func MakeConfig() map[string]any {
 											"orig": "character_id",
 											"reqd": true,
 											"type": "`$INTEGER`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -348,6 +350,7 @@ func MakeConfig() map[string]any {
 											"orig": "structure_id",
 											"reqd": true,
 											"type": "`$INTEGER`",
+											"index$": 0,
 										},
 									},
 									"query": []any{

@@ -9,9 +9,10 @@ The PHP SDK for the EsiDocumentation API — an entity-oriented client using PHP
 
 
 ## Install
-```bash
-composer require voxgig-sdk/esi-documentation
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/esi-documentation-sdk/releases](https://github.com/voxgig-sdk/esi-documentation-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,21 +27,23 @@ loading a specific record.
 require_once 'esidocumentation_sdk.php';
 
 $client = new EsiDocumentationSDK([
-    "apikey" => getenv("ESI-DOCUMENTATION_APIKEY"),
+    "apikey" => getenv("ESI_DOCUMENTATION_APIKEY"),
 ]);
 ```
 
 ### 2. List assets
 
 ```php
-[$result, $err] = $client->Asset()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->asset()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
@@ -52,28 +55,31 @@ if (is_array($result)) {
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -87,7 +93,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = EsiDocumentationSDK::test();
 
-[$result, $err] = $client->EsiDocumentation()->load(["id" => "test01"]);
+$result = $client->asset()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -121,8 +127,8 @@ $client = new EsiDocumentationSDK([
 Create a `.env.local` file at the project root:
 
 ```
-ESI-DOCUMENTATION_TEST_LIVE=TRUE
-ESI-DOCUMENTATION_APIKEY=<your-key>
+ESI_DOCUMENTATION_TEST_LIVE=TRUE
+ESI_DOCUMENTATION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -193,8 +199,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -264,7 +274,7 @@ API path: `/universe/structures/{structure_id}/`
 
 ### Asset
 
-Create an instance: `const asset = client.Asset()`
+Create an instance: `const asset = client.asset`
 
 #### Operations
 
@@ -288,13 +298,13 @@ Create an instance: `const asset = client.Asset()`
 #### Example: List
 
 ```ts
-const assets = await client.Asset().list()
+const assets = await client.asset.list()
 ```
 
 
 ### Character
 
-Create an instance: `const character = client.Character()`
+Create an instance: `const character = client.character`
 
 #### Operations
 
@@ -320,13 +330,13 @@ Create an instance: `const character = client.Character()`
 #### Example: Load
 
 ```ts
-const character = await client.Character().load({ id: 'character_id' })
+const character = await client.character.load({ id: 'character_id' })
 ```
 
 
 ### Structure
 
-Create an instance: `const structure = client.Structure()`
+Create an instance: `const structure = client.structure`
 
 #### Operations
 
@@ -347,7 +357,7 @@ Create an instance: `const structure = client.Structure()`
 #### Example: Load
 
 ```ts
-const structure = await client.Structure().load({ id: 'structure_id' })
+const structure = await client.structure.load({ id: 'structure_id' })
 ```
 
 
@@ -422,11 +432,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$asset = $client->asset();
+$asset->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $asset->dataGet() now returns the loaded asset data
+// $asset->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

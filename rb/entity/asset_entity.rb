@@ -45,6 +45,7 @@ class AssetEntity
     end
   end
 
+  # @return [Asset, Hash] the current Asset data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class AssetEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Asset fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class AssetEntity
   
 
   
+  # List Asset items matching the given filter.
+  #
+  # @param reqmatch [AssetListMatch, Hash, nil] match filter (any subset of Asset fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Asset>, Array] the matching Asset items; raises EsiDocumentationError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

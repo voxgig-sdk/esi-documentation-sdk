@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CharacterLoadMatch
+---@param ctrl? table
+---@return Character
+---@return string? err
 function CharacterEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

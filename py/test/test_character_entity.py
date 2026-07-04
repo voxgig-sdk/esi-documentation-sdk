@@ -49,8 +49,7 @@ class TestCharacterEntity:
         # LOAD
         character_ref01_ent = client.Character(None)
         character_ref01_match_dt0 = {}
-        character_ref01_data_dt0_loaded, err = character_ref01_ent.load(character_ref01_match_dt0, None)
-        assert err is None
+        character_ref01_data_dt0_loaded = character_ref01_ent.load(character_ref01_match_dt0, None)
         assert character_ref01_data_dt0_loaded is not None
 
 

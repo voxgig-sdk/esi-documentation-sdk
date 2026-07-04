@@ -137,7 +137,8 @@ class Config {
                     "name": "character_id",
                     "orig": "character_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -282,7 +283,8 @@ class Config {
                     "name": "id",
                     "orig": "character_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -382,7 +384,8 @@ class Config {
                     "name": "id",
                     "orig": "structure_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ],
                 "query": [

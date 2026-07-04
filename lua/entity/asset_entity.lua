@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch AssetListMatch
+---@param ctrl? table
+---@return Asset[]
+---@return string? err
 function AssetEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

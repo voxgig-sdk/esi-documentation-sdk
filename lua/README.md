@@ -9,12 +9,9 @@ The Lua SDK for the EsiDocumentation API — an entity-oriented client using Lua
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-esi-documentation
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/esi-documentation-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("esi-documentation_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("ESI-DOCUMENTATION_APIKEY"),
+  apikey = os.getenv("ESI_DOCUMENTATION_APIKEY"),
 })
 ```
 
 ### 2. List assets
 
 ```lua
-local result, err = client:Asset():list()
+local result, err = client:asset():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +90,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:EsiDocumentation():load({ id = "test01" })
+local result, err = client:asset():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -126,8 +123,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-ESI-DOCUMENTATION_TEST_LIVE=TRUE
-ESI-DOCUMENTATION_APIKEY=<your-key>
+ESI_DOCUMENTATION_TEST_LIVE=TRUE
+ESI_DOCUMENTATION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -269,7 +266,7 @@ API path: `/universe/structures/{structure_id}/`
 
 ### Asset
 
-Create an instance: `const asset = client.Asset()`
+Create an instance: `const asset = client.asset`
 
 #### Operations
 
@@ -293,13 +290,13 @@ Create an instance: `const asset = client.Asset()`
 #### Example: List
 
 ```ts
-const assets = await client.Asset().list()
+const assets = await client.asset.list()
 ```
 
 
 ### Character
 
-Create an instance: `const character = client.Character()`
+Create an instance: `const character = client.character`
 
 #### Operations
 
@@ -325,13 +322,13 @@ Create an instance: `const character = client.Character()`
 #### Example: Load
 
 ```ts
-const character = await client.Character().load({ id: 'character_id' })
+const character = await client.character.load({ id: 'character_id' })
 ```
 
 
 ### Structure
 
-Create an instance: `const structure = client.Structure()`
+Create an instance: `const structure = client.structure`
 
 #### Operations
 
@@ -352,7 +349,7 @@ Create an instance: `const structure = client.Structure()`
 #### Example: Load
 
 ```ts
-const structure = await client.Structure().load({ id: 'structure_id' })
+const structure = await client.structure.load({ id: 'structure_id' })
 ```
 
 
@@ -427,11 +424,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local asset = client:asset()
+asset:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- asset:data_get() now returns the loaded asset data
+-- asset:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

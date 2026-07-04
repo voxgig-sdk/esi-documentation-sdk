@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Structure,
+  StructureLoadMatch,
+} from '../EsiDocumentationTypes'
 
 // TODO: needs Entity superclass
-class StructureEntity extends EsiDocumentationEntityBase {
+class StructureEntity extends EsiDocumentationEntityBase<Structure> {
 
   constructor(client: EsiDocumentationSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class StructureEntity extends EsiDocumentationEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: StructureLoadMatch, ctrl?: Control): Promise<Structure> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class StructureEntity extends EsiDocumentationEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Structure> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

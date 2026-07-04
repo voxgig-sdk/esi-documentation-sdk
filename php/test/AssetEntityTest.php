@@ -52,8 +52,7 @@ class AssetEntityTest extends TestCase
             "character_id" => $setup["idmap"]["character01"],
         ];
 
-        [$asset_ref01_list_result, $err] = $asset_ref01_ent->list($asset_ref01_match, null);
-        $this->assertNull($err);
+        $asset_ref01_list_result = $asset_ref01_ent->list($asset_ref01_match, null);
         $this->assertIsArray($asset_ref01_list_result);
 
     }

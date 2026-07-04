@@ -62,9 +62,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -78,14 +80,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -93,7 +95,7 @@ same parameters as `direct()`.
 ## AssetEntity
 
 ```ruby
-asset = client.Asset
+asset = client.asset
 ```
 
 ### Fields
@@ -111,12 +113,12 @@ asset = client.Asset
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Asset.list(nil)
+results = client.asset.list(nil)
 ```
 
 ### Common Methods
@@ -152,7 +154,7 @@ Return the entity name.
 ## CharacterEntity
 
 ```ruby
-character = client.Character
+character = client.character
 ```
 
 ### Fields
@@ -172,12 +174,12 @@ character = client.Character
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Character.load({ "id" => "character_id" })
+result = client.character.load({ "id" => "character_id" })
 ```
 
 ### Common Methods
@@ -213,7 +215,7 @@ Return the entity name.
 ## StructureEntity
 
 ```ruby
-structure = client.Structure
+structure = client.structure
 ```
 
 ### Fields
@@ -228,12 +230,12 @@ structure = client.Structure
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Structure.load({ "id" => "structure_id" })
+result = client.structure.load({ "id" => "structure_id" })
 ```
 
 ### Common Methods

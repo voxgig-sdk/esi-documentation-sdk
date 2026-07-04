@@ -4,6 +4,8 @@ import { AssetEntity } from './entity/AssetEntity'
 import { CharacterEntity } from './entity/CharacterEntity'
 import { StructureEntity } from './entity/StructureEntity'
 
+export type * from './EsiDocumentationTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class EsiDocumentationSDK {
 
 
 
+  _asset?: AssetEntity
+
+  // Idiomatic facade: `client.asset.list()` / `client.asset.load({ id })`.
+  get asset(): AssetEntity {
+    return (this._asset ??= new AssetEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.asset` instead. */
   Asset(data?: any) {
     const self = this
     return new AssetEntity(self,data)
   }
 
 
+  _character?: CharacterEntity
+
+  // Idiomatic facade: `client.character.list()` / `client.character.load({ id })`.
+  get character(): CharacterEntity {
+    return (this._character ??= new CharacterEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.character` instead. */
   Character(data?: any) {
     const self = this
     return new CharacterEntity(self,data)
   }
 
 
+  _structure?: StructureEntity
+
+  // Idiomatic facade: `client.structure.list()` / `client.structure.load({ id })`.
+  get structure(): StructureEntity {
+    return (this._structure ??= new StructureEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.structure` instead. */
   Structure(data?: any) {
     const self = this
     return new StructureEntity(self,data)

@@ -103,6 +103,7 @@ local function make_config()
                       ["orig"] = "character_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -248,6 +249,7 @@ local function make_config()
                       ["orig"] = "character_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -348,6 +350,7 @@ local function make_config()
                       ["orig"] = "structure_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
