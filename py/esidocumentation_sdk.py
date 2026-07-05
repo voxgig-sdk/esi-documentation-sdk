@@ -221,19 +221,19 @@ class EsiDocumentationSDK:
 
 
     def Asset(self, data=None) -> "AssetEntity":
-        """Entity factory: client.Asset().list({}) / client.Asset().load({"id": ...})."""
+        """Entity factory: client.Asset().list() / client.Asset().load({"id": ...})."""
         from entity.asset_entity import AssetEntity
         return AssetEntity(self, data)
 
 
     def Character(self, data=None) -> "CharacterEntity":
-        """Entity factory: client.Character().list({}) / client.Character().load({"id": ...})."""
+        """Entity factory: client.Character().list() / client.Character().load({"id": ...})."""
         from entity.character_entity import CharacterEntity
         return CharacterEntity(self, data)
 
 
     def Structure(self, data=None) -> "StructureEntity":
-        """Entity factory: client.Structure().list({}) / client.Structure().load({"id": ...})."""
+        """Entity factory: client.Structure().list() / client.Structure().load({"id": ...})."""
         from entity.structure_entity import StructureEntity
         return StructureEntity(self, data)
 

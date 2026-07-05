@@ -4,6 +4,8 @@
 
 The PHP SDK for the EsiDocumentation API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Asset()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,10 +40,41 @@ try {
     // list() returns an array of Asset records — iterate directly.
     $assets = $client->Asset()->list();
     foreach ($assets as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["is_blueprint_copy"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $assets = $client->Asset()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -65,7 +98,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -86,16 +122,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = EsiDocumentationSDK::test([
-    "entity" => ["asset" => ["test01" => ["id" => "test01"]]],
-]);
+$client = EsiDocumentationSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$asset = $client->Asset()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$asset = $client->Asset()->list();
 print_r($asset);
 ```
 
@@ -188,10 +221,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -288,14 +318,14 @@ Create an instance: `$asset = $client->Asset();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_blueprint_copy` | ``$BOOLEAN`` |  |
-| `is_singleton` | ``$BOOLEAN`` |  |
-| `item_id` | ``$INTEGER`` |  |
-| `location_flag` | ``$STRING`` |  |
-| `location_id` | ``$INTEGER`` |  |
-| `location_type` | ``$STRING`` |  |
-| `quantity` | ``$INTEGER`` |  |
-| `type_id` | ``$INTEGER`` |  |
+| `is_blueprint_copy` | `bool` |  |
+| `is_singleton` | `bool` |  |
+| `item_id` | `int` |  |
+| `location_flag` | `string` |  |
+| `location_id` | `int` |  |
+| `location_type` | `string` |  |
+| `quantity` | `int` |  |
+| `type_id` | `int` |  |
 
 #### Example: List
 
@@ -319,16 +349,16 @@ Create an instance: `$character = $client->Character();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alliance_id` | ``$INTEGER`` |  |
-| `ancestry_id` | ``$INTEGER`` |  |
-| `birthday` | ``$STRING`` |  |
-| `bloodline_id` | ``$INTEGER`` |  |
-| `corporation_id` | ``$INTEGER`` |  |
-| `description` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `race_id` | ``$INTEGER`` |  |
-| `security_status` | ``$NUMBER`` |  |
+| `alliance_id` | `int` |  |
+| `ancestry_id` | `int` |  |
+| `birthday` | `string` |  |
+| `bloodline_id` | `int` |  |
+| `corporation_id` | `int` |  |
+| `description` | `string` |  |
+| `gender` | `string` |  |
+| `name` | `string` |  |
+| `race_id` | `int` |  |
+| `security_status` | `float` |  |
 
 #### Example: Load
 
@@ -352,11 +382,11 @@ Create an instance: `$structure = $client->Structure();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `name` | ``$STRING`` |  |
-| `owner_id` | ``$INTEGER`` |  |
-| `position` | ``$OBJECT`` |  |
-| `solar_system_id` | ``$INTEGER`` |  |
-| `type_id` | ``$INTEGER`` |  |
+| `name` | `string` |  |
+| `owner_id` | `int` |  |
+| `position` | `array` |  |
+| `solar_system_id` | `int` |  |
+| `type_id` | `int` |  |
 
 #### Example: Load
 
@@ -366,12 +396,16 @@ $structure = $client->Structure()->load(["id" => "structure_id"]);
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -388,8 +422,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -433,15 +468,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $asset = $client->Asset();
-$asset->load(["id" => "example_id"]);
+$asset->list();
 
-// $asset->dataGet() now returns the loaded asset data
-// $asset->matchGet() returns the last match criteria
+// $asset->data_get() now returns the asset data from the last list
+// $asset->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -8,7 +8,7 @@ Complete API reference for the EsiDocumentation Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'esi-documentation_sdk'
+require_relative 'EsiDocumentation_sdk'
 
 client = EsiDocumentationSDK.new(options)
 ```
@@ -102,23 +102,23 @@ asset = client.Asset
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_blueprint_copy` | ``$BOOLEAN`` | No |  |
-| `is_singleton` | ``$BOOLEAN`` | Yes |  |
-| `item_id` | ``$INTEGER`` | Yes |  |
-| `location_flag` | ``$STRING`` | No |  |
-| `location_id` | ``$INTEGER`` | Yes |  |
-| `location_type` | ``$STRING`` | Yes |  |
-| `quantity` | ``$INTEGER`` | Yes |  |
-| `type_id` | ``$INTEGER`` | Yes |  |
+| `is_blueprint_copy` | `Boolean` | No |  |
+| `is_singleton` | `Boolean` | Yes |  |
+| `item_id` | `Integer` | Yes |  |
+| `location_flag` | `String` | No |  |
+| `location_id` | `Integer` | Yes |  |
+| `location_type` | `String` | Yes |  |
+| `quantity` | `Integer` | Yes |  |
+| `type_id` | `Integer` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Asset.list(nil)
+results = client.Asset.list
 ```
 
 ### Common Methods
@@ -161,16 +161,16 @@ character = client.Character
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alliance_id` | ``$INTEGER`` | No |  |
-| `ancestry_id` | ``$INTEGER`` | No |  |
-| `birthday` | ``$STRING`` | No |  |
-| `bloodline_id` | ``$INTEGER`` | No |  |
-| `corporation_id` | ``$INTEGER`` | Yes |  |
-| `description` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `race_id` | ``$INTEGER`` | No |  |
-| `security_status` | ``$NUMBER`` | No |  |
+| `alliance_id` | `Integer` | No |  |
+| `ancestry_id` | `Integer` | No |  |
+| `birthday` | `String` | No |  |
+| `bloodline_id` | `Integer` | No |  |
+| `corporation_id` | `Integer` | Yes |  |
+| `description` | `String` | No |  |
+| `gender` | `String` | No |  |
+| `name` | `String` | Yes |  |
+| `race_id` | `Integer` | No |  |
+| `security_status` | `Float` | No |  |
 
 ### Operations
 
@@ -222,11 +222,11 @@ structure = client.Structure
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | ``$STRING`` | Yes |  |
-| `owner_id` | ``$INTEGER`` | Yes |  |
-| `position` | ``$OBJECT`` | No |  |
-| `solar_system_id` | ``$INTEGER`` | Yes |  |
-| `type_id` | ``$INTEGER`` | Yes |  |
+| `name` | `String` | Yes |  |
+| `owner_id` | `Integer` | Yes |  |
+| `position` | `Hash` | No |  |
+| `solar_system_id` | `Integer` | Yes |  |
+| `type_id` | `Integer` | Yes |  |
 
 ### Operations
 

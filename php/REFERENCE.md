@@ -8,7 +8,7 @@ Complete API reference for the EsiDocumentation PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/esi-documentation_sdk.php';
+require_once __DIR__ . '/esidocumentation_sdk.php';
 
 $client = new EsiDocumentationSDK($options);
 ```
@@ -54,11 +54,11 @@ Create a new `CharacterEntity` instance. Pass `null` for no initial data.
 
 Create a new `StructureEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): EsiDocumentationUtility`
 
 Return a copy of the SDK utility object.
 
@@ -101,40 +101,40 @@ $asset = $client->Asset();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_blueprint_copy` | ``$BOOLEAN`` | No |  |
-| `is_singleton` | ``$BOOLEAN`` | Yes |  |
-| `item_id` | ``$INTEGER`` | Yes |  |
-| `location_flag` | ``$STRING`` | No |  |
-| `location_id` | ``$INTEGER`` | Yes |  |
-| `location_type` | ``$STRING`` | Yes |  |
-| `quantity` | ``$INTEGER`` | Yes |  |
-| `type_id` | ``$INTEGER`` | Yes |  |
+| `is_blueprint_copy` | `bool` | No |  |
+| `is_singleton` | `bool` | Yes |  |
+| `item_id` | `int` | Yes |  |
+| `location_flag` | `string` | No |  |
+| `location_id` | `int` | Yes |  |
+| `location_type` | `string` | Yes |  |
+| `quantity` | `int` | Yes |  |
+| `type_id` | `int` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Asset()->list([]);
+$results = $client->Asset()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -143,7 +143,7 @@ Set the entity match criteria.
 Create a new `AssetEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -160,16 +160,16 @@ $character = $client->Character();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alliance_id` | ``$INTEGER`` | No |  |
-| `ancestry_id` | ``$INTEGER`` | No |  |
-| `birthday` | ``$STRING`` | No |  |
-| `bloodline_id` | ``$INTEGER`` | No |  |
-| `corporation_id` | ``$INTEGER`` | Yes |  |
-| `description` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `race_id` | ``$INTEGER`` | No |  |
-| `security_status` | ``$NUMBER`` | No |  |
+| `alliance_id` | `int` | No |  |
+| `ancestry_id` | `int` | No |  |
+| `birthday` | `string` | No |  |
+| `bloodline_id` | `int` | No |  |
+| `corporation_id` | `int` | Yes |  |
+| `description` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `name` | `string` | Yes |  |
+| `race_id` | `int` | No |  |
+| `security_status` | `float` | No |  |
 
 ### Operations
 
@@ -183,19 +183,19 @@ $result = $client->Character()->load(["id" => "character_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -204,7 +204,7 @@ Set the entity match criteria.
 Create a new `CharacterEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -221,11 +221,11 @@ $structure = $client->Structure();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | ``$STRING`` | Yes |  |
-| `owner_id` | ``$INTEGER`` | Yes |  |
-| `position` | ``$OBJECT`` | No |  |
-| `solar_system_id` | ``$INTEGER`` | Yes |  |
-| `type_id` | ``$INTEGER`` | Yes |  |
+| `name` | `string` | Yes |  |
+| `owner_id` | `int` | Yes |  |
+| `position` | `array` | No |  |
+| `solar_system_id` | `int` | Yes |  |
+| `type_id` | `int` | Yes |  |
 
 ### Operations
 
@@ -239,19 +239,19 @@ $result = $client->Structure()->load(["id" => "structure_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -260,7 +260,7 @@ Set the entity match criteria.
 Create a new `StructureEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

@@ -141,14 +141,14 @@ const asset = client.Asset()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_blueprint_copy` | ``$BOOLEAN`` | No |  |
-| `is_singleton` | ``$BOOLEAN`` | Yes |  |
-| `item_id` | ``$INTEGER`` | Yes |  |
-| `location_flag` | ``$STRING`` | No |  |
-| `location_id` | ``$INTEGER`` | Yes |  |
-| `location_type` | ``$STRING`` | Yes |  |
-| `quantity` | ``$INTEGER`` | Yes |  |
-| `type_id` | ``$INTEGER`` | Yes |  |
+| `is_blueprint_copy` | `boolean` | No |  |
+| `is_singleton` | `boolean` | Yes |  |
+| `item_id` | `number` | Yes |  |
+| `location_flag` | `string` | No |  |
+| `location_id` | `number` | Yes |  |
+| `location_type` | `string` | Yes |  |
+| `quantity` | `number` | Yes |  |
+| `type_id` | `number` | Yes |  |
 
 ### Operations
 
@@ -198,16 +198,16 @@ const character = client.Character()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alliance_id` | ``$INTEGER`` | No |  |
-| `ancestry_id` | ``$INTEGER`` | No |  |
-| `birthday` | ``$STRING`` | No |  |
-| `bloodline_id` | ``$INTEGER`` | No |  |
-| `corporation_id` | ``$INTEGER`` | Yes |  |
-| `description` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `race_id` | ``$INTEGER`` | No |  |
-| `security_status` | ``$NUMBER`` | No |  |
+| `alliance_id` | `number` | No |  |
+| `ancestry_id` | `number` | No |  |
+| `birthday` | `string` | No |  |
+| `bloodline_id` | `number` | No |  |
+| `corporation_id` | `number` | Yes |  |
+| `description` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `name` | `string` | Yes |  |
+| `race_id` | `number` | No |  |
+| `security_status` | `number` | No |  |
 
 ### Operations
 
@@ -216,7 +216,7 @@ const character = client.Character()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Character().load({ id: 'character_id' })
+const result = await client.Character().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -257,11 +257,11 @@ const structure = client.Structure()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | ``$STRING`` | Yes |  |
-| `owner_id` | ``$INTEGER`` | Yes |  |
-| `position` | ``$OBJECT`` | No |  |
-| `solar_system_id` | ``$INTEGER`` | Yes |  |
-| `type_id` | ``$INTEGER`` | Yes |  |
+| `name` | `string` | Yes |  |
+| `owner_id` | `number` | Yes |  |
+| `position` | `Record<string, any>` | No |  |
+| `solar_system_id` | `number` | Yes |  |
+| `type_id` | `number` | Yes |  |
 
 ### Operations
 
@@ -270,7 +270,7 @@ const structure = client.Structure()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Structure().load({ id: 'structure_id' })
+const result = await client.Structure().load({ id: 1 })
 ```
 
 ### Common Methods

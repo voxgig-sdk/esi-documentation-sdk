@@ -106,14 +106,14 @@ asset := client.Asset(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_blueprint_copy` | ``$BOOLEAN`` | No |  |
-| `is_singleton` | ``$BOOLEAN`` | Yes |  |
-| `item_id` | ``$INTEGER`` | Yes |  |
-| `location_flag` | ``$STRING`` | No |  |
-| `location_id` | ``$INTEGER`` | Yes |  |
-| `location_type` | ``$STRING`` | Yes |  |
-| `quantity` | ``$INTEGER`` | Yes |  |
-| `type_id` | ``$INTEGER`` | Yes |  |
+| `is_blueprint_copy` | `bool` | No |  |
+| `is_singleton` | `bool` | Yes |  |
+| `item_id` | `int` | Yes |  |
+| `location_flag` | `string` | No |  |
+| `location_id` | `int` | Yes |  |
+| `location_type` | `string` | Yes |  |
+| `quantity` | `int` | Yes |  |
+| `type_id` | `int` | Yes |  |
 
 ### Operations
 
@@ -159,16 +159,16 @@ character := client.Character(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alliance_id` | ``$INTEGER`` | No |  |
-| `ancestry_id` | ``$INTEGER`` | No |  |
-| `birthday` | ``$STRING`` | No |  |
-| `bloodline_id` | ``$INTEGER`` | No |  |
-| `corporation_id` | ``$INTEGER`` | Yes |  |
-| `description` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `race_id` | ``$INTEGER`` | No |  |
-| `security_status` | ``$NUMBER`` | No |  |
+| `alliance_id` | `int` | No |  |
+| `ancestry_id` | `int` | No |  |
+| `birthday` | `string` | No |  |
+| `bloodline_id` | `int` | No |  |
+| `corporation_id` | `int` | Yes |  |
+| `description` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `name` | `string` | Yes |  |
+| `race_id` | `int` | No |  |
+| `security_status` | `float64` | No |  |
 
 ### Operations
 
@@ -214,11 +214,11 @@ structure := client.Structure(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | ``$STRING`` | Yes |  |
-| `owner_id` | ``$INTEGER`` | Yes |  |
-| `position` | ``$OBJECT`` | No |  |
-| `solar_system_id` | ``$INTEGER`` | Yes |  |
-| `type_id` | ``$INTEGER`` | Yes |  |
+| `name` | `string` | Yes |  |
+| `owner_id` | `int` | Yes |  |
+| `position` | `map[string]any` | No |  |
+| `solar_system_id` | `int` | Yes |  |
+| `type_id` | `int` | Yes |  |
 
 ### Operations
 

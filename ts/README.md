@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the EsiDocumentation API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Asset()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -39,6 +44,35 @@ const assets = await client.Asset().list()
 
 for (const asset of assets) {
   console.log(asset)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const assets = await client.Asset().list()
+  console.log(assets)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -87,7 +121,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = EsiDocumentationSDK.test()
 
-const asset = await client.Asset().load({ id: 'test01' })
+const asset = await client.Asset().list()
 // asset is a bare entity populated with mock response data
 console.log(asset)
 ```
@@ -106,12 +140,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Asset()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -207,11 +241,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): EsiDocumentationSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -221,10 +252,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -329,14 +359,14 @@ Create an instance: `const asset = client.Asset()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_blueprint_copy` | ``$BOOLEAN`` |  |
-| `is_singleton` | ``$BOOLEAN`` |  |
-| `item_id` | ``$INTEGER`` |  |
-| `location_flag` | ``$STRING`` |  |
-| `location_id` | ``$INTEGER`` |  |
-| `location_type` | ``$STRING`` |  |
-| `quantity` | ``$INTEGER`` |  |
-| `type_id` | ``$INTEGER`` |  |
+| `is_blueprint_copy` | `boolean` |  |
+| `is_singleton` | `boolean` |  |
+| `item_id` | `number` |  |
+| `location_flag` | `string` |  |
+| `location_id` | `number` |  |
+| `location_type` | `string` |  |
+| `quantity` | `number` |  |
+| `type_id` | `number` |  |
 
 #### Example: List
 
@@ -359,21 +389,21 @@ Create an instance: `const character = client.Character()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alliance_id` | ``$INTEGER`` |  |
-| `ancestry_id` | ``$INTEGER`` |  |
-| `birthday` | ``$STRING`` |  |
-| `bloodline_id` | ``$INTEGER`` |  |
-| `corporation_id` | ``$INTEGER`` |  |
-| `description` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `race_id` | ``$INTEGER`` |  |
-| `security_status` | ``$NUMBER`` |  |
+| `alliance_id` | `number` |  |
+| `ancestry_id` | `number` |  |
+| `birthday` | `string` |  |
+| `bloodline_id` | `number` |  |
+| `corporation_id` | `number` |  |
+| `description` | `string` |  |
+| `gender` | `string` |  |
+| `name` | `string` |  |
+| `race_id` | `number` |  |
+| `security_status` | `number` |  |
 
 #### Example: Load
 
 ```ts
-const character = await client.Character().load({ id: 'character_id' })
+const character = await client.Character().load({ id: 1 })
 ```
 
 
@@ -391,25 +421,29 @@ Create an instance: `const structure = client.Structure()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `name` | ``$STRING`` |  |
-| `owner_id` | ``$INTEGER`` |  |
-| `position` | ``$OBJECT`` |  |
-| `solar_system_id` | ``$INTEGER`` |  |
-| `type_id` | ``$INTEGER`` |  |
+| `name` | `string` |  |
+| `owner_id` | `number` |  |
+| `position` | `Record<string, any>` |  |
+| `solar_system_id` | `number` |  |
+| `type_id` | `number` |  |
 
 #### Example: Load
 
 ```ts
-const structure = await client.Structure().load({ id: 'structure_id' })
+const structure = await client.Structure().load({ id: 1 })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -426,11 +460,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -466,16 +498,16 @@ import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const asset = client.Asset()
-await asset.load({ id: "example_id" })
+await asset.list()
 
-// asset.data() now returns the loaded asset data
-// asset.match() returns { id: "example_id" }
+// asset.data() now returns the asset data from the last `list`
+// asset.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

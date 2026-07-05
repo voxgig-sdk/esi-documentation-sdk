@@ -66,8 +66,12 @@ class AssetEntity:
     
 
     
-    def list(self, reqmatch: AssetListMatch, ctrl=None) -> list[Asset]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Asset]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Asset().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,
