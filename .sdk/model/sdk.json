@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -570,6 +567,14 @@
           "name": "Developer License",
           "url": "https://developers.eveonline.com/resource/license-agreement"
         },
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "Authorization",
+          "prefix": "Bearer",
+          "scheme": "evesso",
+          "type": "oauth2"
+        },
         "servers": [
           {
             "description": "ESI Production Server (Latest Version)",
@@ -584,8 +589,10 @@
             "url": "https://esi.evetech.net/legacy"
           }
         ],
+        "summary": "Official EVE Online API documentation.",
         "title": "ESI Documentation",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://esi.evetech.net"
       },
       "option": {},
       "target": {
@@ -638,6 +645,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -688,6 +698,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

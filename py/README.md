@@ -359,7 +359,7 @@ Create an instance: `character = client.Character()`
 #### Example: Load
 
 ```python
-character = client.Character().load({"id": "character_id"})
+character = client.Character().load({"id": 1})
 ```
 
 
@@ -386,7 +386,7 @@ Create an instance: `structure = client.Structure()`
 #### Example: Load
 
 ```python
-structure = client.Structure().load({"id": "structure_id"})
+structure = client.Structure().load({"id": 1})
 ```
 
 

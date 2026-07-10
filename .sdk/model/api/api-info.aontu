@@ -13,6 +13,13 @@ main: {
         name: "Developer License"
         url: "https://developers.eveonline.com/resource/license-agreement"
       }
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "evesso"
+        type: "oauth2"
+      }
       servers: [
         {
           description: "ESI Production Server (Latest Version)"
@@ -27,9 +34,9 @@ main: {
           url: "https://esi.evetech.net/legacy"
         }
       ]
+      summary: "Official EVE Online API documentation."
       title: "ESI Documentation"
       version: "1.0.0"
+      website: "https://esi.evetech.net"
     }
   }
-}
-

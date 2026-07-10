@@ -348,7 +348,7 @@ Create an instance: `local character = client:Character(nil)`
 #### Example: Load
 
 ```lua
-local character, err = client:Character():load({ id = "character_id" })
+local character, err = client:Character():load({ id = 1 })
 ```
 
 
@@ -375,7 +375,7 @@ Create an instance: `local structure = client:Structure(nil)`
 #### Example: Load
 
 ```lua
-local structure, err = client:Structure():load({ id = "structure_id" })
+local structure, err = client:Structure():load({ id = 1 })
 ```
 
 

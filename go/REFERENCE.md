@@ -100,6 +100,7 @@ same parameters as `Direct()`.
 
 ```go
 asset := client.Asset(nil)
+fmt.Println(asset.GetName()) // "asset"
 ```
 
 ### Fields
@@ -123,6 +124,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Asset(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -153,6 +158,7 @@ Return the entity name.
 
 ```go
 character := client.Character(nil)
+fmt.Println(character.GetName()) // "character"
 ```
 
 ### Fields
@@ -177,7 +183,11 @@ character := client.Character(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Character(nil).Load(map[string]any{"id": "character_id"}, nil)
+result, err := client.Character(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -208,6 +218,7 @@ Return the entity name.
 
 ```go
 structure := client.Structure(nil)
+fmt.Println(structure.GetName()) // "structure"
 ```
 
 ### Fields
@@ -227,7 +238,11 @@ structure := client.Structure(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Structure(nil).Load(map[string]any{"id": "structure_id"}, nil)
+result, err := client.Structure(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

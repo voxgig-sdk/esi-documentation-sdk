@@ -354,7 +354,7 @@ Create an instance: `character = client.Character`
 
 ```ruby
 # load returns the bare Character record (raises on error).
-character = client.Character.load({ "id" => "character_id" })
+character = client.Character.load({ "id" => 1 })
 ```
 
 
@@ -382,7 +382,7 @@ Create an instance: `structure = client.Structure`
 
 ```ruby
 # load returns the bare Structure record (raises on error).
-structure = client.Structure.load({ "id" => "structure_id" })
+structure = client.Structure.load({ "id" => 1 })
 ```
 
 

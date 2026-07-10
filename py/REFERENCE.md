@@ -174,7 +174,7 @@ character = client.Character()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Character().load({"id": "character_id"})
+result = client.Character().load({"id": 1})
 ```
 
 ### Common Methods
@@ -229,7 +229,7 @@ structure = client.Structure()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Structure().load({"id": "structure_id"})
+result = client.Structure().load({"id": 1})
 ```
 
 ### Common Methods

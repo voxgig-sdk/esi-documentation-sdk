@@ -176,7 +176,7 @@ local character = client:Character(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Character():load({ id = "character_id" })
+local result, err = client:Character():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -232,7 +232,7 @@ local structure = client:Structure(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Structure():load({ id = "structure_id" })
+local result, err = client:Structure():load({ id = 1 })
 ```
 
 ### Common Methods
