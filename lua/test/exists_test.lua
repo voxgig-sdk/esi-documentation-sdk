@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- EsiDocumentation SDK exists test
 
 local sdk = require("esi-documentation_sdk")
 
