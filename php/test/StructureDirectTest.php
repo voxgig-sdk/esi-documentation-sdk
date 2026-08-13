@@ -75,16 +75,16 @@ function structure_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "ESIDOCUMENTATION_TEST_STRUCTURE_ENTID" => [],
-        "ESIDOCUMENTATION_TEST_LIVE" => "FALSE",
-        "ESIDOCUMENTATION_APIKEY" => "NONE",
+        "ESI_DOCUMENTATION_TEST_STRUCTURE_ENTID" => [],
+        "ESI_DOCUMENTATION_TEST_LIVE" => "FALSE",
+        "ESI_DOCUMENTATION_APIKEY" => "NONE",
     ]);
 
-    $live = $env["ESIDOCUMENTATION_TEST_LIVE"] === "TRUE";
+    $live = $env["ESI_DOCUMENTATION_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["ESIDOCUMENTATION_APIKEY"],
+            "apikey" => $env["ESI_DOCUMENTATION_APIKEY"],
         ];
         $client = new EsiDocumentationSDK($merged_opts);
         return [

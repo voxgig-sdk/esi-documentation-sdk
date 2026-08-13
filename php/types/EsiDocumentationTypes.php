@@ -55,11 +55,9 @@ class CharacterLoadMatch
 /** Structure entity data model. */
 class Structure
 {
-    public string $name;
-    public int $owner_id;
-    public ?array $position = null;
-    public int $solar_system_id;
-    public int $type_id;
+    public ?float $x = null;
+    public ?float $y = null;
+    public ?float $z = null;
 }
 
 /** Request payload for Structure#load. */

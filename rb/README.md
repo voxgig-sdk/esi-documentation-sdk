@@ -53,9 +53,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  assets = client.Asset.list()
+  character = client.Character.load({ "id" => 1 })
 rescue => err
-  warn "list failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -116,14 +116,18 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = EsiDocumentationSDK.test
+client = EsiDocumentationSDK.test({
+  "entity" => { "character" => { "test01" => { "id" => "test01" } } },
+})
 
-# Entity ops return the bare mock record (raises on error).
-asset = client.Asset.list()
-puts asset
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+character = client.Character.load({ "id" => "test01" })
+puts character
 ```
 
 ### Use a custom fetch function
@@ -279,11 +283,9 @@ API path: `/characters/{character_id}/`
 
 | Field | Description |
 | --- | --- |
-| `name` |  |
-| `owner_id` |  |
-| `position` |  |
-| `solar_system_id` |  |
-| `type_id` |  |
+| `x` |  |
+| `y` |  |
+| `z` |  |
 
 Operations: Load.
 
@@ -353,7 +355,7 @@ Create an instance: `character = client.Character`
 #### Example: Load
 
 ```ruby
-# load returns the bare Character record (raises on error).
+# load returns the ENTITY — call data_get for the Character record (raises on error).
 character = client.Character.load({ "id" => 1 })
 ```
 
@@ -372,16 +374,14 @@ Create an instance: `structure = client.Structure`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `name` | `String` |  |
-| `owner_id` | `Integer` |  |
-| `position` | `Hash` |  |
-| `solar_system_id` | `Integer` |  |
-| `type_id` | `Integer` |  |
+| `x` | `Float` |  |
+| `y` | `Float` |  |
+| `z` | `Float` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Structure record (raises on error).
+# load returns the ENTITY — call data_get for the Structure record (raises on error).
 structure = client.Structure.load({ "id" => 1 })
 ```
 
@@ -458,15 +458,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-asset = client.Asset
-asset.list()
+character = client.Character
+character.load({ "id" => 1 })
 
-# asset.data_get now returns the asset data from the last list
-# asset.match_get returns the last match criteria
+# character.data_get now returns the character data from the last load
+# character.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

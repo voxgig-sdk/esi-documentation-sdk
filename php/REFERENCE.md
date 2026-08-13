@@ -221,11 +221,9 @@ $structure = $client->Structure();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | Yes |  |
-| `owner_id` | `int` | Yes |  |
-| `position` | `array` | No |  |
-| `solar_system_id` | `int` | Yes |  |
-| `type_id` | `int` | Yes |  |
+| `x` | `float` | No |  |
+| `y` | `float` | No |  |
+| `z` | `float` | No |  |
 
 ### Operations
 

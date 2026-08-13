@@ -219,11 +219,9 @@ local structure = client:Structure(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | Yes |  |
-| `owner_id` | `number` | Yes |  |
-| `position` | `table` | No |  |
-| `solar_system_id` | `number` | Yes |  |
-| `type_id` | `number` | Yes |  |
+| `x` | `number` | No |  |
+| `y` | `number` | No |  |
+| `z` | `number` | No |  |
 
 ### Operations
 

@@ -22,6 +22,7 @@ guide: {
     path: "/universe/structures/{structure_id}/": {
       rename: param: "structure_id": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.position`")|top
     }
   }
 

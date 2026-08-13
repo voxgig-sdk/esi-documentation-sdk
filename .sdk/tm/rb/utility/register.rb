@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ EsiDocumentationUtility.registrar = ->(u) {
   u.prepare_params = EsiDocumentationUtilities::PrepareParams
   u.prepare_path = EsiDocumentationUtilities::PreparePath
   u.prepare_query = EsiDocumentationUtilities::PrepareQuery
+  u.graphql_body = EsiDocumentationUtilities::GraphqlBody
+  u.graphql_errors = EsiDocumentationUtilities::GraphqlErrors
   u.result_basic = EsiDocumentationUtilities::ResultBasic
   u.result_body = EsiDocumentationUtilities::ResultBody
   u.result_headers = EsiDocumentationUtilities::ResultHeaders

@@ -62,7 +62,7 @@ class AssetEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set ESIDOCUMENTATION_TEST_ASSET_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set ESI_DOCUMENTATION_TEST_ASSET_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -113,39 +113,39 @@ def asset_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["ESIDOCUMENTATION_TEST_ASSET_ENTID"]
+  entid_env_raw = ENV["ESI_DOCUMENTATION_TEST_ASSET_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "ESIDOCUMENTATION_TEST_ASSET_ENTID" => idmap,
-    "ESIDOCUMENTATION_TEST_LIVE" => "FALSE",
-    "ESIDOCUMENTATION_TEST_EXPLAIN" => "FALSE",
-    "ESIDOCUMENTATION_APIKEY" => "NONE",
+    "ESI_DOCUMENTATION_TEST_ASSET_ENTID" => idmap,
+    "ESI_DOCUMENTATION_TEST_LIVE" => "FALSE",
+    "ESI_DOCUMENTATION_TEST_EXPLAIN" => "FALSE",
+    "ESI_DOCUMENTATION_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["ESIDOCUMENTATION_TEST_ASSET_ENTID"])
+    env["ESI_DOCUMENTATION_TEST_ASSET_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["ESIDOCUMENTATION_TEST_LIVE"] == "TRUE"
+  if env["ESI_DOCUMENTATION_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ESIDOCUMENTATION_APIKEY"],
+        "apikey" => env["ESI_DOCUMENTATION_APIKEY"],
       },
       extra || {},
     ])
     client = EsiDocumentationSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["ESIDOCUMENTATION_TEST_LIVE"] == "TRUE"
+  live = env["ESI_DOCUMENTATION_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["ESIDOCUMENTATION_TEST_EXPLAIN"] == "TRUE",
+    explain: env["ESI_DOCUMENTATION_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

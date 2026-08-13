@@ -37,10 +37,12 @@ const client = new EsiDocumentationSDK({
 
 ### 2. List asset records
 
-`list()` resolves to an array of Asset objects — iterate it directly:
+`list()` resolves to an array of Asset ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const assets = await client.Asset().list()
+const assets = await client.Asset().list({ character_id: 1 })
 
 for (const asset of assets) {
   console.log(asset)
@@ -54,10 +56,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const assets = await client.Asset().list()
-  console.log(assets)
+  const character = await client.Character().load({ id: 1 })
+  console.log(character)
 } catch (err) {
-  console.error('list failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -121,9 +123,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = EsiDocumentationSDK.test()
 
-const asset = await client.Asset().list()
-// asset is a bare entity populated with mock response data
-console.log(asset)
+const character = await client.Character().load({ id: 1 })
+// character is the entity, populated with mock response data
+// — call character.data() for the record itself
+console.log(character)
 ```
 
 You can also use the instance method:
@@ -138,10 +141,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Asset()
+const entity = client.Character()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.load({ id: 1 })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -330,11 +333,9 @@ API path: `/characters/{character_id}/`
 
 | Field | Description |
 | --- | --- |
-| `name` |  |
-| `owner_id` |  |
-| `position` |  |
-| `solar_system_id` |  |
-| `type_id` |  |
+| `x` |  |
+| `y` |  |
+| `z` |  |
 
 Operations: load.
 
@@ -371,7 +372,7 @@ Create an instance: `const asset = client.Asset()`
 #### Example: List
 
 ```ts
-const assets = await client.Asset().list()
+const assets = await client.Asset().list({ character_id: 1 })
 ```
 
 
@@ -421,11 +422,9 @@ Create an instance: `const structure = client.Structure()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `name` | `string` |  |
-| `owner_id` | `number` |  |
-| `position` | `Record<string, any>` |  |
-| `solar_system_id` | `number` |  |
-| `type_id` | `number` |  |
+| `x` | `number` |  |
+| `y` | `number` |  |
+| `z` | `number` |  |
 
 #### Example: Load
 
@@ -498,16 +497,16 @@ import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const asset = client.Asset()
-await asset.list()
+const character = client.Character()
+await character.load({ id: 1 })
 
-// asset.data() now returns the asset data from the last `list`
-// asset.match() returns the last match criteria
+// character.data() now returns the character data from the last `load`
+// character.match() returns { id: 1 }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

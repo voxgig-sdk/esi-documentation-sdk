@@ -127,6 +127,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/characters/{character_id}/assets/",
 								"parts": []any{
@@ -148,7 +149,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -264,6 +264,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/characters/{character_id}/",
 								"parts": []any{
@@ -288,7 +289,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -299,38 +299,24 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "name",
-						"req": true,
-						"type": "`$STRING`",
+						"name": "x",
+						"req": false,
+						"type": "`$NUMBER`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "owner_id",
-						"req": true,
-						"type": "`$INTEGER`",
+						"name": "y",
+						"req": false,
+						"type": "`$NUMBER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "position",
+						"name": "z",
 						"req": false,
-						"type": "`$OBJECT`",
+						"type": "`$NUMBER`",
 						"index$": 2,
-					},
-					map[string]any{
-						"active": true,
-						"name": "solar_system_id",
-						"req": true,
-						"type": "`$INTEGER`",
-						"index$": 3,
-					},
-					map[string]any{
-						"active": true,
-						"name": "type_id",
-						"req": true,
-						"type": "`$INTEGER`",
-						"index$": 4,
 					},
 				},
 				"name": "structure",
@@ -365,6 +351,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/universe/structures/{structure_id}/",
 								"parts": []any{
@@ -385,12 +372,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.position`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

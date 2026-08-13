@@ -157,7 +157,7 @@ const asset = client.Asset()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Asset().list()
+const results = await client.Asset().list({ character_id: 1 })
 ```
 
 ### Common Methods
@@ -257,11 +257,9 @@ const structure = client.Structure()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | Yes |  |
-| `owner_id` | `number` | Yes |  |
-| `position` | `Record<string, any>` | No |  |
-| `solar_system_id` | `number` | Yes |  |
-| `type_id` | `number` | Yes |  |
+| `x` | `number` | No |  |
+| `y` | `number` | No |  |
+| `z` | `number` | No |  |
 
 ### Operations
 

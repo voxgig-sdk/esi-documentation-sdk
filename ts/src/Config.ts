@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'EsiDocumentation',
   }
 
 
@@ -162,6 +162,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/characters/{character_id}/assets/",
               "parts": [
@@ -299,6 +300,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/characters/{character_id}/",
               "parts": [
@@ -334,38 +336,24 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "name",
-          "req": true,
-          "type": "`$STRING`",
+          "name": "x",
+          "req": false,
+          "type": "`$NUMBER`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "owner_id",
-          "req": true,
-          "type": "`$INTEGER`",
+          "name": "y",
+          "req": false,
+          "type": "`$NUMBER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "position",
+          "name": "z",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$NUMBER`",
           "index$": 2
-        },
-        {
-          "active": true,
-          "name": "solar_system_id",
-          "req": true,
-          "type": "`$INTEGER`",
-          "index$": 3
-        },
-        {
-          "active": true,
-          "name": "type_id",
-          "req": true,
-          "type": "`$INTEGER`",
-          "index$": 4
         }
       ],
       "name": "structure",
@@ -400,6 +388,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/universe/structures/{structure_id}/",
               "parts": [
@@ -420,7 +409,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.position`"
               },
               "index$": 0
             }

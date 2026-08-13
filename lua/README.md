@@ -56,7 +56,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local assets, err = client:Asset():list()
+local character, err = client:Character():load({ id = 1 })
 if err then error(err) end
 ```
 
@@ -114,7 +114,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Asset():list()
+local result, err = client:Character():load({ id = "test01" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -226,9 +226,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local asset, err = client:Asset():load()
+    local character, err = client:Character():load({ id = "example_id" })
     if err then error(err) end
-    -- asset is the loaded record
+    -- character is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -275,11 +275,9 @@ API path: `/characters/{character_id}/`
 
 | Field | Description |
 | --- | --- |
-| `name` |  |
-| `owner_id` |  |
-| `position` |  |
-| `solar_system_id` |  |
-| `type_id` |  |
+| `x` |  |
+| `y` |  |
+| `z` |  |
 
 Operations: Load.
 
@@ -366,11 +364,9 @@ Create an instance: `local structure = client:Structure(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `name` | `string` |  |
-| `owner_id` | `number` |  |
-| `position` | `table` |  |
-| `solar_system_id` | `number` |  |
-| `type_id` | `number` |  |
+| `x` | `number` |  |
+| `y` | `number` |  |
+| `z` | `number` |  |
 
 #### Example: Load
 
@@ -451,15 +447,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local asset = client:Asset()
-asset:list()
+local character = client:Character()
+character:load({ id = 1 })
 
--- asset:data_get() now returns the asset data from the last list
--- asset:match_get() returns the last match criteria
+-- character:data_get() now returns the character data from the last load
+-- character:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

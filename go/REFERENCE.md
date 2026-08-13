@@ -225,11 +225,9 @@ fmt.Println(structure.GetName()) // "structure"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | Yes |  |
-| `owner_id` | `int` | Yes |  |
-| `position` | `map[string]any` | No |  |
-| `solar_system_id` | `int` | Yes |  |
-| `type_id` | `int` | Yes |  |
+| `x` | `float64` | No |  |
+| `y` | `float64` | No |  |
+| `z` | `float64` | No |  |
 
 ### Operations
 

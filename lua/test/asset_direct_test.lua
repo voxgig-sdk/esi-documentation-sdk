@@ -75,16 +75,16 @@ function asset_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["ESIDOCUMENTATION_TEST_ASSET_ENTID"] = {},
-    ["ESIDOCUMENTATION_TEST_LIVE"] = "FALSE",
-    ["ESIDOCUMENTATION_APIKEY"] = "NONE",
+    ["ESI_DOCUMENTATION_TEST_ASSET_ENTID"] = {},
+    ["ESI_DOCUMENTATION_TEST_LIVE"] = "FALSE",
+    ["ESI_DOCUMENTATION_APIKEY"] = "NONE",
   })
 
-  local live = env["ESIDOCUMENTATION_TEST_LIVE"] == "TRUE"
+  local live = env["ESI_DOCUMENTATION_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["ESIDOCUMENTATION_APIKEY"],
+      apikey = env["ESI_DOCUMENTATION_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -37,7 +37,7 @@ class AssetEntity extends EsiDocumentationEntityBase<Asset> {
 
 
 
-  async list(this: any, reqmatch?: AssetListMatch, ctrl?: Control): Promise<Asset[]> {
+  async list(this: any, reqmatch?: AssetListMatch, ctrl?: Control): Promise<AssetEntity[]> {
 
     const utility = this._utility
 

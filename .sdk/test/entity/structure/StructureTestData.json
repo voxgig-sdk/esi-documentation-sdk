@@ -2,27 +2,21 @@
   "existing": {
     "structure": {
       "STRUCTURE00": {
-        "name": "s32",
-        "owner_id": "OWNER01",
-        "position": {},
-        "solar_system_id": "SOLAR_SYSTEM01",
-        "type_id": "TYPE01",
+        "x": 30,
+        "y": 31,
+        "z": 32,
         "id": "STRUCTURE00"
       },
       "STRUCTURE01": {
-        "name": "s64",
-        "owner_id": "OWNER01",
-        "position": {},
-        "solar_system_id": "SOLAR_SYSTEM01",
-        "type_id": "TYPE01",
+        "x": 60,
+        "y": 61,
+        "z": 62,
         "id": "STRUCTURE01"
       },
       "STRUCTURE02": {
-        "name": "s96",
-        "owner_id": "OWNER01",
-        "position": {},
-        "solar_system_id": "SOLAR_SYSTEM01",
-        "type_id": "TYPE01",
+        "x": 90,
+        "y": 91,
+        "z": 92,
         "id": "STRUCTURE02"
       }
     }
@@ -30,11 +24,9 @@
   "new": {
     "structure": {
       "structure_ref01": {
-        "name": "sc8",
-        "owner_id": "OWNER01",
-        "position": {},
-        "solar_system_id": "SOLAR_SYSTEM01",
-        "type_id": "TYPE01"
+        "x": 120,
+        "y": 121,
+        "z": 122
       }
     }
   }

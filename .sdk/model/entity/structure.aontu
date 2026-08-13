@@ -6,29 +6,19 @@ main: kit: entity: structure: {
 
   fields: [
     {
-      name: "name"
-      req: true
-      type: "`$STRING`"
-    }
-    {
-      name: "owner_id"
-      req: true
-      type: "`$INTEGER`"
-    }
-    {
-      name: "position"
+      name: "x"
       req: false
-      type: "`$OBJECT`"
+      type: "`$NUMBER`"
     }
     {
-      name: "solar_system_id"
-      req: true
-      type: "`$INTEGER`"
+      name: "y"
+      req: false
+      type: "`$NUMBER`"
     }
     {
-      name: "type_id"
-      req: true
-      type: "`$INTEGER`"
+      name: "z"
+      req: false
+      type: "`$NUMBER`"
     }
   ]
 
@@ -79,7 +69,7 @@ main: kit: entity: structure: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.position`"
           }
         }
       ]

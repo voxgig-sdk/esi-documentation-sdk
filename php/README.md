@@ -55,7 +55,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $assets = $client->Asset()->list();
+    $character = $client->Character()->load(["id" => 1]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -122,14 +122,18 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = EsiDocumentationSDK::test();
+$client = EsiDocumentationSDK::test([
+    "entity" => ["character" => ["test01" => ["id" => "test01"]]],
+]);
 
-// Entity ops return the bare mock record (throws on error).
-$asset = $client->Asset()->list();
-print_r($asset);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$character = $client->Character()->load(["id" => "test01"]);
+print_r($character);
 ```
 
 ### Use a custom fetch function
@@ -231,7 +235,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -289,11 +293,9 @@ API path: `/characters/{character_id}/`
 
 | Field | Description |
 | --- | --- |
-| `name` |  |
-| `owner_id` |  |
-| `position` |  |
-| `solar_system_id` |  |
-| `type_id` |  |
+| `x` |  |
+| `y` |  |
+| `z` |  |
 
 Operations: Load.
 
@@ -363,7 +365,7 @@ Create an instance: `$character = $client->Character();`
 #### Example: Load
 
 ```php
-// load() returns the bare Character record (throws on error).
+// load() returns the ENTITY — call data_get() for the Character record (throws on error).
 $character = $client->Character()->load(["id" => 1]);
 ```
 
@@ -382,16 +384,14 @@ Create an instance: `$structure = $client->Structure();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `name` | `string` |  |
-| `owner_id` | `int` |  |
-| `position` | `array` |  |
-| `solar_system_id` | `int` |  |
-| `type_id` | `int` |  |
+| `x` | `float` |  |
+| `y` | `float` |  |
+| `z` | `float` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Structure record (throws on error).
+// load() returns the ENTITY — call data_get() for the Structure record (throws on error).
 $structure = $client->Structure()->load(["id" => 1]);
 ```
 
@@ -468,15 +468,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$asset = $client->Asset();
-$asset->list();
+$character = $client->Character();
+$character->load(["id" => 1]);
 
-// $asset->data_get() now returns the asset data from the last list
-// $asset->match_get() returns the last match criteria
+// $character->data_get() now returns the character data from the last load
+// $character->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

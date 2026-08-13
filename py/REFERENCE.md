@@ -112,7 +112,7 @@ asset = client.Asset()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Asset().list()
+results = client.Asset().list({"character_id": 1})
 for asset in results:
     print(asset)
 ```
@@ -216,11 +216,9 @@ structure = client.Structure()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `str` | Yes |  |
-| `owner_id` | `int` | Yes |  |
-| `position` | `dict` | No |  |
-| `solar_system_id` | `int` | Yes |  |
-| `type_id` | `int` | Yes |  |
+| `x` | `float` | No |  |
+| `y` | `float` | No |  |
+| `z` | `float` | No |  |
 
 ### Operations
 

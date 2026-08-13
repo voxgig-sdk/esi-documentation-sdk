@@ -43,8 +43,8 @@ class EsiDocumentationTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('ESIDOCUMENTATION_TEST_LIVE');
-        $override = self::getenv('ESIDOCUMENTATION_TEST_OVERRIDE');
+        $live = self::getenv('ESI_DOCUMENTATION_TEST_LIVE');
+        $override = self::getenv('ESI_DOCUMENTATION_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class EsiDocumentationTestRunner
             }
         }
 
-        $explain = self::getenv('ESIDOCUMENTATION_TEST_EXPLAIN');
+        $explain = self::getenv('ESI_DOCUMENTATION_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['ESIDOCUMENTATION_TEST_EXPLAIN'] = $explain;
+            $m['ESI_DOCUMENTATION_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

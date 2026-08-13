@@ -71,12 +71,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-assets, err := client.Asset(nil).List(nil, nil)
+character, err := client.Character(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = assets
+_ = character
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -140,13 +140,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-asset, err := client.Asset(nil).List(
-    nil, nil,
+character, err := client.Character(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(asset) // the returned mock data
+fmt.Println(character) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -305,11 +305,9 @@ API path: `/characters/{character_id}/`
 
 | Field | Description |
 | --- | --- |
-| `"name"` |  |
-| `"owner_id"` |  |
-| `"position"` |  |
-| `"solar_system_id"` |  |
-| `"type_id"` |  |
+| `"x"` |  |
+| `"y"` |  |
+| `"z"` |  |
 
 Operations: Load.
 
@@ -404,11 +402,9 @@ Create an instance: `structure := client.Structure(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `name` | `string` |  |
-| `owner_id` | `int` |  |
-| `position` | `map[string]any` |  |
-| `solar_system_id` | `int` |  |
-| `type_id` | `int` |  |
+| `x` | `float64` |  |
+| `y` | `float64` |  |
+| `z` | `float64` |  |
 
 #### Example: Load
 
@@ -490,15 +486,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `List`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-asset := client.Asset(nil)
-asset.List(nil, nil)
+character := client.Character(nil)
+character.Load(map[string]any{"id": 1}, nil)
 
-// asset.Data() now returns the asset data from the last list
-// asset.Match() returns the last match criteria
+// character.Data() now returns the character data from the last load
+// character.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

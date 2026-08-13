@@ -23,8 +23,8 @@ module EsiDocumentationTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("ESIDOCUMENTATION_TEST_LIVE")
-    override = getenv("ESIDOCUMENTATION_TEST_OVERRIDE")
+    live = getenv("ESI_DOCUMENTATION_TEST_LIVE")
+    override = getenv("ESI_DOCUMENTATION_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module EsiDocumentationTestRunner
       end
     end
 
-    explain = getenv("ESIDOCUMENTATION_TEST_EXPLAIN")
-    m["ESIDOCUMENTATION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("ESI_DOCUMENTATION_TEST_EXPLAIN")
+    m["ESI_DOCUMENTATION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# EsiDocumentation SDK exists test
 
 import pytest
 from esidocumentation_sdk import EsiDocumentationSDK

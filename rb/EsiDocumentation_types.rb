@@ -110,26 +110,18 @@ CharacterLoadMatch = Struct.new(
 
 # Structure entity data model.
 #
-# @!attribute [rw] name
-#   @return [String]
+# @!attribute [rw] x
+#   @return [Float, nil]
 #
-# @!attribute [rw] owner_id
-#   @return [Integer]
+# @!attribute [rw] y
+#   @return [Float, nil]
 #
-# @!attribute [rw] position
-#   @return [Hash, nil]
-#
-# @!attribute [rw] solar_system_id
-#   @return [Integer]
-#
-# @!attribute [rw] type_id
-#   @return [Integer]
+# @!attribute [rw] z
+#   @return [Float, nil]
 Structure = Struct.new(
-  :name,
-  :owner_id,
-  :position,
-  :solar_system_id,
-  :type_id,
+  :x,
+  :y,
+  :z,
   keyword_init: true
 )
 

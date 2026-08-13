@@ -222,11 +222,9 @@ structure = client.Structure
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `String` | Yes |  |
-| `owner_id` | `Integer` | Yes |  |
-| `position` | `Hash` | No |  |
-| `solar_system_id` | `Integer` | Yes |  |
-| `type_id` | `Integer` | Yes |  |
+| `x` | `Float` | No |  |
+| `y` | `Float` | No |  |
+| `z` | `Float` | No |  |
 
 ### Operations
 

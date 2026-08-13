@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ EsiDocumentationUtility::setRegistrar(function (EsiDocumentationUtility $u): voi
     $u->prepare_params = [EsiDocumentationPrepareParams::class, 'call'];
     $u->prepare_path = [EsiDocumentationPreparePath::class, 'call'];
     $u->prepare_query = [EsiDocumentationPrepareQuery::class, 'call'];
+    $u->graphql_body = [EsiDocumentationGraphql::class, 'body'];
+    $u->graphql_errors = [EsiDocumentationGraphql::class, 'errors'];
     $u->result_basic = [EsiDocumentationResultBasic::class, 'call'];
     $u->result_body = [EsiDocumentationResultBody::class, 'call'];
     $u->result_headers = [EsiDocumentationResultHeaders::class, 'call'];

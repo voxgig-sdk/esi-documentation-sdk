@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from esidocumentation_sdk.utility.voxgig_struct import voxgig_struct as vs
 from esidocumentation_sdk import EsiDocumentationSDK
-from core import helpers
+from esidocumentation_sdk.core import helpers
 from test import runner
 
 
@@ -70,16 +70,16 @@ def _asset_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "ESIDOCUMENTATION_TEST_ASSET_ENTID": {},
-        "ESIDOCUMENTATION_TEST_LIVE": "FALSE",
-        "ESIDOCUMENTATION_APIKEY": "NONE",
+        "ESI_DOCUMENTATION_TEST_ASSET_ENTID": {},
+        "ESI_DOCUMENTATION_TEST_LIVE": "FALSE",
+        "ESI_DOCUMENTATION_APIKEY": "NONE",
     })
 
-    live = env.get("ESIDOCUMENTATION_TEST_LIVE") == "TRUE"
+    live = env.get("ESI_DOCUMENTATION_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("ESIDOCUMENTATION_APIKEY"),
+            "apikey": env.get("ESI_DOCUMENTATION_APIKEY"),
         }
         client = EsiDocumentationSDK(merged_opts)
         return {

@@ -16,11 +16,11 @@
 import pytest
 
 from esidocumentation_sdk import EsiDocumentationSDK
-from core.error import EsiDocumentationError
-from core.result import EsiDocumentationResult
-from core.response import EsiDocumentationResponse
-from core.spec import EsiDocumentationSpec
-from feature.base_feature import EsiDocumentationBaseFeature
+from esidocumentation_sdk.core.error import EsiDocumentationError
+from esidocumentation_sdk.core.result import EsiDocumentationResult
+from esidocumentation_sdk.core.response import EsiDocumentationResponse
+from esidocumentation_sdk.core.spec import EsiDocumentationSpec
+from esidocumentation_sdk.feature.base_feature import EsiDocumentationBaseFeature
 
 
 def _client():

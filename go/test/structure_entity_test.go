@@ -44,7 +44,7 @@ func TestStructureEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set ESIDOCUMENTATION_TEST_STRUCTURE_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set ESI_DOCUMENTATION_TEST_STRUCTURE_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -110,38 +110,38 @@ func structureBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("ESIDOCUMENTATION_TEST_STRUCTURE_ENTID")
+	entidEnvRaw := os.Getenv("ESI_DOCUMENTATION_TEST_STRUCTURE_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"ESIDOCUMENTATION_TEST_STRUCTURE_ENTID": idmap,
-		"ESIDOCUMENTATION_TEST_LIVE":      "FALSE",
-		"ESIDOCUMENTATION_TEST_EXPLAIN":   "FALSE",
-		"ESIDOCUMENTATION_APIKEY":         "NONE",
+		"ESI_DOCUMENTATION_TEST_STRUCTURE_ENTID": idmap,
+		"ESI_DOCUMENTATION_TEST_LIVE":      "FALSE",
+		"ESI_DOCUMENTATION_TEST_EXPLAIN":   "FALSE",
+		"ESI_DOCUMENTATION_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["ESIDOCUMENTATION_TEST_STRUCTURE_ENTID"])
+	idmapResolved := core.ToMapAny(env["ESI_DOCUMENTATION_TEST_STRUCTURE_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["ESIDOCUMENTATION_TEST_LIVE"] == "TRUE" {
+	if env["ESI_DOCUMENTATION_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["ESIDOCUMENTATION_APIKEY"],
+				"apikey": env["ESI_DOCUMENTATION_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewEsiDocumentationSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["ESIDOCUMENTATION_TEST_LIVE"] == "TRUE"
+	live := env["ESI_DOCUMENTATION_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["ESIDOCUMENTATION_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["ESI_DOCUMENTATION_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

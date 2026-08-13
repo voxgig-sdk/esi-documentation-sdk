@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import EsiDocumentationControl
-from core.error import EsiDocumentationError
-from core.result import EsiDocumentationResult
-from core.spec import EsiDocumentationSpec
+from esidocumentation_sdk.config import make_config
+from esidocumentation_sdk.features import _make_feature
+from esidocumentation_sdk.core.control import EsiDocumentationControl
+from esidocumentation_sdk.core.error import EsiDocumentationError
+from esidocumentation_sdk.core.result import EsiDocumentationResult
+from esidocumentation_sdk.core.spec import EsiDocumentationSpec
 
 
 # True when this SDK was generated with the named feature.

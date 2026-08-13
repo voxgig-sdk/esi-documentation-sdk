@@ -26,8 +26,8 @@ import {
 describe('AssetEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ESIDOCUMENTATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ESIDOCUMENTATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ESI_DOCUMENTATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ESI_DOCUMENTATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = EsiDocumentationSDK.test()
@@ -64,7 +64,7 @@ describe('AssetEntity', async () => {
     const asset_ref01_match: any = {}
     asset_ref01_match['character_id'] = setup.idmap['character01']
 
-    const asset_ref01_list = await asset_ref01_ent.list(asset_ref01_match)
+    const asset_ref01_list = (await asset_ref01_ent.list(asset_ref01_match)).map((e: any) => e.data())
 
 
   })

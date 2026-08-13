@@ -35,11 +35,9 @@
 ---@field id number
 
 ---@class Structure
----@field name string
----@field owner_id number
----@field position? table
----@field solar_system_id number
----@field type_id number
+---@field x? number
+---@field y? number
+---@field z? number
 
 ---@class StructureLoadMatch
 ---@field id number

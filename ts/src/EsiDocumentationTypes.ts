@@ -38,11 +38,9 @@ export interface CharacterLoadMatch {
 }
 
 export interface Structure {
-  name: string
-  owner_id: number
-  position?: Record<string, any>
-  solar_system_id: number
-  type_id: number
+  x?: number
+  y?: number
+  z?: number
 }
 
 export interface StructureLoadMatch {

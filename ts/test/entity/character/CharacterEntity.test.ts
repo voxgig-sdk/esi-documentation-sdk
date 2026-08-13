@@ -26,8 +26,8 @@ import {
 describe('CharacterEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ESIDOCUMENTATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ESIDOCUMENTATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ESI_DOCUMENTATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ESI_DOCUMENTATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = EsiDocumentationSDK.test()
