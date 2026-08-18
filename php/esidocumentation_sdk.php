@@ -40,7 +40,7 @@ class EsiDocumentationSDK
         $utility = new EsiDocumentationUtility();
         $this->_utility = $utility;
 
-        $config = EsiDocumentationConfig::make_config();
+        $config = EsiDocumentationConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

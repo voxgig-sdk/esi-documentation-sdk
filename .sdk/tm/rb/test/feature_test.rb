@@ -15,7 +15,7 @@ require_relative "../EsiDocumentation_sdk"
 module EsiDocumentationFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = EsiDocumentationConfig.make_config["feature"]
+    f = EsiDocumentationConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

@@ -28,7 +28,7 @@ class EsiDocumentationSDK
     utility = EsiDocumentationUtility.new
     @_utility = utility
 
-    config = EsiDocumentationConfig.make_config
+    config = EsiDocumentationConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

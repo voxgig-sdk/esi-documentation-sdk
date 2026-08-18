@@ -23,8 +23,8 @@ class EsiDocumentationSDK:
         utility = EsiDocumentationUtility()
         self._utility = utility
 
-        from esidocumentation_sdk.config import make_config
-        config = make_config()
+        from esidocumentation_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,
