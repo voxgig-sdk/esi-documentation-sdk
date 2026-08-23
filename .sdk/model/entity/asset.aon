@@ -8,41 +8,49 @@ main: kit: entity: asset: {
     {
       name: "is_blueprint_copy"
       req: false
+      short: "is_blueprint_copy boolean"
       type: "`$BOOLEAN`"
     }
     {
       name: "is_singleton"
       req: true
+      short: "is_singleton boolean"
       type: "`$BOOLEAN`"
     }
     {
       name: "item_id"
       req: true
+      short: "item_id integer"
       type: "`$INTEGER`"
     }
     {
       name: "location_flag"
       req: false
+      short: "Describes the specific location within the location_type"
       type: "`$STRING`"
     }
     {
       name: "location_id"
       req: true
+      short: "location_id integer"
       type: "`$INTEGER`"
     }
     {
       name: "location_type"
       req: true
+      short: "Describes the location type"
       type: "`$STRING`"
     }
     {
       name: "quantity"
       req: true
+      short: "quantity integer"
       type: "`$INTEGER`"
     }
     {
       name: "type_id"
       req: true
+      short: "type_id integer"
       type: "`$INTEGER`"
     }
   ]

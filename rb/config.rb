@@ -19,6 +19,9 @@ module EsiDocumentationConfig
     {
       "main" => {
         "name" => "EsiDocumentation",
+        "slug" => "esi-documentation",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -46,40 +49,48 @@ module EsiDocumentationConfig
           "fields" => [
             {
               "name" => "is_blueprint_copy",
+              "short" => "is_blueprint_copy boolean",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_singleton",
               "req" => true,
+              "short" => "is_singleton boolean",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "item_id",
               "req" => true,
+              "short" => "item_id integer",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "location_flag",
+              "short" => "Describes the specific location within the location_type",
               "type" => "`$STRING`",
             },
             {
               "name" => "location_id",
               "req" => true,
+              "short" => "location_id integer",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "location_type",
               "req" => true,
+              "short" => "Describes the location type",
               "type" => "`$STRING`",
             },
             {
               "name" => "quantity",
               "req" => true,
+              "short" => "quantity integer",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "type_id",
               "req" => true,
+              "short" => "type_id integer",
               "type" => "`$INTEGER`",
             },
           ],
@@ -152,44 +163,54 @@ module EsiDocumentationConfig
           "fields" => [
             {
               "name" => "alliance_id",
+              "short" => "The character's alliance ID",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "ancestry_id",
+              "short" => "The character's ancestry ID",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "birthday",
+              "short" => "Creation date of the character",
               "type" => "`$STRING`",
             },
             {
               "name" => "bloodline_id",
+              "short" => "The character's bloodline ID",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "corporation_id",
               "req" => true,
+              "short" => "The character's corporation ID",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "description",
+              "short" => "The character's bio",
               "type" => "`$STRING`",
             },
             {
               "name" => "gender",
+              "short" => "The character's gender",
               "type" => "`$STRING`",
             },
             {
               "name" => "name",
               "req" => true,
+              "short" => "The character's name",
               "type" => "`$STRING`",
             },
             {
               "name" => "race_id",
+              "short" => "The character's race ID",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "security_status",
+              "short" => "The character's security status",
               "type" => "`$NUMBER`",
             },
           ],

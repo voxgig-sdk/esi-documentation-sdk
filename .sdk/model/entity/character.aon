@@ -8,51 +8,61 @@ main: kit: entity: character: {
     {
       name: "alliance_id"
       req: false
+      short: "The character's alliance ID"
       type: "`$INTEGER`"
     }
     {
       name: "ancestry_id"
       req: false
+      short: "The character's ancestry ID"
       type: "`$INTEGER`"
     }
     {
       name: "birthday"
       req: false
+      short: "Creation date of the character"
       type: "`$STRING`"
     }
     {
       name: "bloodline_id"
       req: false
+      short: "The character's bloodline ID"
       type: "`$INTEGER`"
     }
     {
       name: "corporation_id"
       req: true
+      short: "The character's corporation ID"
       type: "`$INTEGER`"
     }
     {
       name: "description"
       req: false
+      short: "The character's bio"
       type: "`$STRING`"
     }
     {
       name: "gender"
       req: false
+      short: "The character's gender"
       type: "`$STRING`"
     }
     {
       name: "name"
       req: true
+      short: "The character's name"
       type: "`$STRING`"
     }
     {
       name: "race_id"
       req: false
+      short: "The character's race ID"
       type: "`$INTEGER`"
     }
     {
       name: "security_status"
       req: false
+      short: "The character's security status"
       type: "`$NUMBER`"
     }
   ]

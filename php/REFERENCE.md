@@ -101,14 +101,14 @@ $asset = $client->Asset();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_blueprint_copy` | `bool` | No |  |
-| `is_singleton` | `bool` | Yes |  |
-| `item_id` | `int` | Yes |  |
-| `location_flag` | `string` | No |  |
-| `location_id` | `int` | Yes |  |
-| `location_type` | `string` | Yes |  |
-| `quantity` | `int` | Yes |  |
-| `type_id` | `int` | Yes |  |
+| `is_blueprint_copy` | `bool` | No | is_blueprint_copy boolean |
+| `is_singleton` | `bool` | Yes | is_singleton boolean |
+| `item_id` | `int` | Yes | item_id integer |
+| `location_flag` | `string` | No | Describes the specific location within the location_type |
+| `location_id` | `int` | Yes | location_id integer |
+| `location_type` | `string` | Yes | Describes the location type |
+| `quantity` | `int` | Yes | quantity integer |
+| `type_id` | `int` | Yes | type_id integer |
 
 ### Operations
 
@@ -160,16 +160,16 @@ $character = $client->Character();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alliance_id` | `int` | No |  |
-| `ancestry_id` | `int` | No |  |
-| `birthday` | `string` | No |  |
-| `bloodline_id` | `int` | No |  |
-| `corporation_id` | `int` | Yes |  |
-| `description` | `string` | No |  |
-| `gender` | `string` | No |  |
-| `name` | `string` | Yes |  |
-| `race_id` | `int` | No |  |
-| `security_status` | `float` | No |  |
+| `alliance_id` | `int` | No | The character's alliance ID |
+| `ancestry_id` | `int` | No | The character's ancestry ID |
+| `birthday` | `string` | No | Creation date of the character |
+| `bloodline_id` | `int` | No | The character's bloodline ID |
+| `corporation_id` | `int` | Yes | The character's corporation ID |
+| `description` | `string` | No | The character's bio |
+| `gender` | `string` | No | The character's gender |
+| `name` | `string` | Yes | The character's name |
+| `race_id` | `int` | No | The character's race ID |
+| `security_status` | `float` | No | The character's security status |
 
 ### Operations
 

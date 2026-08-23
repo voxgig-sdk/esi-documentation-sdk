@@ -257,14 +257,14 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `is_blueprint_copy` |  |
-| `is_singleton` |  |
-| `item_id` |  |
-| `location_flag` |  |
-| `location_id` |  |
-| `location_type` |  |
-| `quantity` |  |
-| `type_id` |  |
+| `is_blueprint_copy` | is_blueprint_copy boolean |
+| `is_singleton` | is_singleton boolean |
+| `item_id` | item_id integer |
+| `location_flag` | Describes the specific location within the location_type |
+| `location_id` | location_id integer |
+| `location_type` | Describes the location type |
+| `quantity` | quantity integer |
+| `type_id` | type_id integer |
 
 Operations: List.
 
@@ -274,16 +274,16 @@ API path: `/characters/{character_id}/assets/`
 
 | Field | Description |
 | --- | --- |
-| `alliance_id` |  |
-| `ancestry_id` |  |
-| `birthday` |  |
-| `bloodline_id` |  |
-| `corporation_id` |  |
-| `description` |  |
-| `gender` |  |
-| `name` |  |
-| `race_id` |  |
-| `security_status` |  |
+| `alliance_id` | The character's alliance ID |
+| `ancestry_id` | The character's ancestry ID |
+| `birthday` | Creation date of the character |
+| `bloodline_id` | The character's bloodline ID |
+| `corporation_id` | The character's corporation ID |
+| `description` | The character's bio |
+| `gender` | The character's gender |
+| `name` | The character's name |
+| `race_id` | The character's race ID |
+| `security_status` | The character's security status |
 
 Operations: Load.
 
@@ -320,14 +320,14 @@ Create an instance: `$asset = $client->Asset();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_blueprint_copy` | `bool` |  |
-| `is_singleton` | `bool` |  |
-| `item_id` | `int` |  |
-| `location_flag` | `string` |  |
-| `location_id` | `int` |  |
-| `location_type` | `string` |  |
-| `quantity` | `int` |  |
-| `type_id` | `int` |  |
+| `is_blueprint_copy` | `bool` | is_blueprint_copy boolean |
+| `is_singleton` | `bool` | is_singleton boolean |
+| `item_id` | `int` | item_id integer |
+| `location_flag` | `string` | Describes the specific location within the location_type |
+| `location_id` | `int` | location_id integer |
+| `location_type` | `string` | Describes the location type |
+| `quantity` | `int` | quantity integer |
+| `type_id` | `int` | type_id integer |
 
 #### Example: List
 
@@ -351,16 +351,16 @@ Create an instance: `$character = $client->Character();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alliance_id` | `int` |  |
-| `ancestry_id` | `int` |  |
-| `birthday` | `string` |  |
-| `bloodline_id` | `int` |  |
-| `corporation_id` | `int` |  |
-| `description` | `string` |  |
-| `gender` | `string` |  |
-| `name` | `string` |  |
-| `race_id` | `int` |  |
-| `security_status` | `float` |  |
+| `alliance_id` | `int` | The character's alliance ID |
+| `ancestry_id` | `int` | The character's ancestry ID |
+| `birthday` | `string` | Creation date of the character |
+| `bloodline_id` | `int` | The character's bloodline ID |
+| `corporation_id` | `int` | The character's corporation ID |
+| `description` | `string` | The character's bio |
+| `gender` | `string` | The character's gender |
+| `name` | `string` | The character's name |
+| `race_id` | `int` | The character's race ID |
+| `security_status` | `float` | The character's security status |
 
 #### Example: Load
 

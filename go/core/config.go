@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "EsiDocumentation",
+			"slug": "esi-documentation",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -38,40 +41,48 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "is_blueprint_copy",
+						"short": "is_blueprint_copy boolean",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "is_singleton",
 						"req": true,
+						"short": "is_singleton boolean",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "item_id",
 						"req": true,
+						"short": "item_id integer",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "location_flag",
+						"short": "Describes the specific location within the location_type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "location_id",
 						"req": true,
+						"short": "location_id integer",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "location_type",
 						"req": true,
+						"short": "Describes the location type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "quantity",
 						"req": true,
+						"short": "quantity integer",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "type_id",
 						"req": true,
+						"short": "type_id integer",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -144,44 +155,54 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "alliance_id",
+						"short": "The character's alliance ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "ancestry_id",
+						"short": "The character's ancestry ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "birthday",
+						"short": "Creation date of the character",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "bloodline_id",
+						"short": "The character's bloodline ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "corporation_id",
 						"req": true,
+						"short": "The character's corporation ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "description",
+						"short": "The character's bio",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "gender",
+						"short": "The character's gender",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
 						"req": true,
+						"short": "The character's name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "race_id",
+						"short": "The character's race ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "security_status",
+						"short": "The character's security status",
 						"type": "`$NUMBER`",
 					},
 				},

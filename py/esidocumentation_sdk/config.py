@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "EsiDocumentation",
+            "slug": "esi-documentation",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -55,40 +58,48 @@ def make_config():
         "fields": [
           {
             "name": "is_blueprint_copy",
+            "short": "is_blueprint_copy boolean",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_singleton",
             "req": True,
+            "short": "is_singleton boolean",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "item_id",
             "req": True,
+            "short": "item_id integer",
             "type": "`$INTEGER`",
           },
           {
             "name": "location_flag",
+            "short": "Describes the specific location within the location_type",
             "type": "`$STRING`",
           },
           {
             "name": "location_id",
             "req": True,
+            "short": "location_id integer",
             "type": "`$INTEGER`",
           },
           {
             "name": "location_type",
             "req": True,
+            "short": "Describes the location type",
             "type": "`$STRING`",
           },
           {
             "name": "quantity",
             "req": True,
+            "short": "quantity integer",
             "type": "`$INTEGER`",
           },
           {
             "name": "type_id",
             "req": True,
+            "short": "type_id integer",
             "type": "`$INTEGER`",
           },
         ],
@@ -161,44 +172,54 @@ def make_config():
         "fields": [
           {
             "name": "alliance_id",
+            "short": "The character's alliance ID",
             "type": "`$INTEGER`",
           },
           {
             "name": "ancestry_id",
+            "short": "The character's ancestry ID",
             "type": "`$INTEGER`",
           },
           {
             "name": "birthday",
+            "short": "Creation date of the character",
             "type": "`$STRING`",
           },
           {
             "name": "bloodline_id",
+            "short": "The character's bloodline ID",
             "type": "`$INTEGER`",
           },
           {
             "name": "corporation_id",
             "req": True,
+            "short": "The character's corporation ID",
             "type": "`$INTEGER`",
           },
           {
             "name": "description",
+            "short": "The character's bio",
             "type": "`$STRING`",
           },
           {
             "name": "gender",
+            "short": "The character's gender",
             "type": "`$STRING`",
           },
           {
             "name": "name",
             "req": True,
+            "short": "The character's name",
             "type": "`$STRING`",
           },
           {
             "name": "race_id",
+            "short": "The character's race ID",
             "type": "`$INTEGER`",
           },
           {
             "name": "security_status",
+            "short": "The character's security status",
             "type": "`$NUMBER`",
           },
         ],

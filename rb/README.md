@@ -247,14 +247,14 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `is_blueprint_copy` |  |
-| `is_singleton` |  |
-| `item_id` |  |
-| `location_flag` |  |
-| `location_id` |  |
-| `location_type` |  |
-| `quantity` |  |
-| `type_id` |  |
+| `is_blueprint_copy` | is_blueprint_copy boolean |
+| `is_singleton` | is_singleton boolean |
+| `item_id` | item_id integer |
+| `location_flag` | Describes the specific location within the location_type |
+| `location_id` | location_id integer |
+| `location_type` | Describes the location type |
+| `quantity` | quantity integer |
+| `type_id` | type_id integer |
 
 Operations: List.
 
@@ -264,16 +264,16 @@ API path: `/characters/{character_id}/assets/`
 
 | Field | Description |
 | --- | --- |
-| `alliance_id` |  |
-| `ancestry_id` |  |
-| `birthday` |  |
-| `bloodline_id` |  |
-| `corporation_id` |  |
-| `description` |  |
-| `gender` |  |
-| `name` |  |
-| `race_id` |  |
-| `security_status` |  |
+| `alliance_id` | The character's alliance ID |
+| `ancestry_id` | The character's ancestry ID |
+| `birthday` | Creation date of the character |
+| `bloodline_id` | The character's bloodline ID |
+| `corporation_id` | The character's corporation ID |
+| `description` | The character's bio |
+| `gender` | The character's gender |
+| `name` | The character's name |
+| `race_id` | The character's race ID |
+| `security_status` | The character's security status |
 
 Operations: Load.
 
@@ -310,14 +310,14 @@ Create an instance: `asset = client.Asset`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_blueprint_copy` | `Boolean` |  |
-| `is_singleton` | `Boolean` |  |
-| `item_id` | `Integer` |  |
-| `location_flag` | `String` |  |
-| `location_id` | `Integer` |  |
-| `location_type` | `String` |  |
-| `quantity` | `Integer` |  |
-| `type_id` | `Integer` |  |
+| `is_blueprint_copy` | `Boolean` | is_blueprint_copy boolean |
+| `is_singleton` | `Boolean` | is_singleton boolean |
+| `item_id` | `Integer` | item_id integer |
+| `location_flag` | `String` | Describes the specific location within the location_type |
+| `location_id` | `Integer` | location_id integer |
+| `location_type` | `String` | Describes the location type |
+| `quantity` | `Integer` | quantity integer |
+| `type_id` | `Integer` | type_id integer |
 
 #### Example: List
 
@@ -341,16 +341,16 @@ Create an instance: `character = client.Character`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alliance_id` | `Integer` |  |
-| `ancestry_id` | `Integer` |  |
-| `birthday` | `String` |  |
-| `bloodline_id` | `Integer` |  |
-| `corporation_id` | `Integer` |  |
-| `description` | `String` |  |
-| `gender` | `String` |  |
-| `name` | `String` |  |
-| `race_id` | `Integer` |  |
-| `security_status` | `Float` |  |
+| `alliance_id` | `Integer` | The character's alliance ID |
+| `ancestry_id` | `Integer` | The character's ancestry ID |
+| `birthday` | `String` | Creation date of the character |
+| `bloodline_id` | `Integer` | The character's bloodline ID |
+| `corporation_id` | `Integer` | The character's corporation ID |
+| `description` | `String` | The character's bio |
+| `gender` | `String` | The character's gender |
+| `name` | `String` | The character's name |
+| `race_id` | `Integer` | The character's race ID |
+| `security_status` | `Float` | The character's security status |
 
 #### Example: Load
 

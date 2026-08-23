@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -297,14 +297,14 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `is_blueprint_copy` |  |
-| `is_singleton` |  |
-| `item_id` |  |
-| `location_flag` |  |
-| `location_id` |  |
-| `location_type` |  |
-| `quantity` |  |
-| `type_id` |  |
+| `is_blueprint_copy` | is_blueprint_copy boolean |
+| `is_singleton` | is_singleton boolean |
+| `item_id` | item_id integer |
+| `location_flag` | Describes the specific location within the location_type |
+| `location_id` | location_id integer |
+| `location_type` | Describes the location type |
+| `quantity` | quantity integer |
+| `type_id` | type_id integer |
 
 Operations: list.
 
@@ -314,16 +314,16 @@ API path: `/characters/{character_id}/assets/`
 
 | Field | Description |
 | --- | --- |
-| `alliance_id` |  |
-| `ancestry_id` |  |
-| `birthday` |  |
-| `bloodline_id` |  |
-| `corporation_id` |  |
-| `description` |  |
-| `gender` |  |
-| `name` |  |
-| `race_id` |  |
-| `security_status` |  |
+| `alliance_id` | The character's alliance ID |
+| `ancestry_id` | The character's ancestry ID |
+| `birthday` | Creation date of the character |
+| `bloodline_id` | The character's bloodline ID |
+| `corporation_id` | The character's corporation ID |
+| `description` | The character's bio |
+| `gender` | The character's gender |
+| `name` | The character's name |
+| `race_id` | The character's race ID |
+| `security_status` | The character's security status |
 
 Operations: load.
 
@@ -360,14 +360,14 @@ Create an instance: `const asset = client.Asset()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `is_blueprint_copy` | `boolean` |  |
-| `is_singleton` | `boolean` |  |
-| `item_id` | `number` |  |
-| `location_flag` | `string` |  |
-| `location_id` | `number` |  |
-| `location_type` | `string` |  |
-| `quantity` | `number` |  |
-| `type_id` | `number` |  |
+| `is_blueprint_copy` | `boolean` | is_blueprint_copy boolean |
+| `is_singleton` | `boolean` | is_singleton boolean |
+| `item_id` | `number` | item_id integer |
+| `location_flag` | `string` | Describes the specific location within the location_type |
+| `location_id` | `number` | location_id integer |
+| `location_type` | `string` | Describes the location type |
+| `quantity` | `number` | quantity integer |
+| `type_id` | `number` | type_id integer |
 
 #### Example: List
 
@@ -390,16 +390,16 @@ Create an instance: `const character = client.Character()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alliance_id` | `number` |  |
-| `ancestry_id` | `number` |  |
-| `birthday` | `string` |  |
-| `bloodline_id` | `number` |  |
-| `corporation_id` | `number` |  |
-| `description` | `string` |  |
-| `gender` | `string` |  |
-| `name` | `string` |  |
-| `race_id` | `number` |  |
-| `security_status` | `number` |  |
+| `alliance_id` | `number` | The character's alliance ID |
+| `ancestry_id` | `number` | The character's ancestry ID |
+| `birthday` | `string` | Creation date of the character |
+| `bloodline_id` | `number` | The character's bloodline ID |
+| `corporation_id` | `number` | The character's corporation ID |
+| `description` | `string` | The character's bio |
+| `gender` | `string` | The character's gender |
+| `name` | `string` | The character's name |
+| `race_id` | `number` | The character's race ID |
+| `security_status` | `number` | The character's security status |
 
 #### Example: Load
 

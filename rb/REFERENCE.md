@@ -102,14 +102,14 @@ asset = client.Asset
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `is_blueprint_copy` | `Boolean` | No |  |
-| `is_singleton` | `Boolean` | Yes |  |
-| `item_id` | `Integer` | Yes |  |
-| `location_flag` | `String` | No |  |
-| `location_id` | `Integer` | Yes |  |
-| `location_type` | `String` | Yes |  |
-| `quantity` | `Integer` | Yes |  |
-| `type_id` | `Integer` | Yes |  |
+| `is_blueprint_copy` | `Boolean` | No | is_blueprint_copy boolean |
+| `is_singleton` | `Boolean` | Yes | is_singleton boolean |
+| `item_id` | `Integer` | Yes | item_id integer |
+| `location_flag` | `String` | No | Describes the specific location within the location_type |
+| `location_id` | `Integer` | Yes | location_id integer |
+| `location_type` | `String` | Yes | Describes the location type |
+| `quantity` | `Integer` | Yes | quantity integer |
+| `type_id` | `Integer` | Yes | type_id integer |
 
 ### Operations
 
@@ -161,16 +161,16 @@ character = client.Character
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alliance_id` | `Integer` | No |  |
-| `ancestry_id` | `Integer` | No |  |
-| `birthday` | `String` | No |  |
-| `bloodline_id` | `Integer` | No |  |
-| `corporation_id` | `Integer` | Yes |  |
-| `description` | `String` | No |  |
-| `gender` | `String` | No |  |
-| `name` | `String` | Yes |  |
-| `race_id` | `Integer` | No |  |
-| `security_status` | `Float` | No |  |
+| `alliance_id` | `Integer` | No | The character's alliance ID |
+| `ancestry_id` | `Integer` | No | The character's ancestry ID |
+| `birthday` | `String` | No | Creation date of the character |
+| `bloodline_id` | `Integer` | No | The character's bloodline ID |
+| `corporation_id` | `Integer` | Yes | The character's corporation ID |
+| `description` | `String` | No | The character's bio |
+| `gender` | `String` | No | The character's gender |
+| `name` | `String` | Yes | The character's name |
+| `race_id` | `Integer` | No | The character's race ID |
+| `security_status` | `Float` | No | The character's security status |
 
 ### Operations
 

@@ -36,48 +36,56 @@
               "active": true,
               "name": "is_blueprint_copy",
               "req": false,
+              "short": "is_blueprint_copy boolean",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "is_singleton",
               "req": true,
+              "short": "is_singleton boolean",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "item_id",
               "req": true,
+              "short": "item_id integer",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "location_flag",
               "req": false,
+              "short": "Describes the specific location within the location_type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "location_id",
               "req": true,
+              "short": "location_id integer",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "location_type",
               "req": true,
+              "short": "Describes the location type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "quantity",
               "req": true,
+              "short": "quantity integer",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "type_id",
               "req": true,
+              "short": "type_id integer",
               "type": "`$INTEGER`"
             }
           ],
@@ -162,60 +170,70 @@
               "active": true,
               "name": "alliance_id",
               "req": false,
+              "short": "The character's alliance ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "ancestry_id",
               "req": false,
+              "short": "The character's ancestry ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "birthday",
               "req": false,
+              "short": "Creation date of the character",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "bloodline_id",
               "req": false,
+              "short": "The character's bloodline ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "corporation_id",
               "req": true,
+              "short": "The character's corporation ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "description",
               "req": false,
+              "short": "The character's bio",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "gender",
               "req": false,
+              "short": "The character's gender",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": true,
+              "short": "The character's name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "race_id",
               "req": false,
+              "short": "The character's race ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "security_status",
               "req": false,
+              "short": "The character's security status",
               "type": "`$NUMBER`"
             }
           ],
