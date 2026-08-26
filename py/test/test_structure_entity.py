@@ -48,9 +48,13 @@ class TestStructureEntity:
 
         # LOAD
         structure_ref01_ent = client.Structure(None)
-        structure_ref01_match_dt0 = {}
+        structure_ref01_match_dt0 = {
+            "id": structure_ref01_data["id"],
+        }
         structure_ref01_data_dt0_loaded = structure_ref01_ent.load(structure_ref01_match_dt0, None)
-        assert structure_ref01_data_dt0_loaded is not None
+        structure_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(structure_ref01_data_dt0_loaded))
+        assert structure_ref01_data_dt0_load_result is not None
+        assert structure_ref01_data_dt0_load_result["id"] == structure_ref01_data["id"]
 
 
 

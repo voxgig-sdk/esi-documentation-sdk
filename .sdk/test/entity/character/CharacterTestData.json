@@ -4,41 +4,41 @@
       "CHARACTER00": {
         "alliance_id": "ALLIANCE01",
         "ancestry_id": "ANCESTRY01",
-        "birthday": "s66",
+        "birthday": "s70",
         "bloodline_id": "BLOODLINE01",
         "corporation_id": "CORPORATION01",
-        "description": "s69",
-        "gender": "s6a",
-        "name": "s6b",
+        "description": "s73",
+        "gender": "s74",
+        "id": "CHARACTER00",
+        "name": "s76",
         "race_id": "RACE01",
-        "security_status": 109,
-        "id": "CHARACTER00"
+        "security_status": 120
       },
       "CHARACTER01": {
         "alliance_id": "ALLIANCE01",
         "ancestry_id": "ANCESTRY01",
-        "birthday": "sca",
+        "birthday": "sde",
         "bloodline_id": "BLOODLINE01",
         "corporation_id": "CORPORATION01",
-        "description": "scd",
-        "gender": "sce",
-        "name": "scf",
+        "description": "se1",
+        "gender": "se2",
+        "id": "CHARACTER01",
+        "name": "se4",
         "race_id": "RACE01",
-        "security_status": 209,
-        "id": "CHARACTER01"
+        "security_status": 230
       },
       "CHARACTER02": {
         "alliance_id": "ALLIANCE01",
         "ancestry_id": "ANCESTRY01",
-        "birthday": "s12e",
+        "birthday": "s14c",
         "bloodline_id": "BLOODLINE01",
         "corporation_id": "CORPORATION01",
-        "description": "s131",
-        "gender": "s132",
-        "name": "s133",
+        "description": "s14f",
+        "gender": "s150",
+        "id": "CHARACTER02",
+        "name": "s152",
         "race_id": "RACE01",
-        "security_status": 309,
-        "id": "CHARACTER02"
+        "security_status": 340
       }
     }
   },
@@ -47,14 +47,14 @@
       "character_ref01": {
         "alliance_id": "ALLIANCE01",
         "ancestry_id": "ANCESTRY01",
-        "birthday": "s192",
+        "birthday": "s1ba",
         "bloodline_id": "BLOODLINE01",
         "corporation_id": "CORPORATION01",
-        "description": "s195",
-        "gender": "s196",
-        "name": "s197",
+        "description": "s1bd",
+        "gender": "s1be",
+        "name": "s1c0",
         "race_id": "RACE01",
-        "security_status": 409
+        "security_status": 450
       }
     }
   }

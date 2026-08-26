@@ -275,6 +275,7 @@ API path: `/characters/{character_id}/assets/`
 | `corporation_id` | The character's corporation ID |
 | `description` | The character's bio |
 | `gender` | The character's gender |
+| `id` |  |
 | `name` | The character's name |
 | `race_id` | The character's race ID |
 | `security_status` | The character's security status |
@@ -287,6 +288,7 @@ API path: `/characters/{character_id}/`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `x` |  |
 | `y` |  |
 | `z` |  |
@@ -351,6 +353,7 @@ Create an instance: `character = client.Character()`
 | `corporation_id` | `int` | The character's corporation ID |
 | `description` | `str` | The character's bio |
 | `gender` | `str` | The character's gender |
+| `id` | `str` |  |
 | `name` | `str` | The character's name |
 | `race_id` | `int` | The character's race ID |
 | `security_status` | `float` | The character's security status |
@@ -376,6 +379,7 @@ Create an instance: `structure = client.Structure()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `x` | `float` |  |
 | `y` | `float` |  |
 | `z` | `float` |  |

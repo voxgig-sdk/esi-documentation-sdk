@@ -28,6 +28,7 @@ module EsiDocumentationConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -198,6 +199,10 @@ module EsiDocumentationConfig
               "type" => "`$STRING`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "name",
               "req" => true,
               "short" => "The character's name",
@@ -273,6 +278,10 @@ module EsiDocumentationConfig
         },
         "structure" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "x",
               "type" => "`$NUMBER`",

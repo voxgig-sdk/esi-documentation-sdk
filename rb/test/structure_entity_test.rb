@@ -41,9 +41,13 @@ class StructureEntityTest < Minitest::Test
 
     # LOAD
     structure_ref01_ent = client.Structure(nil)
-    structure_ref01_match_dt0 = {}
+    structure_ref01_match_dt0 = {
+      "id" => structure_ref01_data["id"],
+    }
     structure_ref01_data_dt0_loaded = structure_ref01_ent.load(structure_ref01_match_dt0, nil)
-    assert !structure_ref01_data_dt0_loaded.nil?
+    structure_ref01_data_dt0_load_result = Helpers.to_map(structure_ref01_data_dt0_loaded.respond_to?(:data_get) ? structure_ref01_data_dt0_loaded.data_get : structure_ref01_data_dt0_loaded)
+    assert !structure_ref01_data_dt0_load_result.nil?
+    assert_equal structure_ref01_data_dt0_load_result["id"], structure_ref01_data["id"]
 
   end
 end

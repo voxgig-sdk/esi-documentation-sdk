@@ -48,6 +48,11 @@ main: kit: entity: character: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "name"
       req: true
       short: "The character's name"
@@ -66,6 +71,11 @@ main: kit: entity: character: {
       type: "`$NUMBER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "character"
   op: {

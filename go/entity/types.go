@@ -38,6 +38,7 @@ type Character struct {
 	CorporationId int `json:"corporation_id"`
 	Description *string `json:"description,omitempty"`
 	Gender *string `json:"gender,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Name string `json:"name"`
 	RaceId *int `json:"race_id,omitempty"`
 	SecurityStatus *float64 `json:"security_status,omitempty"`
@@ -50,6 +51,7 @@ type CharacterLoadMatch struct {
 
 // Structure is the typed data model for the structure entity.
 type Structure struct {
+	Id *string `json:"id,omitempty"`
 	X *float64 `json:"x,omitempty"`
 	Y *float64 `json:"y,omitempty"`
 	Z *float64 `json:"z,omitempty"`

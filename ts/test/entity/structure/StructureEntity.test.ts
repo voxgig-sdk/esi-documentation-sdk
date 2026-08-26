@@ -59,9 +59,12 @@ describe('StructureEntity', async () => {
 
     let structure_ref01_data = Object.values(setup.data.existing.structure)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const structure_ref01_ent = client.Structure()
+    const structure_ref01_match_dt0: any = {}
+    structure_ref01_match_dt0.id = structure_ref01_data.id
+    const structure_ref01_data_dt0 = (await structure_ref01_ent.load(structure_ref01_match_dt0)).data()
+    assert(structure_ref01_data_dt0.id === structure_ref01_data.id)
 
 
   })

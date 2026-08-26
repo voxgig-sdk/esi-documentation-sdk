@@ -27,6 +27,7 @@
 ---@field corporation_id number
 ---@field description? string
 ---@field gender? string
+---@field id? string
 ---@field name string
 ---@field race_id? number
 ---@field security_status? number
@@ -35,6 +36,7 @@
 ---@field id number
 
 ---@class Structure
+---@field id? string
 ---@field x? number
 ---@field y? number
 ---@field z? number

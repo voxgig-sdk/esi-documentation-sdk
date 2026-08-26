@@ -44,10 +44,14 @@ describe("StructureEntity", function()
 
     -- LOAD
     local structure_ref01_ent = client:Structure(nil)
-    local structure_ref01_match_dt0 = {}
+    local structure_ref01_match_dt0 = {
+      id = structure_ref01_data["id"],
+    }
     local structure_ref01_data_dt0_loaded, err = structure_ref01_ent:load(structure_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(structure_ref01_data_dt0_loaded)
+    local structure_ref01_data_dt0_load_result = helpers.to_map(type(structure_ref01_data_dt0_loaded) == 'table' and structure_ref01_data_dt0_loaded.data_get and structure_ref01_data_dt0_loaded:data_get() or structure_ref01_data_dt0_loaded)
+    assert.is_not_nil(structure_ref01_data_dt0_load_result)
+    assert.are.equal(structure_ref01_data_dt0_load_result["id"], structure_ref01_data["id"])
 
   end)
 end)

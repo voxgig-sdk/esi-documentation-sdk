@@ -205,6 +205,7 @@ const character = client.Character()
 | `corporation_id` | `number` | Yes | The character's corporation ID |
 | `description` | `string` | No | The character's bio |
 | `gender` | `string` | No | The character's gender |
+| `id` | `string` | No |  |
 | `name` | `string` | Yes | The character's name |
 | `race_id` | `number` | No | The character's race ID |
 | `security_status` | `number` | No | The character's security status |
@@ -257,6 +258,7 @@ const structure = client.Structure()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `x` | `number` | No |  |
 | `y` | `number` | No |  |
 | `z` | `number` | No |  |

@@ -77,6 +77,9 @@ AssetListMatch = Struct.new(
 # @!attribute [rw] gender
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] name
 #   @return [String]
 #
@@ -93,6 +96,7 @@ Character = Struct.new(
   :corporation_id,
   :description,
   :gender,
+  :id,
   :name,
   :race_id,
   :security_status,
@@ -110,6 +114,9 @@ CharacterLoadMatch = Struct.new(
 
 # Structure entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] x
 #   @return [Float, nil]
 #
@@ -119,6 +126,7 @@ CharacterLoadMatch = Struct.new(
 # @!attribute [rw] z
 #   @return [Float, nil]
 Structure = Struct.new(
+  :id,
   :x,
   :y,
   :z,

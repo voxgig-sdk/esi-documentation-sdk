@@ -2,31 +2,31 @@
   "existing": {
     "structure": {
       "STRUCTURE00": {
-        "x": 30,
-        "y": 31,
-        "z": 32,
-        "id": "STRUCTURE00"
+        "id": "STRUCTURE00",
+        "x": 41,
+        "y": 42,
+        "z": 43
       },
       "STRUCTURE01": {
-        "x": 60,
-        "y": 61,
-        "z": 62,
-        "id": "STRUCTURE01"
+        "id": "STRUCTURE01",
+        "x": 81,
+        "y": 82,
+        "z": 83
       },
       "STRUCTURE02": {
-        "x": 90,
-        "y": 91,
-        "z": 92,
-        "id": "STRUCTURE02"
+        "id": "STRUCTURE02",
+        "x": 121,
+        "y": 122,
+        "z": 123
       }
     }
   },
   "new": {
     "structure": {
       "structure_ref01": {
-        "x": 120,
-        "y": 121,
-        "z": 122
+        "x": 161,
+        "y": 162,
+        "z": 163
       }
     }
   }

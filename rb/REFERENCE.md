@@ -168,6 +168,7 @@ character = client.Character
 | `corporation_id` | `Integer` | Yes | The character's corporation ID |
 | `description` | `String` | No | The character's bio |
 | `gender` | `String` | No | The character's gender |
+| `id` | `String` | No |  |
 | `name` | `String` | Yes | The character's name |
 | `race_id` | `Integer` | No | The character's race ID |
 | `security_status` | `Float` | No | The character's security status |
@@ -222,6 +223,7 @@ structure = client.Structure
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `x` | `Float` | No |  |
 | `y` | `Float` | No |  |
 | `z` | `Float` | No |  |

@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -186,6 +187,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "name",
             ["req"] = true,
             ["short"] = "The character's name",
@@ -261,6 +266,10 @@ local function make_config()
       },
       ["structure"] = {
         ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
           {
             ["name"] = "x",
             ["type"] = "`$NUMBER`",

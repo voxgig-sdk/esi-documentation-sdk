@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -207,6 +208,10 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "name",
             "req": True,
             "short": "The character's name",
@@ -282,6 +287,10 @@ def make_config():
       },
       "structure": {
         "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
           {
             "name": "x",
             "type": "`$NUMBER`",

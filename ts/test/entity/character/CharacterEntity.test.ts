@@ -59,9 +59,12 @@ describe('CharacterEntity', async () => {
 
     let character_ref01_data = Object.values(setup.data.existing.character)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const character_ref01_ent = client.Character()
+    const character_ref01_match_dt0: any = {}
+    character_ref01_match_dt0.id = character_ref01_data.id
+    const character_ref01_data_dt0 = (await character_ref01_ent.load(character_ref01_match_dt0)).data()
+    assert(character_ref01_data_dt0.id === character_ref01_data.id)
 
 
   })

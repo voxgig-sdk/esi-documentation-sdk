@@ -46,6 +46,7 @@ class Character(CharacterRequired, total=False):
     bloodline_id: int
     description: str
     gender: str
+    id: str
     race_id: int
     security_status: float
 
@@ -55,6 +56,7 @@ class CharacterLoadMatch(TypedDict):
 
 
 class Structure(TypedDict, total=False):
+    id: str
     x: float
     y: float
     z: float

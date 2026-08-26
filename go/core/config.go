@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -190,6 +191,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "name",
 						"req": true,
 						"short": "The character's name",
@@ -265,6 +270,10 @@ func MakeConfig() map[string]any {
 			},
 			"structure": map[string]any{
 				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
 					map[string]any{
 						"name": "x",
 						"type": "`$NUMBER`",

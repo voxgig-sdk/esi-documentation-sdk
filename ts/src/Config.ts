@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -226,6 +227,10 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "name",
           "req": true,
           "short": "The character's name",
@@ -301,6 +306,10 @@ class Config {
     },
     "structure": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "x",
           "type": "`$NUMBER`"

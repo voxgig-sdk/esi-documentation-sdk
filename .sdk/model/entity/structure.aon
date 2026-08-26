@@ -6,6 +6,11 @@ main: kit: entity: structure: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "x"
       req: false
       type: "`$NUMBER`"
@@ -21,6 +26,11 @@ main: kit: entity: structure: {
       type: "`$NUMBER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "structure"
   op: {

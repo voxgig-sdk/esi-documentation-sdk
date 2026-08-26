@@ -41,6 +41,7 @@ class Character
     public int $corporation_id;
     public ?string $description = null;
     public ?string $gender = null;
+    public ?string $id = null;
     public string $name;
     public ?int $race_id = null;
     public ?float $security_status = null;
@@ -55,6 +56,7 @@ class CharacterLoadMatch
 /** Structure entity data model. */
 class Structure
 {
+    public ?string $id = null;
     public ?float $x = null;
     public ?float $y = null;
     public ?float $z = null;

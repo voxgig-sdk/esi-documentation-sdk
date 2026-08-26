@@ -28,6 +28,7 @@ export interface Character {
   corporation_id: number
   description?: string
   gender?: string
+  id?: string
   name: string
   race_id?: number
   security_status?: number
@@ -38,6 +39,7 @@ export interface CharacterLoadMatch {
 }
 
 export interface Structure {
+  id?: string
   x?: number
   y?: number
   z?: number

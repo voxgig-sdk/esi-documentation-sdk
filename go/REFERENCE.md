@@ -172,6 +172,7 @@ fmt.Println(character.GetName()) // "character"
 | `corporation_id` | `int` | Yes | The character's corporation ID |
 | `description` | `string` | No | The character's bio |
 | `gender` | `string` | No | The character's gender |
+| `id` | `string` | No |  |
 | `name` | `string` | Yes | The character's name |
 | `race_id` | `int` | No | The character's race ID |
 | `security_status` | `float64` | No | The character's security status |
@@ -225,6 +226,7 @@ fmt.Println(structure.GetName()) // "structure"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `x` | `float64` | No |  |
 | `y` | `float64` | No |  |
 | `z` | `float64` | No |  |
