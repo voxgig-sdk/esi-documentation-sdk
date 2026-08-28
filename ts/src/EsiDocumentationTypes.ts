@@ -18,6 +18,8 @@ export interface Asset {
 
 export interface AssetListMatch {
   character_id: number
+  datasource?: string
+  page?: number
 }
 
 export interface Character {
@@ -36,6 +38,7 @@ export interface Character {
 
 export interface CharacterLoadMatch {
   id: number
+  datasource?: string
 }
 
 export interface Structure {
@@ -47,5 +50,6 @@ export interface Structure {
 
 export interface StructureLoadMatch {
   id: number
+  datasource?: string
 }
 

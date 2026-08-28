@@ -49,8 +49,16 @@ Asset = Struct.new(
 #
 # @!attribute [rw] character_id
 #   @return [Integer]
+#
+# @!attribute [rw] datasource
+#   @return [String, nil]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
 AssetListMatch = Struct.new(
   :character_id,
+  :datasource,
+  :page,
   keyword_init: true
 )
 
@@ -107,8 +115,12 @@ Character = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] datasource
+#   @return [String, nil]
 CharacterLoadMatch = Struct.new(
   :id,
+  :datasource,
   keyword_init: true
 )
 
@@ -137,8 +149,12 @@ Structure = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] datasource
+#   @return [String, nil]
 StructureLoadMatch = Struct.new(
   :id,
+  :datasource,
   keyword_init: true
 )
 

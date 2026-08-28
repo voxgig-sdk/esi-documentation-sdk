@@ -29,6 +29,8 @@ class Asset
 class AssetListMatch
 {
     public int $character_id;
+    public ?string $datasource = null;
+    public ?int $page = null;
 }
 
 /** Character entity data model. */
@@ -51,6 +53,7 @@ class Character
 class CharacterLoadMatch
 {
     public int $id;
+    public ?string $datasource = null;
 }
 
 /** Structure entity data model. */
@@ -66,5 +69,6 @@ class Structure
 class StructureLoadMatch
 {
     public int $id;
+    public ?string $datasource = null;
 }
 

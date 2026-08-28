@@ -30,8 +30,13 @@ class Asset(AssetRequired, total=False):
     location_flag: str
 
 
-class AssetListMatch(TypedDict):
+class AssetListMatchRequired(TypedDict):
     character_id: int
+
+
+class AssetListMatch(AssetListMatchRequired, total=False):
+    datasource: str
+    page: int
 
 
 class CharacterRequired(TypedDict):
@@ -51,8 +56,12 @@ class Character(CharacterRequired, total=False):
     security_status: float
 
 
-class CharacterLoadMatch(TypedDict):
+class CharacterLoadMatchRequired(TypedDict):
     id: int
+
+
+class CharacterLoadMatch(CharacterLoadMatchRequired, total=False):
+    datasource: str
 
 
 class Structure(TypedDict, total=False):
@@ -62,5 +71,9 @@ class Structure(TypedDict, total=False):
     z: float
 
 
-class StructureLoadMatch(TypedDict):
+class StructureLoadMatchRequired(TypedDict):
     id: int
+
+
+class StructureLoadMatch(StructureLoadMatchRequired, total=False):
+    datasource: str

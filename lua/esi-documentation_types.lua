@@ -18,6 +18,8 @@
 
 ---@class AssetListMatch
 ---@field character_id number
+---@field datasource? string
+---@field page? number
 
 ---@class Character
 ---@field alliance_id? number
@@ -34,6 +36,7 @@
 
 ---@class CharacterLoadMatch
 ---@field id number
+---@field datasource? string
 
 ---@class Structure
 ---@field id? string
@@ -43,6 +46,7 @@
 
 ---@class StructureLoadMatch
 ---@field id number
+---@field datasource? string
 
 local M = {}
 

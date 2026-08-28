@@ -27,6 +27,8 @@ type Asset struct {
 // AssetListMatch is the typed request payload for Asset.ListTyped.
 type AssetListMatch struct {
 	CharacterId int `json:"character_id"`
+	Datasource *string `json:"datasource,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // Character is the typed data model for the character entity.
@@ -47,6 +49,7 @@ type Character struct {
 // CharacterLoadMatch is the typed request payload for Character.LoadTyped.
 type CharacterLoadMatch struct {
 	Id int `json:"id"`
+	Datasource *string `json:"datasource,omitempty"`
 }
 
 // Structure is the typed data model for the structure entity.
@@ -60,6 +63,7 @@ type Structure struct {
 // StructureLoadMatch is the typed request payload for Structure.LoadTyped.
 type StructureLoadMatch struct {
 	Id int `json:"id"`
+	Datasource *string `json:"datasource,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
