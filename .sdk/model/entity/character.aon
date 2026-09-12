@@ -6,30 +6,35 @@ main: kit: entity: character: {
 
   fields: [
     {
+      format: "int32"
       name: "alliance_id"
       req: false
       short: "The character's alliance ID"
       type: "`$INTEGER`"
     }
     {
+      format: "int32"
       name: "ancestry_id"
       req: false
       short: "The character's ancestry ID"
       type: "`$INTEGER`"
     }
     {
+      format: "date-time"
       name: "birthday"
       req: false
       short: "Creation date of the character"
       type: "`$STRING`"
     }
     {
+      format: "int32"
       name: "bloodline_id"
       req: false
       short: "The character's bloodline ID"
       type: "`$INTEGER`"
     }
     {
+      format: "int32"
       name: "corporation_id"
       req: true
       short: "The character's corporation ID"
@@ -59,12 +64,14 @@ main: kit: entity: character: {
       type: "`$STRING`"
     }
     {
+      format: "int32"
       name: "race_id"
       req: false
       short: "The character's race ID"
       type: "`$INTEGER`"
     }
     {
+      format: "float"
       name: "security_status"
       req: false
       short: "The character's security status"
@@ -106,15 +113,19 @@ main: kit: entity: character: {
           }
           method: "GET"
           orig: "/characters/{character_id}/"
-          parts: [
-            "characters"
-            "{id}"
-          ]
           rename: {
             param: {
               character_id: "id"
             }
           }
+          segments: [
+            {
+              lit: "characters"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "datasource"

@@ -72,15 +72,18 @@ def _asset_direct_setup(mockres):
     env = runner.env_override({
         "ESI_DOCUMENTATION_TEST_ASSET_ENTID": {},
         "ESI_DOCUMENTATION_TEST_LIVE": "FALSE",
-        "ESI_DOCUMENTATION_APIKEY": "NONE",
+        "ESI_DOCUMENTATION_APIKEY": "",
     })
 
     live = env.get("ESI_DOCUMENTATION_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("ESI_DOCUMENTATION_APIKEY"),
-        }
+        })
         client = EsiDocumentationSDK(merged_opts)
         return {
             "client": client,

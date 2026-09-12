@@ -52,6 +52,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "item_id",
 						"req": true,
 						"short": "item_id integer",
@@ -63,6 +64,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "location_id",
 						"req": true,
 						"short": "location_id integer",
@@ -75,12 +77,14 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "int32",
 						"name": "quantity",
 						"req": true,
 						"short": "quantity integer",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "int32",
 						"name": "type_id",
 						"req": true,
 						"short": "type_id integer",
@@ -124,10 +128,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/characters/{character_id}/assets/",
-								"parts": []any{
-									"characters",
-									"{character_id}",
-									"assets",
+								"segments": []any{
+									map[string]any{
+										"lit": "characters",
+									},
+									map[string]any{
+										"var": "character_id",
+									},
+									map[string]any{
+										"lit": "assets",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -139,6 +149,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"characters",
+									"{character_id}",
+									"assets",
 								},
 							},
 						},
@@ -155,26 +170,31 @@ func MakeConfig() map[string]any {
 			"character": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "int32",
 						"name": "alliance_id",
 						"short": "The character's alliance ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "int32",
 						"name": "ancestry_id",
 						"short": "The character's ancestry ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "birthday",
 						"short": "Creation date of the character",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "int32",
 						"name": "bloodline_id",
 						"short": "The character's bloodline ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "int32",
 						"name": "corporation_id",
 						"req": true,
 						"short": "The character's corporation ID",
@@ -201,15 +221,21 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "int32",
 						"name": "race_id",
 						"short": "The character's race ID",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "float",
 						"name": "security_status",
 						"short": "The character's security status",
 						"type": "`$NUMBER`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "character",
 				"op": map[string]any{
@@ -241,13 +267,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/characters/{character_id}/",
-								"parts": []any{
-									"characters",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"character_id": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "characters",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -259,6 +289,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"characters",
+									"{id}",
 								},
 							},
 						},
@@ -275,17 +309,24 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "x",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "y",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "z",
 						"type": "`$NUMBER`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "structure",
 				"op": map[string]any{
@@ -317,14 +358,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/universe/structures/{structure_id}/",
-								"parts": []any{
-									"universe",
-									"structures",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"structure_id": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "universe",
+									},
+									map[string]any{
+										"lit": "structures",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -337,6 +384,11 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.position`",
 								},
+								"parts": []any{
+									"universe",
+									"structures",
+									"{id}",
+								},
 							},
 						},
 					},
@@ -347,6 +399,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

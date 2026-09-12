@@ -98,7 +98,7 @@ func TestAssetEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		assetRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.asset", setup.data)))
+		assetRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.asset")))
 		var assetRef01Data map[string]any
 		if len(assetRef01DataRaw) > 0 {
 			assetRef01Data = core.ToMapAny(assetRef01DataRaw[0][1])
@@ -149,7 +149,7 @@ func assetBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"asset01", "asset02", "asset03", "character01", "character02", "character03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -169,7 +169,7 @@ func assetBasicSetup(extra map[string]any) *entityTestSetup {
 		"ESI_DOCUMENTATION_TEST_ASSET_ENTID": idmap,
 		"ESI_DOCUMENTATION_TEST_LIVE":      "FALSE",
 		"ESI_DOCUMENTATION_TEST_EXPLAIN":   "FALSE",
-		"ESI_DOCUMENTATION_APIKEY":         "NONE",
+		"ESI_DOCUMENTATION_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["ESI_DOCUMENTATION_TEST_ASSET_ENTID"])
@@ -178,11 +178,23 @@ func assetBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["ESI_DOCUMENTATION_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["ESI_DOCUMENTATION_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewEsiDocumentationSDK(core.ToMapAny(mergedOpts))
 	}

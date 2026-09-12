@@ -118,14 +118,22 @@ func characterDirectSetup(mockres any) *characterDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ESI_DOCUMENTATION_TEST_CHARACTER_ENTID": map[string]any{},
 		"ESI_DOCUMENTATION_TEST_LIVE":    "FALSE",
-		"ESI_DOCUMENTATION_APIKEY":       "NONE",
+		"ESI_DOCUMENTATION_APIKEY":       "",
 	})
 
 	live := env["ESI_DOCUMENTATION_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["ESI_DOCUMENTATION_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewEsiDocumentationSDK(mergedOpts)
 

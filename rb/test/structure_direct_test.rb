@@ -71,15 +71,17 @@ def structure_direct_setup(mockres)
   env = Runner.env_override({
     "ESI_DOCUMENTATION_TEST_STRUCTURE_ENTID" => {},
     "ESI_DOCUMENTATION_TEST_LIVE" => "FALSE",
-    "ESI_DOCUMENTATION_APIKEY" => "NONE",
+    "ESI_DOCUMENTATION_APIKEY" => "",
   })
 
   live = env["ESI_DOCUMENTATION_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
       "apikey" => env["ESI_DOCUMENTATION_APIKEY"],
-    }
+    })
     client = EsiDocumentationSDK.new(merged_opts)
     return {
       client: client,

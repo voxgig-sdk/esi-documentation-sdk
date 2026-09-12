@@ -1,6 +1,14 @@
 # EsiDocumentation SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -69,6 +77,7 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
+            "format": "int64",
             "name": "item_id",
             "req": True,
             "short": "item_id integer",
@@ -80,6 +89,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "int64",
             "name": "location_id",
             "req": True,
             "short": "location_id integer",
@@ -92,12 +102,14 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "int32",
             "name": "quantity",
             "req": True,
             "short": "quantity integer",
             "type": "`$INTEGER`",
           },
           {
+            "format": "int32",
             "name": "type_id",
             "req": True,
             "short": "type_id integer",
@@ -141,10 +153,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/characters/{character_id}/assets/",
-                "parts": [
-                  "characters",
-                  "{character_id}",
-                  "assets",
+                "segments": [
+                  {
+                    "lit": "characters",
+                  },
+                  {
+                    "var": "character_id",
+                  },
+                  {
+                    "lit": "assets",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -157,6 +175,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "characters",
+                  "{character_id}",
+                  "assets",
+                ],
               },
             ],
           },
@@ -172,26 +195,31 @@ def make_config():
       "character": {
         "fields": [
           {
+            "format": "int32",
             "name": "alliance_id",
             "short": "The character's alliance ID",
             "type": "`$INTEGER`",
           },
           {
+            "format": "int32",
             "name": "ancestry_id",
             "short": "The character's ancestry ID",
             "type": "`$INTEGER`",
           },
           {
+            "format": "date-time",
             "name": "birthday",
             "short": "Creation date of the character",
             "type": "`$STRING`",
           },
           {
+            "format": "int32",
             "name": "bloodline_id",
             "short": "The character's bloodline ID",
             "type": "`$INTEGER`",
           },
           {
+            "format": "int32",
             "name": "corporation_id",
             "req": True,
             "short": "The character's corporation ID",
@@ -218,16 +246,22 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "int32",
             "name": "race_id",
             "short": "The character's race ID",
             "type": "`$INTEGER`",
           },
           {
+            "format": "float",
             "name": "security_status",
             "short": "The character's security status",
             "type": "`$NUMBER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "character",
         "op": {
           "load": {
@@ -258,15 +292,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/characters/{character_id}/",
-                "parts": [
-                  "characters",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "character_id": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "characters",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "datasource",
@@ -277,6 +315,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "characters",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -292,18 +334,25 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "x",
             "type": "`$NUMBER`",
           },
           {
+            "format": "double",
             "name": "y",
             "type": "`$NUMBER`",
           },
           {
+            "format": "double",
             "name": "z",
             "type": "`$NUMBER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "structure",
         "op": {
           "load": {
@@ -334,16 +383,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/universe/structures/{structure_id}/",
-                "parts": [
-                  "universe",
-                  "structures",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "structure_id": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "universe",
+                  },
+                  {
+                    "lit": "structures",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "datasource",
@@ -354,6 +409,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.position`",
                 },
+                "parts": [
+                  "universe",
+                  "structures",
+                  "{id}",
+                ],
               },
             ],
           },

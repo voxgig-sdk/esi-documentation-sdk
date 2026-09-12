@@ -18,6 +18,7 @@ main: kit: entity: asset: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "int64"
       name: "item_id"
       req: true
       short: "item_id integer"
@@ -30,6 +31,7 @@ main: kit: entity: asset: {
       type: "`$STRING`"
     }
     {
+      format: "int64"
       name: "location_id"
       req: true
       short: "location_id integer"
@@ -42,12 +44,14 @@ main: kit: entity: asset: {
       type: "`$STRING`"
     }
     {
+      format: "int32"
       name: "quantity"
       req: true
       short: "quantity integer"
       type: "`$INTEGER`"
     }
     {
+      format: "int32"
       name: "type_id"
       req: true
       short: "type_id integer"
@@ -92,10 +96,16 @@ main: kit: entity: asset: {
           }
           method: "GET"
           orig: "/characters/{character_id}/assets/"
-          parts: [
-            "characters"
-            "{character_id}"
-            "assets"
+          segments: [
+            {
+              lit: "characters"
+            }
+            {
+              var: "character_id"
+            }
+            {
+              lit: "assets"
+            }
           ]
           select: {
             exist: [

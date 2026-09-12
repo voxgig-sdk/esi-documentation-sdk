@@ -11,16 +11,19 @@ main: kit: entity: structure: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "x"
       req: false
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "y"
       req: false
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "z"
       req: false
       type: "`$NUMBER`"
@@ -61,16 +64,22 @@ main: kit: entity: structure: {
           }
           method: "GET"
           orig: "/universe/structures/{structure_id}/"
-          parts: [
-            "universe"
-            "structures"
-            "{id}"
-          ]
           rename: {
             param: {
               structure_id: "id"
             }
           }
+          segments: [
+            {
+              lit: "universe"
+            }
+            {
+              lit: "structures"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "datasource"

@@ -60,6 +60,7 @@ module EsiDocumentationConfig
               "type" => "`$BOOLEAN`",
             },
             {
+              "format" => "int64",
               "name" => "item_id",
               "req" => true,
               "short" => "item_id integer",
@@ -71,6 +72,7 @@ module EsiDocumentationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "int64",
               "name" => "location_id",
               "req" => true,
               "short" => "location_id integer",
@@ -83,12 +85,14 @@ module EsiDocumentationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "int32",
               "name" => "quantity",
               "req" => true,
               "short" => "quantity integer",
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int32",
               "name" => "type_id",
               "req" => true,
               "short" => "type_id integer",
@@ -132,10 +136,16 @@ module EsiDocumentationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/characters/{character_id}/assets/",
-                  "parts" => [
-                    "characters",
-                    "{character_id}",
-                    "assets",
+                  "segments" => [
+                    {
+                      "lit" => "characters",
+                    },
+                    {
+                      "var" => "character_id",
+                    },
+                    {
+                      "lit" => "assets",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -148,6 +158,11 @@ module EsiDocumentationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "characters",
+                    "{character_id}",
+                    "assets",
+                  ],
                 },
               ],
             },
@@ -163,26 +178,31 @@ module EsiDocumentationConfig
         "character" => {
           "fields" => [
             {
+              "format" => "int32",
               "name" => "alliance_id",
               "short" => "The character's alliance ID",
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int32",
               "name" => "ancestry_id",
               "short" => "The character's ancestry ID",
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date-time",
               "name" => "birthday",
               "short" => "Creation date of the character",
               "type" => "`$STRING`",
             },
             {
+              "format" => "int32",
               "name" => "bloodline_id",
               "short" => "The character's bloodline ID",
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int32",
               "name" => "corporation_id",
               "req" => true,
               "short" => "The character's corporation ID",
@@ -209,16 +229,22 @@ module EsiDocumentationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "int32",
               "name" => "race_id",
               "short" => "The character's race ID",
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "float",
               "name" => "security_status",
               "short" => "The character's security status",
               "type" => "`$NUMBER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "character",
           "op" => {
             "load" => {
@@ -249,15 +275,19 @@ module EsiDocumentationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/characters/{character_id}/",
-                  "parts" => [
-                    "characters",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "character_id" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "characters",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "datasource",
@@ -268,6 +298,10 @@ module EsiDocumentationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "characters",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -283,18 +317,25 @@ module EsiDocumentationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "double",
               "name" => "x",
               "type" => "`$NUMBER`",
             },
             {
+              "format" => "double",
               "name" => "y",
               "type" => "`$NUMBER`",
             },
             {
+              "format" => "double",
               "name" => "z",
               "type" => "`$NUMBER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "structure",
           "op" => {
             "load" => {
@@ -325,16 +366,22 @@ module EsiDocumentationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/universe/structures/{structure_id}/",
-                  "parts" => [
-                    "universe",
-                    "structures",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "structure_id" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "universe",
+                    },
+                    {
+                      "lit" => "structures",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "datasource",
@@ -345,6 +392,11 @@ module EsiDocumentationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.position`",
                   },
+                  "parts" => [
+                    "universe",
+                    "structures",
+                    "{id}",
+                  ],
                 },
               ],
             },

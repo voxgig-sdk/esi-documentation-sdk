@@ -48,6 +48,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "item_id",
               "req": true,
               "short": "item_id integer",
@@ -62,6 +63,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "location_id",
               "req": true,
               "short": "location_id integer",
@@ -76,6 +78,7 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "quantity",
               "req": true,
               "short": "quantity integer",
@@ -83,6 +86,7 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "type_id",
               "req": true,
               "short": "type_id integer",
@@ -132,10 +136,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/characters/{character_id}/assets/",
-                  "parts": [
-                    "characters",
-                    "{character_id}",
-                    "assets"
+                  "segments": [
+                    {
+                      "lit": "characters"
+                    },
+                    {
+                      "var": "character_id"
+                    },
+                    {
+                      "lit": "assets"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -168,6 +178,7 @@
           "fields": [
             {
               "active": true,
+              "format": "int32",
               "name": "alliance_id",
               "req": false,
               "short": "The character's alliance ID",
@@ -175,6 +186,7 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "ancestry_id",
               "req": false,
               "short": "The character's ancestry ID",
@@ -182,6 +194,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "birthday",
               "req": false,
               "short": "Creation date of the character",
@@ -189,6 +202,7 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "bloodline_id",
               "req": false,
               "short": "The character's bloodline ID",
@@ -196,6 +210,7 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "corporation_id",
               "req": true,
               "short": "The character's corporation ID",
@@ -230,6 +245,7 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "race_id",
               "req": false,
               "short": "The character's race ID",
@@ -237,6 +253,7 @@
             },
             {
               "active": true,
+              "format": "float",
               "name": "security_status",
               "req": false,
               "short": "The character's security status",
@@ -281,15 +298,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/characters/{character_id}/",
-                  "parts": [
-                    "characters",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "character_id": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "characters"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "datasource",
@@ -322,18 +343,21 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "x",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
+              "format": "double",
               "name": "y",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
+              "format": "double",
               "name": "z",
               "req": false,
               "type": "`$NUMBER`"
@@ -377,16 +401,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/universe/structures/{structure_id}/",
-                  "parts": [
-                    "universe",
-                    "structures",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "structure_id": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "universe"
+                    },
+                    {
+                      "lit": "structures"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "datasource",
@@ -470,8 +500,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -674,6 +707,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -699,6 +735,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -750,6 +790,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -774,6 +815,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -825,6 +867,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -849,6 +892,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -889,6 +933,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -914,6 +961,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -948,6 +998,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -973,6 +1026,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1013,6 +1069,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1038,6 +1097,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1083,6 +1145,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1108,6 +1173,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1125,11 +1193,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1158,6 +1221,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1182,6 +1248,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },
