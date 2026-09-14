@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation'
+import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation-sdk'
 
 const client = new EsiDocumentationSDK({
   apikey: process.env.ESI_DOCUMENTATION_APIKEY,
@@ -519,7 +519,7 @@ esi-documentation/
 Import the SDK from the package root:
 
 ```ts
-import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation'
+import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation-sdk'
 ```
 
 ### Entity state

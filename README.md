@@ -105,7 +105,7 @@ local result, err = client:Character():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/releases) |
+| TypeScript | `@voxgig-sdk/esi-documentation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/releases) |
 | Python | `voxgig-sdk-esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/releases) |
 | PHP | `voxgig-sdk/esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/esi-documentation-sdk/go` | `go get github.com/voxgig-sdk/esi-documentation-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Character():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation'
+import { EsiDocumentationSDK } from '@voxgig-sdk/esi-documentation-sdk'
 
 const client = new EsiDocumentationSDK({
   apikey: process.env.ESI_DOCUMENTATION_APIKEY,
