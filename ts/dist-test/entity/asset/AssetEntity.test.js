@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.ESI_DOCUMENTATION_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'asset.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'asset.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set ESI_DOCUMENTATION_TEST_ASSET_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "is_blueprint_copy", "req": false, "short": "is_blueprint_copy boolean", "type": "`$BOOLEAN`", "index$": 0 }, { "active": true, "name": "is_singleton", "req": true, "short": "is_singleton boolean", "type": "`$BOOLEAN`", "index$": 1 }, { "active": true, "format": "int64", "name": "item_id", "req": true, "short": "item_id integer", "type": "`$INTEGER`", "index$": 2 }, { "active": true, "name": "location_flag", "req": false, "short": "Describes the specific location within the location_type", "type": "`$STRING`", "index$": 3 }, { "active": true, "format": "int64", "name": "location_id", "req": true, "short": "location_id integer", "type": "`$INTEGER`", "index$": 4 }, { "active": true, "name": "location_type", "req": true, "short": "Describes the location type", "type": "`$STRING`", "index$": 5 }, { "active": true, "format": "int32", "name": "quantity", "req": true, "short": "quantity integer", "type": "`$INTEGER`", "index$": 6 }, { "active": true, "format": "int32", "name": "type_id", "req": true, "short": "type_id integer", "type": "`$INTEGER`", "index$": 7 }], "name": "asset", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "character_id", "orig": "character_id", "reqd": true, "type": "`$INTEGER`", "index$": 0 }], "query": [{ "active": true, "example": "tranquility", "kind": "query", "name": "datasource", "orig": "datasource", "reqd": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "example": 1, "kind": "query", "name": "page", "orig": "page", "reqd": false, "type": "`$INTEGER`", "index$": 1 }] }, "contract": { "id": "GET /characters/{character_id}/assets/", "json": "{\"operationId\":\"getCharacterAssets\",\"parameters\":[{\"description\":\"An EVE character ID\",\"in\":\"path\",\"name\":\"character_id\",\"required\":true,\"schema\":{\"format\":\"int32\",\"type\":\"integer\"}},{\"description\":\"The server name you would like data from\",\"in\":\"query\",\"name\":\"datasource\",\"schema\":{\"default\":\"tranquility\",\"enum\":[\"tranquility\",\"singularity\"],\"type\":\"string\"}},{\"description\":\"Which page of results to return\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"default\":1,\"format\":\"int32\",\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"is_blueprint_copy\":{\"description\":\"is_blueprint_copy boolean\",\"type\":\"boolean\"},\"is_singleton\":{\"description\":\"is_singleton boolean\",\"type\":\"boolean\"},\"item_id\":{\"description\":\"item_id integer\",\"format\":\"int64\",\"type\":\"integer\"},\"location_flag\":{\"description\":\"Describes the specific location within the location_type\",\"type\":\"string\"},\"location_id\":{\"description\":\"location_id integer\",\"format\":\"int64\",\"type\":\"integer\"},\"location_type\":{\"description\":\"Describes the location type\",\"enum\":[\"station\",\"solar_system\",\"item\",\"other\"],\"type\":\"string\"},\"quantity\":{\"description\":\"quantity integer\",\"format\":\"int32\",\"type\":\"integer\"},\"type_id\":{\"description\":\"type_id integer\",\"format\":\"int32\",\"type\":\"integer\"}},\"required\":[\"item_id\",\"type_id\",\"location_id\",\"location_type\",\"quantity\",\"is_singleton\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"A list of assets\",\"headers\":{\"X-Pages\":{\"description\":\"Maximum page number\",\"schema\":{\"type\":\"integer\"}}}},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"evesso\":[\"esi-assets.read_assets.v1\"]}],\"securitySchemes\":{\"evesso\":{\"description\":\"EVE Online SSO OAuth 2.0\",\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://login.eveonline.com/v2/oauth/authorize\",\"scopes\":{\"esi-assets.read_assets.v1\":\"Read character assets\",\"esi-characters.read_notifications.v1\":\"Read character notifications\",\"esi-corporations.read_structures.v1\":\"Read corporation structures\",\"esi-markets.read_character_orders.v1\":\"Read character market orders\",\"esi-markets.structure_markets.v1\":\"Read structure markets\",\"esi-universe.read_structures.v1\":\"Read structure information\"},\"tokenUrl\":\"https://login.eveonline.com/v2/oauth/token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/characters/{character_id}/assets/", "segments": [{ "lit": "characters" }, { "var": "character_id" }, { "lit": "assets" }], "select": { "exist": ["character_id", "datasource", "page"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [["character"]] }, "key$": "asset", "name__orig": "asset", "Name": "Asset", "name_": "asset", "name-": "asset", "NAME": "ASSET", "index$": 0 }, { "active": true, "entity": "asset", "key$": "BasicAssetFlow", "kind": "basic", "name": "BasicAssetFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": { "character_id": "character01" }, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "asset_ref01" } }], "index$": 0 }] }, 'Asset');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -102,12 +100,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['ESI_DOCUMENTATION_TEST_ASSET_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'ESI_DOCUMENTATION_TEST_ASSET_ENTID': idmap,
         'ESI_DOCUMENTATION_TEST_LIVE': 'FALSE',
@@ -116,7 +108,13 @@ function basicSetup(extra) {
     });
     idmap = env['ESI_DOCUMENTATION_TEST_ASSET_ENTID'];
     const live = 'TRUE' === env.ESI_DOCUMENTATION_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['ESI_DOCUMENTATION_TEST_ASSET_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.EsiDocumentationSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -129,7 +127,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -141,7 +140,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.ESI_DOCUMENTATION_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

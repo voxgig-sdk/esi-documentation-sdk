@@ -1,12 +1,18 @@
 # EsiDocumentation SDK feature factory
 
 from esidocumentation_sdk.feature.base_feature import EsiDocumentationBaseFeature
+from esidocumentation_sdk.feature.ratelimit_feature import EsiDocumentationRatelimitFeature
+from esidocumentation_sdk.feature.retry_feature import EsiDocumentationRetryFeature
 from esidocumentation_sdk.feature.test_feature import EsiDocumentationTestFeature
+from esidocumentation_sdk.feature.timeout_feature import EsiDocumentationTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: EsiDocumentationBaseFeature(),
+    "ratelimit": lambda: EsiDocumentationRatelimitFeature(),
+    "retry": lambda: EsiDocumentationRetryFeature(),
     "test": lambda: EsiDocumentationTestFeature(),
+    "timeout": lambda: EsiDocumentationTimeoutFeature(),
 }
 
 
