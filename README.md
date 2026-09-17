@@ -105,12 +105,12 @@ local result, err = client:Character():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/esi-documentation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/releases) |
-| Python | `voxgig-sdk-esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/releases) |
-| PHP | `voxgig-sdk/esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/releases) |
+| TypeScript | `@voxgig-sdk/esi-documentation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/tags) |
+| Python | `voxgig-sdk-esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/tags) |
+| PHP | `voxgig-sdk/esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/esi-documentation-sdk/go` | `go get github.com/voxgig-sdk/esi-documentation-sdk/go@latest` |
-| Ruby | `voxgig-sdk-esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/releases) |
-| Lua | `voxgig-sdk-esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/releases) |
+| Ruby | `voxgig-sdk-esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/tags) |
+| Lua | `voxgig-sdk-esi-documentation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/esi-documentation-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/esi-documentation-sdk/go-cli` | `go install github.com/voxgig-sdk/esi-documentation-sdk/go-cli/cmd/esi-documentation@latest` |
 | Go MCP server | `github.com/voxgig-sdk/esi-documentation-sdk/go-mcp` | `go get github.com/voxgig-sdk/esi-documentation-sdk/go-mcp@latest` |
 

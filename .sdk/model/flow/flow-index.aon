@@ -1,5 +1,5 @@
 # Flows
 
-@"BasicAssetFlow.aon"
-@"BasicCharacterFlow.aon"
-@"BasicStructureFlow.aon"
+@"./BasicAssetFlow.aon"
+@"./BasicCharacterFlow.aon"
+@"./BasicStructureFlow.aon"

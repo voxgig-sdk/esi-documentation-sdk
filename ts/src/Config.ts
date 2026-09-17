@@ -131,15 +131,15 @@ class Config {
 
     entity: {
       
-      asset: {
-      },
-
-      character: {
-      },
-
-      structure: {
-      },
-
+        asset: {
+        },
+  
+        character: {
+        },
+  
+        structure: {
+        },
+  
     }
   }
 

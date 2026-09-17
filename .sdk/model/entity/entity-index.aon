@@ -1,5 +1,5 @@
 # Entity Models
 
-@"asset.aon"
-@"character.aon"
-@"structure.aon"
+@"./asset.aon"
+@"./character.aon"
+@"./structure.aon"
