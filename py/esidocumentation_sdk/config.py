@@ -121,53 +121,61 @@ def make_config():
         "fields": [
           {
             "name": "is_blueprint_copy",
-            "short": "is_blueprint_copy boolean",
+            "title": "Is Blueprint Copy",
             "type": "`$BOOLEAN`",
+            "short": "is_blueprint_copy boolean",
           },
           {
             "name": "is_singleton",
+            "title": "Is Singleton",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "is_singleton boolean",
-            "type": "`$BOOLEAN`",
           },
           {
-            "format": "int64",
             "name": "item_id",
+            "title": "Item Id",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "item_id integer",
-            "type": "`$INTEGER`",
+            "format": "int64",
           },
           {
             "name": "location_flag",
-            "short": "Describes the specific location within the location_type",
+            "title": "Location Flag",
             "type": "`$STRING`",
+            "short": "Describes the specific location within the location_type",
           },
           {
-            "format": "int64",
             "name": "location_id",
+            "title": "Location Id",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "location_id integer",
-            "type": "`$INTEGER`",
+            "format": "int64",
           },
           {
             "name": "location_type",
+            "title": "Location Type",
+            "type": "`$STRING`",
             "req": True,
             "short": "Describes the location type",
-            "type": "`$STRING`",
           },
           {
-            "format": "int32",
             "name": "quantity",
+            "title": "Quantity",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "quantity integer",
-            "type": "`$INTEGER`",
+            "format": "int32",
           },
           {
-            "format": "int32",
             "name": "type_id",
+            "title": "Type Id",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "type_id integer",
-            "type": "`$INTEGER`",
+            "format": "int32",
           },
         ],
         "name": "asset",
@@ -177,33 +185,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "character_id",
-                      "orig": "character_id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "tranquility",
-                      "kind": "query",
-                      "name": "datasource",
-                      "orig": "datasource",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/characters/{character_id}/assets/",
@@ -218,6 +199,43 @@ def make_config():
                     "lit": "assets",
                   },
                 ],
+                "parts": [
+                  "characters",
+                  "{character_id}",
+                  "assets",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "character_id",
+                      "orig": "character_id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "datasource",
+                      "orig": "datasource",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "tranquility",
+                    },
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "character_id",
@@ -225,15 +243,6 @@ def make_config():
                     "page",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "characters",
-                  "{character_id}",
-                  "assets",
-                ],
               },
             ],
           },
@@ -241,7 +250,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "character",
+              "$.main.kit.entity.character",
             ],
           ],
         },
@@ -249,67 +258,78 @@ def make_config():
       "character": {
         "fields": [
           {
-            "format": "int32",
             "name": "alliance_id",
+            "title": "Alliance Id",
+            "type": "`$INTEGER`",
             "short": "The character's alliance ID",
-            "type": "`$INTEGER`",
+            "format": "int32",
           },
           {
-            "format": "int32",
             "name": "ancestry_id",
+            "title": "Ancestry Id",
+            "type": "`$INTEGER`",
             "short": "The character's ancestry ID",
-            "type": "`$INTEGER`",
+            "format": "int32",
           },
           {
-            "format": "date-time",
             "name": "birthday",
-            "short": "Creation date of the character",
+            "title": "Birthday",
             "type": "`$STRING`",
+            "short": "Creation date of the character",
+            "format": "date-time",
           },
           {
-            "format": "int32",
             "name": "bloodline_id",
-            "short": "The character's bloodline ID",
+            "title": "Bloodline Id",
             "type": "`$INTEGER`",
+            "short": "The character's bloodline ID",
+            "format": "int32",
           },
           {
-            "format": "int32",
             "name": "corporation_id",
+            "title": "Corporation Id",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "The character's corporation ID",
-            "type": "`$INTEGER`",
+            "format": "int32",
           },
           {
             "name": "description",
-            "short": "The character's bio",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "The character's bio",
           },
           {
             "name": "gender",
-            "short": "The character's gender",
+            "title": "Gender",
             "type": "`$STRING`",
+            "short": "The character's gender",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "The character's name",
-            "type": "`$STRING`",
           },
           {
-            "format": "int32",
             "name": "race_id",
-            "short": "The character's race ID",
+            "title": "Race Id",
             "type": "`$INTEGER`",
+            "short": "The character's race ID",
+            "format": "int32",
           },
           {
-            "format": "float",
             "name": "security_status",
-            "short": "The character's security status",
+            "title": "Security Status",
             "type": "`$NUMBER`",
+            "short": "The character's security status",
+            "format": "float",
           },
         ],
         "id": {
@@ -323,34 +343,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "character_id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "tranquility",
-                      "kind": "query",
-                      "name": "datasource",
-                      "orig": "datasource",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/characters/{character_id}/",
-                "rename": {
-                  "param": {
-                    "character_id": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "characters",
@@ -359,20 +354,45 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "characters",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "character_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "character_id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "datasource",
+                      "orig": "datasource",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "tranquility",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "datasource",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "characters",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -385,22 +405,26 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
-            "format": "double",
             "name": "x",
+            "title": "X",
             "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "y",
+            "title": "Y",
             "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "z",
+            "title": "Z",
             "type": "`$NUMBER`",
+            "format": "double",
           },
         ],
         "id": {
@@ -414,34 +438,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "structure_id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "tranquility",
-                      "kind": "query",
-                      "name": "datasource",
-                      "orig": "datasource",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/universe/structures/{structure_id}/",
-                "rename": {
-                  "param": {
-                    "structure_id": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "universe",
@@ -453,21 +452,46 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "universe",
+                  "structures",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "structure_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.position`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "structure_id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "datasource",
+                      "orig": "datasource",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "tranquility",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "datasource",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.position`",
-                },
-                "parts": [
-                  "universe",
-                  "structures",
-                  "{id}",
-                ],
               },
             ],
           },

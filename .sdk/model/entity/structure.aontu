@@ -1,0 +1,109 @@
+# Entity: structure
+
+main: kit: entity: structure: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    x: {
+      fo: "double"
+      h: "X"
+      n: "x"
+      r: false
+      t: "`$NUMBER`"
+    }
+    y: {
+      fo: "double"
+      h: "Y"
+      n: "y"
+      r: false
+      t: "`$NUMBER`"
+    }
+    z: {
+      fo: "double"
+      h: "Z"
+      n: "z"
+      r: false
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "structure"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /universe/structures/{structure_id}/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "structure_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                ex: "tranquility"
+                k: "query"
+                n: "datasource"
+                or: "datasource"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/universe/structures/{structure_id}/"
+          q: {
+            exist: [
+              "datasource"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              structure_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "universe"
+            }
+            {
+              lit: "structures"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.position`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

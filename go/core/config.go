@@ -96,53 +96,61 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "is_blueprint_copy",
-						"short": "is_blueprint_copy boolean",
+						"title": "Is Blueprint Copy",
 						"type": "`$BOOLEAN`",
+						"short": "is_blueprint_copy boolean",
 					},
 					map[string]any{
 						"name": "is_singleton",
+						"title": "Is Singleton",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "is_singleton boolean",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
-						"format": "int64",
 						"name": "item_id",
+						"title": "Item Id",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "item_id integer",
-						"type": "`$INTEGER`",
+						"format": "int64",
 					},
 					map[string]any{
 						"name": "location_flag",
-						"short": "Describes the specific location within the location_type",
+						"title": "Location Flag",
 						"type": "`$STRING`",
+						"short": "Describes the specific location within the location_type",
 					},
 					map[string]any{
-						"format": "int64",
 						"name": "location_id",
+						"title": "Location Id",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "location_id integer",
-						"type": "`$INTEGER`",
+						"format": "int64",
 					},
 					map[string]any{
 						"name": "location_type",
+						"title": "Location Type",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Describes the location type",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "int32",
 						"name": "quantity",
+						"title": "Quantity",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "quantity integer",
-						"type": "`$INTEGER`",
+						"format": "int32",
 					},
 					map[string]any{
-						"format": "int32",
 						"name": "type_id",
+						"title": "Type Id",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "type_id integer",
-						"type": "`$INTEGER`",
+						"format": "int32",
 					},
 				},
 				"name": "asset",
@@ -152,33 +160,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "character_id",
-											"orig": "character_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "tranquility",
-											"kind": "query",
-											"name": "datasource",
-											"orig": "datasource",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/characters/{character_id}/assets/",
@@ -193,21 +174,49 @@ func MakeConfig() map[string]any {
 										"lit": "assets",
 									},
 								},
+								"parts": []any{
+									"characters",
+									"{character_id}",
+									"assets",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "character_id",
+											"orig": "character_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "datasource",
+											"orig": "datasource",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "tranquility",
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"character_id",
 										"datasource",
 										"page",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"characters",
-									"{character_id}",
-									"assets",
 								},
 							},
 						},
@@ -216,7 +225,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"character",
+							"$.main.kit.entity.character",
 						},
 					},
 				},
@@ -224,67 +233,78 @@ func MakeConfig() map[string]any {
 			"character": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "int32",
 						"name": "alliance_id",
+						"title": "Alliance Id",
+						"type": "`$INTEGER`",
 						"short": "The character's alliance ID",
-						"type": "`$INTEGER`",
+						"format": "int32",
 					},
 					map[string]any{
-						"format": "int32",
 						"name": "ancestry_id",
+						"title": "Ancestry Id",
+						"type": "`$INTEGER`",
 						"short": "The character's ancestry ID",
-						"type": "`$INTEGER`",
+						"format": "int32",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "birthday",
-						"short": "Creation date of the character",
+						"title": "Birthday",
 						"type": "`$STRING`",
+						"short": "Creation date of the character",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "int32",
 						"name": "bloodline_id",
-						"short": "The character's bloodline ID",
+						"title": "Bloodline Id",
 						"type": "`$INTEGER`",
+						"short": "The character's bloodline ID",
+						"format": "int32",
 					},
 					map[string]any{
-						"format": "int32",
 						"name": "corporation_id",
+						"title": "Corporation Id",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "The character's corporation ID",
-						"type": "`$INTEGER`",
+						"format": "int32",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "The character's bio",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "The character's bio",
 					},
 					map[string]any{
 						"name": "gender",
-						"short": "The character's gender",
+						"title": "Gender",
 						"type": "`$STRING`",
+						"short": "The character's gender",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The character's name",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "int32",
 						"name": "race_id",
-						"short": "The character's race ID",
+						"title": "Race Id",
 						"type": "`$INTEGER`",
+						"short": "The character's race ID",
+						"format": "int32",
 					},
 					map[string]any{
-						"format": "float",
 						"name": "security_status",
-						"short": "The character's security status",
+						"title": "Security Status",
 						"type": "`$NUMBER`",
+						"short": "The character's security status",
+						"format": "float",
 					},
 				},
 				"id": map[string]any{
@@ -298,34 +318,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "character_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "tranquility",
-											"kind": "query",
-											"name": "datasource",
-											"orig": "datasource",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/characters/{character_id}/",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"character_id": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "characters",
@@ -334,19 +329,44 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"datasource",
-										"id",
+								"parts": []any{
+									"characters",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"character_id": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"characters",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "character_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "datasource",
+											"orig": "datasource",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "tranquility",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"datasource",
+										"id",
+									},
 								},
 							},
 						},
@@ -360,22 +380,26 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "x",
+						"title": "X",
 						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "y",
+						"title": "Y",
 						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "z",
+						"title": "Z",
 						"type": "`$NUMBER`",
+						"format": "double",
 					},
 				},
 				"id": map[string]any{
@@ -389,34 +413,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "structure_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "tranquility",
-											"kind": "query",
-											"name": "datasource",
-											"orig": "datasource",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/universe/structures/{structure_id}/",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"structure_id": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "universe",
@@ -428,20 +427,45 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"datasource",
-										"id",
+								"parts": []any{
+									"universe",
+									"structures",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"structure_id": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.position`",
 								},
-								"parts": []any{
-									"universe",
-									"structures",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "structure_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "datasource",
+											"orig": "datasource",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "tranquility",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"datasource",
+										"id",
+									},
 								},
 							},
 						},

@@ -1,7 +1,7 @@
 // Typed models for the EsiDocumentation SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,14 +14,6 @@ import (
 
 // Asset is the typed data model for the asset entity.
 type Asset struct {
-	IsBlueprintCopy *bool `json:"is_blueprint_copy,omitempty"`
-	IsSingleton bool `json:"is_singleton"`
-	ItemId int `json:"item_id"`
-	LocationFlag *string `json:"location_flag,omitempty"`
-	LocationId int `json:"location_id"`
-	LocationType string `json:"location_type"`
-	Quantity int `json:"quantity"`
-	TypeId int `json:"type_id"`
 }
 
 // AssetListMatch is the typed request payload for Asset.ListTyped.
@@ -33,17 +25,6 @@ type AssetListMatch struct {
 
 // Character is the typed data model for the character entity.
 type Character struct {
-	AllianceId *int `json:"alliance_id,omitempty"`
-	AncestryId *int `json:"ancestry_id,omitempty"`
-	Birthday *string `json:"birthday,omitempty"`
-	BloodlineId *int `json:"bloodline_id,omitempty"`
-	CorporationId int `json:"corporation_id"`
-	Description *string `json:"description,omitempty"`
-	Gender *string `json:"gender,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name string `json:"name"`
-	RaceId *int `json:"race_id,omitempty"`
-	SecurityStatus *float64 `json:"security_status,omitempty"`
 }
 
 // CharacterLoadMatch is the typed request payload for Character.LoadTyped.
@@ -54,10 +35,6 @@ type CharacterLoadMatch struct {
 
 // Structure is the typed data model for the structure entity.
 type Structure struct {
-	Id *string `json:"id,omitempty"`
-	X *float64 `json:"x,omitempty"`
-	Y *float64 `json:"y,omitempty"`
-	Z *float64 `json:"z,omitempty"`
 }
 
 // StructureLoadMatch is the typed request payload for Structure.LoadTyped.

@@ -1,0 +1,162 @@
+# Entity: character
+
+main: kit: entity: character: {
+
+  alias: field: {}
+
+  fields: {
+    alliance_id: {
+      fo: "int32"
+      h: "Alliance Id"
+      n: "alliance_id"
+      r: false
+      sh: "The character's alliance ID"
+      t: "`$INTEGER`"
+    }
+    ancestry_id: {
+      fo: "int32"
+      h: "Ancestry Id"
+      n: "ancestry_id"
+      r: false
+      sh: "The character's ancestry ID"
+      t: "`$INTEGER`"
+    }
+    birthday: {
+      fo: "date-time"
+      h: "Birthday"
+      n: "birthday"
+      r: false
+      sh: "Creation date of the character"
+      t: "`$STRING`"
+    }
+    bloodline_id: {
+      fo: "int32"
+      h: "Bloodline Id"
+      n: "bloodline_id"
+      r: false
+      sh: "The character's bloodline ID"
+      t: "`$INTEGER`"
+    }
+    corporation_id: {
+      fo: "int32"
+      h: "Corporation Id"
+      n: "corporation_id"
+      r: true
+      sh: "The character's corporation ID"
+      t: "`$INTEGER`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The character's bio"
+      t: "`$STRING`"
+    }
+    gender: {
+      h: "Gender"
+      n: "gender"
+      r: false
+      sh: "The character's gender"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "The character's name"
+      t: "`$STRING`"
+    }
+    race_id: {
+      fo: "int32"
+      h: "Race Id"
+      n: "race_id"
+      r: false
+      sh: "The character's race ID"
+      t: "`$INTEGER`"
+    }
+    security_status: {
+      fo: "float"
+      h: "Security Status"
+      n: "security_status"
+      r: false
+      sh: "The character's security status"
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "character"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /characters/{character_id}/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "character_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                ex: "tranquility"
+                k: "query"
+                n: "datasource"
+                or: "datasource"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/characters/{character_id}/"
+          q: {
+            exist: [
+              "datasource"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              character_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "characters"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

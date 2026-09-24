@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssetEntity = void 0;
 const EsiDocumentationEntityBase_1 = require("../EsiDocumentationEntityBase");
-// TODO: needs Entity superclass
 class AssetEntity extends EsiDocumentationEntityBase_1.EsiDocumentationEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

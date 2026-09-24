@@ -1,0 +1,144 @@
+# Entity: asset
+
+main: kit: entity: asset: {
+
+  alias: field: {}
+
+  fields: {
+    is_blueprint_copy: {
+      h: "Is Blueprint Copy"
+      n: "is_blueprint_copy"
+      r: false
+      sh: "is_blueprint_copy boolean"
+      t: "`$BOOLEAN`"
+    }
+    is_singleton: {
+      h: "Is Singleton"
+      n: "is_singleton"
+      r: true
+      sh: "is_singleton boolean"
+      t: "`$BOOLEAN`"
+    }
+    item_id: {
+      fo: "int64"
+      h: "Item Id"
+      n: "item_id"
+      r: true
+      sh: "item_id integer"
+      t: "`$INTEGER`"
+    }
+    location_flag: {
+      h: "Location Flag"
+      n: "location_flag"
+      r: false
+      sh: "Describes the specific location within the location_type"
+      t: "`$STRING`"
+    }
+    location_id: {
+      fo: "int64"
+      h: "Location Id"
+      n: "location_id"
+      r: true
+      sh: "location_id integer"
+      t: "`$INTEGER`"
+    }
+    location_type: {
+      h: "Location Type"
+      n: "location_type"
+      r: true
+      sh: "Describes the location type"
+      t: "`$STRING`"
+    }
+    quantity: {
+      fo: "int32"
+      h: "Quantity"
+      n: "quantity"
+      r: true
+      sh: "quantity integer"
+      t: "`$INTEGER`"
+    }
+    type_id: {
+      fo: "int32"
+      h: "Type Id"
+      n: "type_id"
+      r: true
+      sh: "type_id integer"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "asset"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /characters/{character_id}/assets/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "character_id"
+                or: "character_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                ex: "tranquility"
+                k: "query"
+                n: "datasource"
+                or: "datasource"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/characters/{character_id}/assets/"
+          q: {
+            exist: [
+              "character_id"
+              "datasource"
+              "page"
+            ]
+          }
+          s: [
+            {
+              lit: "characters"
+            }
+            {
+              var: "character_id"
+            }
+            {
+              lit: "assets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.character")]
+  ]
+
+}

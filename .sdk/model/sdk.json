@@ -24,74 +24,148 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "asset": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "is_blueprint_copy",
-              "req": false,
-              "short": "is_blueprint_copy boolean",
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "is_blueprint_copy": {
+              "a": true,
+              "h": "Is Blueprint Copy",
+              "n": "is_blueprint_copy",
+              "r": false,
+              "sh": "is_blueprint_copy boolean",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "is_singleton",
-              "req": true,
-              "short": "is_singleton boolean",
-              "type": "`$BOOLEAN`"
+            "is_singleton": {
+              "a": true,
+              "h": "Is Singleton",
+              "n": "is_singleton",
+              "r": true,
+              "sh": "is_singleton boolean",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "format": "int64",
-              "name": "item_id",
-              "req": true,
-              "short": "item_id integer",
-              "type": "`$INTEGER`"
+            "item_id": {
+              "a": true,
+              "fo": "int64",
+              "h": "Item Id",
+              "n": "item_id",
+              "r": true,
+              "sh": "item_id integer",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "location_flag",
-              "req": false,
-              "short": "Describes the specific location within the location_type",
-              "type": "`$STRING`"
+            "location_flag": {
+              "a": true,
+              "h": "Location Flag",
+              "n": "location_flag",
+              "r": false,
+              "sh": "Describes the specific location within the location_type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "int64",
-              "name": "location_id",
-              "req": true,
-              "short": "location_id integer",
-              "type": "`$INTEGER`"
+            "location_id": {
+              "a": true,
+              "fo": "int64",
+              "h": "Location Id",
+              "n": "location_id",
+              "r": true,
+              "sh": "location_id integer",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "location_type",
-              "req": true,
-              "short": "Describes the location type",
-              "type": "`$STRING`"
+            "location_type": {
+              "a": true,
+              "h": "Location Type",
+              "n": "location_type",
+              "r": true,
+              "sh": "Describes the location type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "int32",
-              "name": "quantity",
-              "req": true,
-              "short": "quantity integer",
-              "type": "`$INTEGER`"
+            "quantity": {
+              "a": true,
+              "fo": "int32",
+              "h": "Quantity",
+              "n": "quantity",
+              "r": true,
+              "sh": "quantity integer",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "int32",
-              "name": "type_id",
-              "req": true,
-              "short": "type_id integer",
-              "type": "`$INTEGER`"
+            "type_id": {
+              "a": true,
+              "fo": "int32",
+              "h": "Type Id",
+              "n": "type_id",
+              "r": true,
+              "sh": "type_id integer",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "name": "asset",
           "op": {
             "list": {
@@ -99,49 +173,56 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /characters/{character_id}/assets/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "character_id",
-                        "orig": "character_id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "character_id",
+                        "or": "character_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "tranquility",
-                        "kind": "query",
-                        "name": "datasource",
-                        "orig": "datasource",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "tranquility",
+                        "k": "query",
+                        "n": "datasource",
+                        "or": "datasource",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /characters/{character_id}/assets/",
-                    "json": "{\"operationId\":\"getCharacterAssets\",\"parameters\":[{\"description\":\"An EVE character ID\",\"in\":\"path\",\"name\":\"character_id\",\"required\":true,\"schema\":{\"format\":\"int32\",\"type\":\"integer\"}},{\"description\":\"The server name you would like data from\",\"in\":\"query\",\"name\":\"datasource\",\"schema\":{\"default\":\"tranquility\",\"enum\":[\"tranquility\",\"singularity\"],\"type\":\"string\"}},{\"description\":\"Which page of results to return\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"default\":1,\"format\":\"int32\",\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"is_blueprint_copy\":{\"description\":\"is_blueprint_copy boolean\",\"type\":\"boolean\"},\"is_singleton\":{\"description\":\"is_singleton boolean\",\"type\":\"boolean\"},\"item_id\":{\"description\":\"item_id integer\",\"format\":\"int64\",\"type\":\"integer\"},\"location_flag\":{\"description\":\"Describes the specific location within the location_type\",\"type\":\"string\"},\"location_id\":{\"description\":\"location_id integer\",\"format\":\"int64\",\"type\":\"integer\"},\"location_type\":{\"description\":\"Describes the location type\",\"enum\":[\"station\",\"solar_system\",\"item\",\"other\"],\"type\":\"string\"},\"quantity\":{\"description\":\"quantity integer\",\"format\":\"int32\",\"type\":\"integer\"},\"type_id\":{\"description\":\"type_id integer\",\"format\":\"int32\",\"type\":\"integer\"}},\"required\":[\"item_id\",\"type_id\",\"location_id\",\"location_type\",\"quantity\",\"is_singleton\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"A list of assets\",\"headers\":{\"X-Pages\":{\"description\":\"Maximum page number\",\"schema\":{\"type\":\"integer\"}}}},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"evesso\":[\"esi-assets.read_assets.v1\"]}],\"securitySchemes\":{\"evesso\":{\"description\":\"EVE Online SSO OAuth 2.0\",\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://login.eveonline.com/v2/oauth/authorize\",\"scopes\":{\"esi-assets.read_assets.v1\":\"Read character assets\",\"esi-characters.read_notifications.v1\":\"Read character notifications\",\"esi-corporations.read_structures.v1\":\"Read corporation structures\",\"esi-markets.read_character_orders.v1\":\"Read character market orders\",\"esi-markets.structure_markets.v1\":\"Read structure markets\",\"esi-universe.read_structures.v1\":\"Read structure information\"},\"tokenUrl\":\"https://login.eveonline.com/v2/oauth/token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/characters/{character_id}/assets/",
+                  "q": {
+                    "exist": [
+                      "character_id",
+                      "datasource",
+                      "page"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/characters/{character_id}/assets/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "characters"
                     },
@@ -152,14 +233,7 @@
                       "lit": "assets"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "character_id",
-                      "datasource",
-                      "page"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -170,7 +244,7 @@
           "relations": {
             "ancestors": [
               [
-                "character"
+                "$.main.kit.entity.character"
               ]
             ]
           }
@@ -180,91 +254,102 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "int32",
-              "name": "alliance_id",
-              "req": false,
-              "short": "The character's alliance ID",
-              "type": "`$INTEGER`"
+          "fields": {
+            "alliance_id": {
+              "a": true,
+              "fo": "int32",
+              "h": "Alliance Id",
+              "n": "alliance_id",
+              "r": false,
+              "sh": "The character's alliance ID",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "int32",
-              "name": "ancestry_id",
-              "req": false,
-              "short": "The character's ancestry ID",
-              "type": "`$INTEGER`"
+            "ancestry_id": {
+              "a": true,
+              "fo": "int32",
+              "h": "Ancestry Id",
+              "n": "ancestry_id",
+              "r": false,
+              "sh": "The character's ancestry ID",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "birthday",
-              "req": false,
-              "short": "Creation date of the character",
-              "type": "`$STRING`"
+            "birthday": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Birthday",
+              "n": "birthday",
+              "r": false,
+              "sh": "Creation date of the character",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "int32",
-              "name": "bloodline_id",
-              "req": false,
-              "short": "The character's bloodline ID",
-              "type": "`$INTEGER`"
+            "bloodline_id": {
+              "a": true,
+              "fo": "int32",
+              "h": "Bloodline Id",
+              "n": "bloodline_id",
+              "r": false,
+              "sh": "The character's bloodline ID",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "int32",
-              "name": "corporation_id",
-              "req": true,
-              "short": "The character's corporation ID",
-              "type": "`$INTEGER`"
+            "corporation_id": {
+              "a": true,
+              "fo": "int32",
+              "h": "Corporation Id",
+              "n": "corporation_id",
+              "r": true,
+              "sh": "The character's corporation ID",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "The character's bio",
-              "type": "`$STRING`"
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "The character's bio",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "gender",
-              "req": false,
-              "short": "The character's gender",
-              "type": "`$STRING`"
+            "gender": {
+              "a": true,
+              "h": "Gender",
+              "n": "gender",
+              "r": false,
+              "sh": "The character's gender",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": true,
-              "short": "The character's name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": true,
+              "sh": "The character's name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "int32",
-              "name": "race_id",
-              "req": false,
-              "short": "The character's race ID",
-              "type": "`$INTEGER`"
+            "race_id": {
+              "a": true,
+              "fo": "int32",
+              "h": "Race Id",
+              "n": "race_id",
+              "r": false,
+              "sh": "The character's race ID",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "float",
-              "name": "security_status",
-              "req": false,
-              "short": "The character's security status",
-              "type": "`$NUMBER`"
+            "security_status": {
+              "a": true,
+              "fo": "float",
+              "h": "Security Status",
+              "n": "security_status",
+              "r": false,
+              "sh": "The character's security status",
+              "t": "`$NUMBER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -276,45 +361,50 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /characters/{character_id}/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "character_id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "character_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "tranquility",
-                        "kind": "query",
-                        "name": "datasource",
-                        "orig": "datasource",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "tranquility",
+                        "k": "query",
+                        "n": "datasource",
+                        "or": "datasource",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /characters/{character_id}/",
-                    "json": "{\"operationId\":\"getCharacter\",\"parameters\":[{\"description\":\"An EVE character ID\",\"in\":\"path\",\"name\":\"character_id\",\"required\":true,\"schema\":{\"format\":\"int32\",\"type\":\"integer\"}},{\"description\":\"The server name you would like data from\",\"in\":\"query\",\"name\":\"datasource\",\"schema\":{\"default\":\"tranquility\",\"enum\":[\"tranquility\",\"singularity\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"alliance_id\":{\"description\":\"The character's alliance ID\",\"format\":\"int32\",\"type\":\"integer\"},\"ancestry_id\":{\"description\":\"The character's ancestry ID\",\"format\":\"int32\",\"type\":\"integer\"},\"birthday\":{\"description\":\"Creation date of the character\",\"format\":\"date-time\",\"type\":\"string\"},\"bloodline_id\":{\"description\":\"The character's bloodline ID\",\"format\":\"int32\",\"type\":\"integer\"},\"corporation_id\":{\"description\":\"The character's corporation ID\",\"format\":\"int32\",\"type\":\"integer\"},\"description\":{\"description\":\"The character's bio\",\"type\":\"string\"},\"gender\":{\"description\":\"The character's gender\",\"enum\":[\"male\",\"female\"],\"type\":\"string\"},\"name\":{\"description\":\"The character's name\",\"type\":\"string\"},\"race_id\":{\"description\":\"The character's race ID\",\"format\":\"int32\",\"type\":\"integer\"},\"security_status\":{\"description\":\"The character's security status\",\"format\":\"float\",\"type\":\"number\"}},\"required\":[\"name\",\"corporation_id\"],\"type\":\"object\"}}},\"description\":\"Public data about a character\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Character not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"evesso\":{\"description\":\"EVE Online SSO OAuth 2.0\",\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://login.eveonline.com/v2/oauth/authorize\",\"scopes\":{\"esi-assets.read_assets.v1\":\"Read character assets\",\"esi-characters.read_notifications.v1\":\"Read character notifications\",\"esi-corporations.read_structures.v1\":\"Read corporation structures\",\"esi-markets.read_character_orders.v1\":\"Read character market orders\",\"esi-markets.structure_markets.v1\":\"Read structure markets\",\"esi-universe.read_structures.v1\":\"Read structure information\"},\"tokenUrl\":\"https://login.eveonline.com/v2/oauth/token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/characters/{character_id}/",
+                  "q": {
+                    "exist": [
+                      "datasource",
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/characters/{character_id}/",
-                  "rename": {
+                  "r": {
                     "param": {
                       "character_id": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "characters"
                     },
@@ -322,13 +412,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "datasource",
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -345,35 +429,39 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "double",
-              "name": "x",
-              "req": false,
-              "type": "`$NUMBER`"
+            "x": {
+              "a": true,
+              "fo": "double",
+              "h": "X",
+              "n": "x",
+              "r": false,
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "format": "double",
-              "name": "y",
-              "req": false,
-              "type": "`$NUMBER`"
+            "y": {
+              "a": true,
+              "fo": "double",
+              "h": "Y",
+              "n": "y",
+              "r": false,
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "format": "double",
-              "name": "z",
-              "req": false,
-              "type": "`$NUMBER`"
+            "z": {
+              "a": true,
+              "fo": "double",
+              "h": "Z",
+              "n": "z",
+              "r": false,
+              "t": "`$NUMBER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -385,45 +473,50 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /universe/structures/{structure_id}/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "structure_id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "structure_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "tranquility",
-                        "kind": "query",
-                        "name": "datasource",
-                        "orig": "datasource",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "tranquility",
+                        "k": "query",
+                        "n": "datasource",
+                        "or": "datasource",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /universe/structures/{structure_id}/",
-                    "json": "{\"operationId\":\"getStructure\",\"parameters\":[{\"description\":\"An EVE structure ID\",\"in\":\"path\",\"name\":\"structure_id\",\"required\":true,\"schema\":{\"format\":\"int64\",\"type\":\"integer\"}},{\"description\":\"The server name you would like data from\",\"in\":\"query\",\"name\":\"datasource\",\"schema\":{\"default\":\"tranquility\",\"enum\":[\"tranquility\",\"singularity\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"name\":{\"description\":\"The structure name\",\"type\":\"string\"},\"owner_id\":{\"description\":\"The ID of the corporation that owns the structure\",\"format\":\"int32\",\"type\":\"integer\"},\"position\":{\"description\":\"Coordinates of the structure in the solar system\",\"properties\":{\"x\":{\"format\":\"double\",\"type\":\"number\"},\"y\":{\"format\":\"double\",\"type\":\"number\"},\"z\":{\"format\":\"double\",\"type\":\"number\"}},\"type\":\"object\"},\"solar_system_id\":{\"description\":\"The solar system the structure is in\",\"format\":\"int32\",\"type\":\"integer\"},\"type_id\":{\"description\":\"The type of structure\",\"format\":\"int32\",\"type\":\"integer\"}},\"required\":[\"name\",\"owner_id\",\"solar_system_id\",\"type_id\"],\"type\":\"object\"}}},\"description\":\"Data about a structure\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden - Not authorized to access this structure\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Structure not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"evesso\":[\"esi-universe.read_structures.v1\"]}],\"securitySchemes\":{\"evesso\":{\"description\":\"EVE Online SSO OAuth 2.0\",\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://login.eveonline.com/v2/oauth/authorize\",\"scopes\":{\"esi-assets.read_assets.v1\":\"Read character assets\",\"esi-characters.read_notifications.v1\":\"Read character notifications\",\"esi-corporations.read_structures.v1\":\"Read corporation structures\",\"esi-markets.read_character_orders.v1\":\"Read character market orders\",\"esi-markets.structure_markets.v1\":\"Read structure markets\",\"esi-universe.read_structures.v1\":\"Read structure information\"},\"tokenUrl\":\"https://login.eveonline.com/v2/oauth/token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/universe/structures/{structure_id}/",
+                  "q": {
+                    "exist": [
+                      "datasource",
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/universe/structures/{structure_id}/",
-                  "rename": {
+                  "r": {
                     "param": {
                       "structure_id": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "universe"
                     },
@@ -434,13 +527,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "datasource",
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.position`"
                   }
@@ -869,15 +956,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "character_id": "character01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -897,19 +984,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "character_ref01",
                 "srcdatavar": "character_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "character01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -929,19 +1016,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "structure_ref01",
                 "srcdatavar": "structure_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "structure01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

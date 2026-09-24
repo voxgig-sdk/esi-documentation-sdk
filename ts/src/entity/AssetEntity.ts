@@ -19,7 +19,6 @@ import type {
   AssetListMatch,
 } from '../EsiDocumentationTypes'
 
-// TODO: needs Entity superclass
 class AssetEntity extends EsiDocumentationEntityBase<Asset> {
 
   constructor(client: EsiDocumentationSDK, entopts: any) {

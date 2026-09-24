@@ -45,7 +45,7 @@ local assets, err = client:Asset():list()
 if err then error(err) end
 
 for _, item in ipairs(assets) do
-  print(item["location_flag"])
+  print(item)
 end
 ```
 

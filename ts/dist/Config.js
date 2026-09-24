@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -119,53 +112,61 @@ class Config {
             "fields": [
                 {
                     "name": "is_blueprint_copy",
-                    "short": "is_blueprint_copy boolean",
-                    "type": "`$BOOLEAN`"
+                    "title": "Is Blueprint Copy",
+                    "type": "`$BOOLEAN`",
+                    "short": "is_blueprint_copy boolean"
                 },
                 {
                     "name": "is_singleton",
+                    "title": "Is Singleton",
+                    "type": "`$BOOLEAN`",
                     "req": true,
-                    "short": "is_singleton boolean",
-                    "type": "`$BOOLEAN`"
+                    "short": "is_singleton boolean"
                 },
                 {
-                    "format": "int64",
                     "name": "item_id",
+                    "title": "Item Id",
+                    "type": "`$INTEGER`",
                     "req": true,
                     "short": "item_id integer",
-                    "type": "`$INTEGER`"
+                    "format": "int64"
                 },
                 {
                     "name": "location_flag",
-                    "short": "Describes the specific location within the location_type",
-                    "type": "`$STRING`"
+                    "title": "Location Flag",
+                    "type": "`$STRING`",
+                    "short": "Describes the specific location within the location_type"
                 },
                 {
-                    "format": "int64",
                     "name": "location_id",
+                    "title": "Location Id",
+                    "type": "`$INTEGER`",
                     "req": true,
                     "short": "location_id integer",
-                    "type": "`$INTEGER`"
+                    "format": "int64"
                 },
                 {
                     "name": "location_type",
+                    "title": "Location Type",
+                    "type": "`$STRING`",
                     "req": true,
-                    "short": "Describes the location type",
-                    "type": "`$STRING`"
+                    "short": "Describes the location type"
                 },
                 {
-                    "format": "int32",
                     "name": "quantity",
+                    "title": "Quantity",
+                    "type": "`$INTEGER`",
                     "req": true,
                     "short": "quantity integer",
-                    "type": "`$INTEGER`"
+                    "format": "int32"
                 },
                 {
-                    "format": "int32",
                     "name": "type_id",
+                    "title": "Type Id",
+                    "type": "`$INTEGER`",
                     "req": true,
                     "short": "type_id integer",
-                    "type": "`$INTEGER`"
+                    "format": "int32"
                 }
             ],
             "name": "asset",
@@ -175,33 +176,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "character_id",
-                                        "orig": "character_id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "example": "tranquility",
-                                        "kind": "query",
-                                        "name": "datasource",
-                                        "orig": "datasource",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/characters/{character_id}/assets/",
@@ -216,22 +190,50 @@ class Config {
                                     "lit": "assets"
                                 }
                             ],
+                            "parts": [
+                                "characters",
+                                "{character_id}",
+                                "assets"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "character_id",
+                                        "orig": "character_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "datasource",
+                                        "orig": "datasource",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "tranquility"
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "character_id",
                                     "datasource",
                                     "page"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "characters",
-                                "{character_id}",
-                                "assets"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -239,7 +241,7 @@ class Config {
             "relations": {
                 "ancestors": [
                     [
-                        "character"
+                        "$.main.kit.entity.character"
                     ]
                 ]
             }
@@ -247,67 +249,78 @@ class Config {
         "character": {
             "fields": [
                 {
-                    "format": "int32",
                     "name": "alliance_id",
+                    "title": "Alliance Id",
+                    "type": "`$INTEGER`",
                     "short": "The character's alliance ID",
-                    "type": "`$INTEGER`"
+                    "format": "int32"
                 },
                 {
-                    "format": "int32",
                     "name": "ancestry_id",
+                    "title": "Ancestry Id",
+                    "type": "`$INTEGER`",
                     "short": "The character's ancestry ID",
-                    "type": "`$INTEGER`"
+                    "format": "int32"
                 },
                 {
-                    "format": "date-time",
                     "name": "birthday",
+                    "title": "Birthday",
+                    "type": "`$STRING`",
                     "short": "Creation date of the character",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
-                    "format": "int32",
                     "name": "bloodline_id",
+                    "title": "Bloodline Id",
+                    "type": "`$INTEGER`",
                     "short": "The character's bloodline ID",
-                    "type": "`$INTEGER`"
+                    "format": "int32"
                 },
                 {
-                    "format": "int32",
                     "name": "corporation_id",
+                    "title": "Corporation Id",
+                    "type": "`$INTEGER`",
                     "req": true,
                     "short": "The character's corporation ID",
-                    "type": "`$INTEGER`"
+                    "format": "int32"
                 },
                 {
                     "name": "description",
-                    "short": "The character's bio",
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "short": "The character's bio"
                 },
                 {
                     "name": "gender",
-                    "short": "The character's gender",
-                    "type": "`$STRING`"
+                    "title": "Gender",
+                    "type": "`$STRING`",
+                    "short": "The character's gender"
                 },
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "name",
+                    "title": "Name",
+                    "type": "`$STRING`",
                     "req": true,
-                    "short": "The character's name",
-                    "type": "`$STRING`"
+                    "short": "The character's name"
                 },
                 {
-                    "format": "int32",
                     "name": "race_id",
+                    "title": "Race Id",
+                    "type": "`$INTEGER`",
                     "short": "The character's race ID",
-                    "type": "`$INTEGER`"
+                    "format": "int32"
                 },
                 {
-                    "format": "float",
                     "name": "security_status",
+                    "title": "Security Status",
+                    "type": "`$NUMBER`",
                     "short": "The character's security status",
-                    "type": "`$NUMBER`"
+                    "format": "float"
                 }
             ],
             "id": {
@@ -321,34 +334,9 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "character_id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "example": "tranquility",
-                                        "kind": "query",
-                                        "name": "datasource",
-                                        "orig": "datasource",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/characters/{character_id}/",
-                            "rename": {
-                                "param": {
-                                    "character_id": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "characters"
@@ -357,20 +345,45 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "datasource",
-                                    "id"
-                                ]
+                            "parts": [
+                                "characters",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "character_id": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "characters",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "character_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "datasource",
+                                        "orig": "datasource",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "tranquility"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "datasource",
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -383,22 +396,26 @@ class Config {
             "fields": [
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "double",
                     "name": "x",
-                    "type": "`$NUMBER`"
+                    "title": "X",
+                    "type": "`$NUMBER`",
+                    "format": "double"
                 },
                 {
-                    "format": "double",
                     "name": "y",
-                    "type": "`$NUMBER`"
+                    "title": "Y",
+                    "type": "`$NUMBER`",
+                    "format": "double"
                 },
                 {
-                    "format": "double",
                     "name": "z",
-                    "type": "`$NUMBER`"
+                    "title": "Z",
+                    "type": "`$NUMBER`",
+                    "format": "double"
                 }
             ],
             "id": {
@@ -412,34 +429,9 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "structure_id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "example": "tranquility",
-                                        "kind": "query",
-                                        "name": "datasource",
-                                        "orig": "datasource",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/universe/structures/{structure_id}/",
-                            "rename": {
-                                "param": {
-                                    "structure_id": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "universe"
@@ -451,21 +443,46 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "datasource",
-                                    "id"
-                                ]
+                            "parts": [
+                                "universe",
+                                "structures",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "structure_id": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.position`"
                             },
-                            "parts": [
-                                "universe",
-                                "structures",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "structure_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "datasource",
+                                        "orig": "datasource",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "tranquility"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "datasource",
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }

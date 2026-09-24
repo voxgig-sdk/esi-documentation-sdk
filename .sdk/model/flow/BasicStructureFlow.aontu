@@ -1,0 +1,32 @@
+# BasicStructureFlow
+
+main: kit: flow: BasicStructureFlow:
+{
+  entity: "structure",
+  kind: "basic",
+  name: "BasicStructureFlow",
+  step: [
+    {
+      i: {
+        ref: "structure_ref01",
+        srcdatavar: "structure_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "structure01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-structure_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStructureFlow"
+}
